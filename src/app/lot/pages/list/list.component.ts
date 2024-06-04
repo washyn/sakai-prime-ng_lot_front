@@ -8,6 +8,7 @@ import {
     Validators,
 } from '@angular/forms';
 import { TableLazyLoadEvent } from 'primeng/table';
+import { ExcelTemplateService } from 'src/app/proxy/acme/book-store/controllers';
 import {
     CreateUpdateDocenteDto,
     DocenteDto,
@@ -37,6 +38,7 @@ export class ListComponent implements OnInit {
     constructor(
         public selectService: SelectService,
         public docenteService: DocenteService,
+        public excelTemplate: ExcelTemplateService,
         public formBuilder: FormBuilder
     ) {}
 
@@ -62,6 +64,36 @@ export class ListComponent implements OnInit {
         };
         this.listData();
     }
+
+    downloadTemplateFile() {
+        this.excelTemplate.getFileTemplate().subscribe((blob) => {
+            this.saveBlobToFile(blob, 'Plantilla sorteo docentes.xlsx');
+        });
+    }
+
+    saveBlobToFile(blob, fileName) {
+        // Create a blob URL
+        const blobURL = window.URL.createObjectURL(blob);
+
+        // Create an anchor element for the download
+        const a = document.createElement('a');
+        a.href = blobURL;
+        a.download = fileName || 'download.dat'; // Provide a default file name if none is provided
+
+        // Append the anchor to the document
+        document.body.appendChild(a);
+
+        // Simulate a click on the anchor to initiate the download
+        a.click();
+
+        // Clean up: remove the anchor and revoke the blob URL
+        document.body.removeChild(a);
+        window.URL.revokeObjectURL(blobURL);
+    }
+
+    // Usage example
+    // const blob = new Blob(['Hello, World!'], { type: 'text/plain' });
+    // saveBlobToFile(blob, 'hello.txt');
 
     buildForm() {
         this.formGroup = this.formBuilder.group<{

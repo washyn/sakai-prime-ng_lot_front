@@ -1,3 +1,4 @@
+import * as Controllers from './controllers';
 import * as Entities from './entities';
 import * as Services from './services';
-export { Entities, Services };
+export { Controllers, Entities, Services };

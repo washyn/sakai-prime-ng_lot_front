@@ -58,8 +58,6 @@ export class RegisterComponent implements OnInit {
     }
 
     save() {
-        console.log(this.formGroup.value);
-
         this.docenteService
             .create({
                 ...this.formGroup.value,

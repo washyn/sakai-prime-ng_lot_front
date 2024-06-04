@@ -1,0 +1,204 @@
+<div class="surface-card p-3 shadow-1 border-round">
+    <div
+        class="mb-3 flex align-items-start flex-column lg:justify-content-between lg:flex-row"
+    >
+        <div>
+            <div class="font-medium text-3xl text-900">
+                Docentes registrados
+            </div>
+        </div>
+        <div class="mt-3 lg:mt-0">
+            <!-- <button
+                pButton
+                pRipple
+                label="Importar de excel"
+                class="p-button-outlined"
+            ></button>
+            <button
+                pButton
+                pRipple
+                label="Descargar plantilla excel"
+                class="p-button-outlined ml-2"
+            ></button> -->
+            <button
+                pButton
+                pRipple
+                label="Registrar docente"
+                icon="pi pi-plus"
+                (click)="createModal()"
+                class="p-button-outlined ml-2"
+            ></button>
+        </div>
+    </div>
+
+    <!-- <form
+        [formGroup]="formFilter"
+        class="grid formgrid p-fluid"
+        (change)="filterTable($event)"
+    >
+        <div class="field col-12">
+            <span class="p-input-icon-left">
+                <i class="pi pi-search"></i>
+                <input
+                    type="text"
+                    pInputText
+                    autofocus
+                    class="p-inputtext-sm"
+                    formControlName="filter"
+                    placeholder="Buscar"
+                />
+            </span>
+        </div>
+    </form> -->
+
+    <p-table
+        [lazy]="true"
+        [value]="data.items"
+        (onLazyLoad)="tableLazyLoad($event)"
+        [totalRecords]="data.totalCount"
+        [paginator]="true"
+        [rows]="this.tableFilterModel.maxResultCount"
+        [tableStyle]="{ 'min-width': '50rem' }"
+    >
+        <ng-template pTemplate="header">
+            <tr>
+                <th>Apellidos y nombres</th>
+                <th>Genero</th>
+                <th>Grado</th>
+                <th>Opciones</th>
+            </tr>
+        </ng-template>
+        <ng-template pTemplate="body" let-item>
+            <tr>
+                <td>
+                    {{
+                        item.apellidoPaterno +
+                            " " +
+                            item.apellidoMaterno +
+                            " " +
+                            item.nombre
+                    }}
+                </td>
+                <td>
+                    {{ item.genero }}
+                </td>
+                <td>
+                    {{ item.gradoId }}
+                </td>
+                <td class="p-1">
+                    <p-button
+                        icon="pi pi-pencil"
+                        severity="warning"
+                        class="mr-2"
+                        [outlined]="true"
+                        (onClick)="editModal(item.id)"
+                    ></p-button>
+                    <p-button
+                        icon="pi pi-trash"
+                        severity="danger"
+                        [outlined]="true"
+                        (onClick)="delete(item.id)"
+                    ></p-button>
+                </td>
+            </tr>
+        </ng-template>
+    </p-table>
+</div>
+
+<p-dialog
+    [(visible)]="isModalOpen"
+    [style]="{ width: '600px' }"
+    header="Registrar nuevo docente"
+    [modal]="true"
+    [draggable]="false"
+    [resizable]="false"
+>
+    <ng-template pTemplate="content">
+        <form
+            class="grid formgrid p-fluid"
+            [formGroup]="formGroup"
+            (ngSubmit)="save()"
+        >
+            <div class="field col-12">
+                <label class="font-medium text-900">Nombres</label>
+                <input
+                    type="text"
+                    pInputText
+                    class="p-inputtext-sm"
+                    formControlName="nombre"
+                />
+            </div>
+            <div class="field col-12">
+                <label class="font-medium text-900" for="apellidoPaterno"
+                    >Apellido paterno</label
+                >
+                <input
+                    type="text"
+                    pInputText
+                    class="p-inputtext-sm"
+                    formControlName="apellidoPaterno"
+                />
+            </div>
+            <div class="field col-12">
+                <label class="font-medium text-900">Apellido paterno</label>
+                <input
+                    type="text"
+                    pInputText
+                    class="p-inputtext-sm"
+                    formControlName="apellidoMaterno"
+                />
+            </div>
+            <div class="field col-12">
+                <label class="font-medium text-900">Grado</label>
+                <p-dropdown
+                    formControlName="gradoId"
+                    [options]="grados"
+                    optionLabel="displayName"
+                    optionValue="id"
+                    placeholder="Selecione un grado"
+                />
+            </div>
+
+            <!-- Unknow = 0,
+            Male = 1,
+            Female = 2, -->
+
+            <div class="field col-12">
+                <label class="font-medium text-900">Genero</label>
+                <div class="flex flex-wrap gap-3">
+                    <div class="flex align-items-center">
+                        <p-radioButton formControlName="genero" value="0" />
+                        <label class="ml-2"> Desconocido </label>
+                    </div>
+                    <div class="flex align-items-center">
+                        <p-radioButton formControlName="genero" value="2" />
+                        <label class="ml-2"> Femenino </label>
+                    </div>
+                    <div class="flex align-items-center">
+                        <p-radioButton formControlName="genero" value="1" />
+                        <label class="ml-2"> Masculino </label>
+                    </div>
+                </div>
+            </div>
+        </form>
+    </ng-template>
+
+    <ng-template pTemplate="footer">
+        <button
+            pButton
+            pRipple
+            label="Cancelar"
+            icon="pi pi-times"
+            class="p-button-text"
+            (click)="isModalOpen = false"
+        ></button>
+        <button
+            pButton
+            pRipple
+            label="Guardar"
+            icon="pi pi-check"
+            class="p-button-text"
+            (click)="save()"
+        ></button>
+    </ng-template>
+</p-dialog>

@@ -7,15 +7,15 @@ import { RouterModule } from '@angular/router';
             {
                 path: 'register',
                 loadChildren: () =>
-                    import('./register/register.module').then((m) => m.RegisterModule),
+                    import('./register/register.module').then(
+                        (m) => m.RegisterModule
+                    ),
             },
-            // {
-            //     path: 'empty',
-            //     loadChildren: () =>
-            //         import('./empty/emptydemo.module').then(
-            //             (m) => m.EmptyDemoModule
-            //         ),
-            // },
+            {
+                path: 'list-teachers',
+                loadChildren: () =>
+                    import('./list/list.module').then((m) => m.ListModule),
+            },
             { path: '**', redirectTo: '/notfound' },
         ]),
     ],

@@ -27,6 +27,11 @@ export class AppMenuComponent implements OnInit {
                         routerLink: ['/lot/register'],
                     },
                     {
+                        label: 'Lista docentes registrados',
+                        icon: 'pi pi-fw pi-pencil',
+                        routerLink: ['/lot/list-teachers'],
+                    },
+                    {
                         label: 'Crud ABP',
                         icon: 'pi pi-fw pi-pencil',
                         routerLink: ['/pages/abp-crud'],

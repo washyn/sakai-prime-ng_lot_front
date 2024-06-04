@@ -1,0 +1,146 @@
+import { PagedAndSortedResultRequestDto, PagedResultDto } from '@abp/ng.core';
+import { CommonModule } from '@angular/common';
+import { ChangeDetectionStrategy, Component, OnInit } from '@angular/core';
+import {
+    FormBuilder,
+    FormControl,
+    FormGroup,
+    Validators,
+} from '@angular/forms';
+import { TableLazyLoadEvent } from 'primeng/table';
+import {
+    CreateUpdateDocenteDto,
+    DocenteDto,
+    Gender,
+} from 'src/app/proxy/acme/book-store/entities';
+import {
+    DocenteService,
+    SelectService,
+} from 'src/app/proxy/acme/book-store/services';
+import { LookupDto } from 'src/app/proxy/washyn/unaj/lot/models';
+
+@Component({
+    selector: 'app-list',
+    templateUrl: './list.component.html',
+    styleUrl: './list.component.css',
+})
+export class ListComponent implements OnInit {
+    tableFilterModel = {
+        maxResultCount: 17,
+    } as PagedAndSortedResultRequestDto;
+    data: PagedResultDto<DocenteDto> = { items: [], totalCount: 0 };
+    formGroup: FormGroup;
+    selectedDocente: DocenteDto = {} as DocenteDto;
+    isModalOpen = false;
+    grados: LookupDto<string>[] = [];
+
+    constructor(
+        public selectService: SelectService,
+        public docenteService: DocenteService,
+        public formBuilder: FormBuilder
+    ) {}
+
+    ngOnInit(): void {
+        this.selectService.getGrado().subscribe((res) => {
+            this.grados = res;
+        });
+        this.listData();
+        this.buildForm();
+    }
+
+    listData() {
+        this.docenteService.getList(this.tableFilterModel).subscribe((res) => {
+            this.data = res;
+        });
+    }
+
+    tableLazyLoad(event: TableLazyLoadEvent) {
+        this.tableFilterModel = {
+            ...this.tableFilterModel,
+            maxResultCount: event.rows ?? this.tableFilterModel.maxResultCount,
+            skipCount: event.first,
+        };
+        this.listData();
+    }
+
+    buildForm() {
+        this.formGroup = this.formBuilder.group<{
+            nombre: FormControl<string>;
+            apellidoPaterno: FormControl<string>;
+            apellidoMaterno: FormControl<string>;
+            gradoId: FormControl<string>;
+            genero: FormControl<Gender>;
+        }>({
+            nombre: new FormControl<string>(this.selectedDocente.nombre || '', [
+                Validators.required,
+            ]),
+            apellidoPaterno: new FormControl<string>(
+                this.selectedDocente.apellidoPaterno || '',
+                [Validators.required]
+            ),
+            apellidoMaterno: new FormControl<string>(
+                this.selectedDocente.apellidoMaterno || '',
+                [Validators.required]
+            ),
+            gradoId: new FormControl<string>(
+                this.selectedDocente.gradoId || '',
+                [Validators.required]
+            ),
+            genero: new FormControl<Gender>(
+                this.selectedDocente.genero || Gender.Unknow,
+                [Validators.required]
+            ),
+        });
+    }
+
+    save() {
+        if (this.formGroup.invalid) {
+            return;
+        }
+
+        const request = this.selectedDocente.id
+            ? this.docenteService.update(this.selectedDocente.id, {
+                  ...this.formGroup.value,
+              })
+            : this.docenteService.create({ ...this.formGroup.value });
+
+        request.subscribe(() => {
+            this.isModalOpen = false;
+            this.formGroup.reset();
+            this.listData();
+        });
+    }
+
+    createModal() {
+        console.log('open modal btn clickjeddd');
+
+        this.selectedDocente = {} as DocenteDto;
+        this.buildForm();
+        this.isModalOpen = true;
+    }
+
+    editModal(id: string) {
+        this.docenteService.get(id).subscribe((docente) => {
+            this.selectedDocente = docente;
+            this.buildForm();
+            this.isModalOpen = true;
+        });
+    }
+
+    // TODO: add confirmation service...
+    delete(id: string) {
+        // this.confirmation
+        //     .warn('::AreYouSureToDelete', '::AreYouSure')
+        //     .subscribe((status) => {
+        //         if (status === Confirmation.Status.confirm) {
+        //             this.roleService.delete(id).subscribe(() => {
+        //                 // this.list.get()
+        //                 this.listData();
+        //             });
+        //         }
+        //     });
+        this.docenteService.delete(id).subscribe(() => {
+            this.listData();
+        });
+    }
+}

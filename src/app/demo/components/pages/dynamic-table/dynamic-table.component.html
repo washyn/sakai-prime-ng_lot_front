@@ -1,0 +1,95 @@
+<div class="grid">
+    <div class="col-12">
+        <div class="card">
+            <form [formGroup]="formGroup" (ngSubmit)="submit()">
+                <div class="grid">
+                    <div class="col-12 lg:col-8">
+                        <div class="grid formgrid p-fluid">
+                            <div class="field col-12 md:col-6">
+                                <!--                                <label for="table" class="font-medium text-900">Tabla</label>-->
+                                <p-dropdown
+                                    inputId="table"
+                                    (onChange)="loadFields()"
+                                    formControlName="table"
+                                    [options]="tables"
+                                    placeholder="Selecione una tabla"
+                                    [showClear]="true"
+                                    [filter]="true"
+                                    filterBy="fullName"
+                                    optionLabel="fullName"
+                                ></p-dropdown>
+                            </div>
+                            <div class="field col-12 md:col-6">
+                                <!--                                <label for="fields" class="font-medium text-900">Campos de tabla</label>-->
+                                <p-multiSelect
+                                    inputId="fields"
+                                    formControlName="fields"
+                                    [options]="fields"
+                                    placeholder="Selecione campos de la tabla"
+                                    optionLabel="name"
+                                    optionValue="name"
+                                    (onChange)="submit()"
+                                ></p-multiSelect>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-12 lg:col-4">
+                        <button
+                            pButton
+                            pRipple
+                            [disabled]="formGroup.invalid"
+                            label="Buscar"
+                            (click)="submit()"
+                            icon="pi pi-search"
+                            class="p-button-primary mr-4"
+                        ></button>
+                        <button
+                            pButton
+                            pRipple
+                            [disabled]="formGroup.invalid"
+                            label="Descargar"
+                            icon="pi pi-download"
+                            (click)="downloadData()"
+                            class="p-button-success"
+                        ></button>
+                    </div>
+                </div>
+            </form>
+            <p-table
+                [columns]="tableData.fields"
+                [value]="tableData.data"
+                [tableStyle]="{ 'min-width': '50rem' }"
+                styleClass="p-datatable-sm p-datatable-striped p-datatable-gridlines"
+                [scrollable]="true"
+                scrollHeight="700px"
+                [resizableColumns]="true"
+            >
+                <ng-template pTemplate="header" let-columns>
+                    <tr>
+                        <th *ngFor="let col of columns">
+                            {{ col }}
+                        </th>
+                    </tr>
+                </ng-template>
+                <ng-template pTemplate="body" let-rowData let-columns="columns">
+                    <tr>
+                        <td *ngFor="let col of columns">
+                            {{ rowData[col] }}
+                        </td>
+                    </tr>
+                </ng-template>
+                <ng-template pTemplate="emptymessage">
+                    <tr>
+                        <td [colSpan]="tableData.fields.length == 0 ? 1:tableData.fields.length">
+                            <div class="flex justify-content-center flex-wrap">
+                                <div class="flex align-items-center justify-content-center">
+                                    No hay datos en esta tabla.
+                                </div>
+                            </div>
+                        </td>
+                    </tr>
+                </ng-template>
+            </p-table>
+        </div>
+    </div>
+</div>

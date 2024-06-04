@@ -4,13 +4,13 @@ import { RouterModule } from '@angular/router';
 @NgModule({
     imports: [
         RouterModule.forChild([
-            {
-                path: 'dynamic-table',
-                loadChildren: () =>
-                    import('./dynamic-table/dynamic-table.module').then(
-                        (m) => m.DynamicTableModule
-                    ),
-            },
+            // {
+            //     path: 'dynamic-table',
+            //     loadChildren: () =>
+            //         import('./dynamic-table/dynamic-table.module').then(
+            //             (m) => m.DynamicTableModule
+            //         ),
+            // },
             {
                 path: 'abp-utils',
                 loadChildren: () =>
@@ -18,20 +18,20 @@ import { RouterModule } from '@angular/router';
                         (m) => m.UtilsAbpSampleModule
                     ),
             },
-            {
-                path: 'abp-table-paging',
-                loadChildren: () =>
-                    import('./table-paging-abp/table-paging-abp.module').then(
-                        (m) => m.TablePagingAbpModule
-                    ),
-            },
-            {
-                path: 'abp-crud',
-                loadChildren: () =>
-                    import('./crud-abp/crud-abp.module').then(
-                        (m) => m.CrudApbModule
-                    ),
-            },
+            // {
+            //     path: 'abp-table-paging',
+            //     loadChildren: () =>
+            //         import('./table-paging-abp/table-paging-abp.module').then(
+            //             (m) => m.TablePagingAbpModule
+            //         ),
+            // },
+            // {
+            //     path: 'abp-crud',
+            //     loadChildren: () =>
+            //         import('./crud-abp/crud-abp.module').then(
+            //             (m) => m.CrudApbModule
+            //         ),
+            // },
             {
                 path: 'crud',
                 loadChildren: () =>

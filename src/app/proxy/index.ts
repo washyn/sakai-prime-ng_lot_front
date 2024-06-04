@@ -1,3 +1,3 @@
-import * as Valtx from './valtx';
+import * as Acme from './acme';
 import * as Washyn from './washyn';
-export { Valtx, Washyn };
+export { Acme, Washyn };

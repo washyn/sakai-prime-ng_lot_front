@@ -1,53 +1,53 @@
-import type { ProductoDto } from './models';
 import { RestService, Rest } from '@abp/ng.core';
 import type { PagedAndSortedResultRequestDto, PagedResultDto } from '@abp/ng.core';
 import { Injectable } from '@angular/core';
+import type { CreateUpdateDocenteDto, DocenteDto } from '../entities/models';
 
 @Injectable({
   providedIn: 'root',
 })
-export class ProductoService {
+export class DocenteService {
   apiName = 'Default';
   
 
-  create = (input: ProductoDto, config?: Partial<Rest.Config>) =>
-    this.restService.request<any, ProductoDto>({
+  create = (input: CreateUpdateDocenteDto, config?: Partial<Rest.Config>) =>
+    this.restService.request<any, DocenteDto>({
       method: 'POST',
-      url: '/api/app/producto',
+      url: '/api/app/docente',
       body: input,
     },
     { apiName: this.apiName,...config });
   
 
-  delete = (id: number, config?: Partial<Rest.Config>) =>
+  delete = (id: string, config?: Partial<Rest.Config>) =>
     this.restService.request<any, void>({
       method: 'DELETE',
-      url: `/api/app/producto/${id}`,
+      url: `/api/app/docente/${id}`,
     },
     { apiName: this.apiName,...config });
   
 
-  get = (id: number, config?: Partial<Rest.Config>) =>
-    this.restService.request<any, ProductoDto>({
+  get = (id: string, config?: Partial<Rest.Config>) =>
+    this.restService.request<any, DocenteDto>({
       method: 'GET',
-      url: `/api/app/producto/${id}`,
+      url: `/api/app/docente/${id}`,
     },
     { apiName: this.apiName,...config });
   
 
   getList = (input: PagedAndSortedResultRequestDto, config?: Partial<Rest.Config>) =>
-    this.restService.request<any, PagedResultDto<ProductoDto>>({
+    this.restService.request<any, PagedResultDto<DocenteDto>>({
       method: 'GET',
-      url: '/api/app/producto',
+      url: '/api/app/docente',
       params: { sorting: input.sorting, skipCount: input.skipCount, maxResultCount: input.maxResultCount },
     },
     { apiName: this.apiName,...config });
   
 
-  update = (id: number, input: ProductoDto, config?: Partial<Rest.Config>) =>
-    this.restService.request<any, ProductoDto>({
+  update = (id: string, input: CreateUpdateDocenteDto, config?: Partial<Rest.Config>) =>
+    this.restService.request<any, DocenteDto>({
       method: 'PUT',
-      url: `/api/app/producto/${id}`,
+      url: `/api/app/docente/${id}`,
       body: input,
     },
     { apiName: this.apiName,...config });

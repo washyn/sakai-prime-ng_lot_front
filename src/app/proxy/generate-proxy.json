@@ -7,132 +7,6 @@
       "rootPath": "abp",
       "remoteServiceName": "abp",
       "controllers": {
-        "Pages.Abp.MultiTenancy.AbpTenantController": {
-          "controllerName": "AbpTenant",
-          "controllerGroupName": "AbpTenant",
-          "isRemoteService": true,
-          "isIntegrationService": false,
-          "apiVersion": null,
-          "type": "Pages.Abp.MultiTenancy.AbpTenantController",
-          "interfaces": [
-            {
-              "type": "Volo.Abp.AspNetCore.Mvc.MultiTenancy.IAbpTenantAppService",
-              "name": "IAbpTenantAppService",
-              "methods": [
-                {
-                  "name": "FindTenantByNameAsync",
-                  "parametersOnMethod": [
-                    {
-                      "name": "name",
-                      "typeAsString": "System.String, System.Private.CoreLib",
-                      "type": "System.String",
-                      "typeSimple": "string",
-                      "isOptional": false,
-                      "defaultValue": null
-                    }
-                  ],
-                  "returnValue": {
-                    "type": "Volo.Abp.AspNetCore.Mvc.MultiTenancy.FindTenantResultDto",
-                    "typeSimple": "Volo.Abp.AspNetCore.Mvc.MultiTenancy.FindTenantResultDto"
-                  }
-                },
-                {
-                  "name": "FindTenantByIdAsync",
-                  "parametersOnMethod": [
-                    {
-                      "name": "id",
-                      "typeAsString": "System.Guid, System.Private.CoreLib",
-                      "type": "System.Guid",
-                      "typeSimple": "string",
-                      "isOptional": false,
-                      "defaultValue": null
-                    }
-                  ],
-                  "returnValue": {
-                    "type": "Volo.Abp.AspNetCore.Mvc.MultiTenancy.FindTenantResultDto",
-                    "typeSimple": "Volo.Abp.AspNetCore.Mvc.MultiTenancy.FindTenantResultDto"
-                  }
-                }
-              ]
-            }
-          ],
-          "actions": {
-            "FindTenantByNameAsyncByName": {
-              "uniqueName": "FindTenantByNameAsyncByName",
-              "name": "FindTenantByNameAsync",
-              "httpMethod": "GET",
-              "url": "api/abp/multi-tenancy/tenants/by-name/{name}",
-              "supportedVersions": [],
-              "parametersOnMethod": [
-                {
-                  "name": "name",
-                  "typeAsString": "System.String, System.Private.CoreLib",
-                  "type": "System.String",
-                  "typeSimple": "string",
-                  "isOptional": false,
-                  "defaultValue": null
-                }
-              ],
-              "parameters": [
-                {
-                  "nameOnMethod": "name",
-                  "name": "name",
-                  "jsonName": null,
-                  "type": "System.String",
-                  "typeSimple": "string",
-                  "isOptional": false,
-                  "defaultValue": null,
-                  "constraintTypes": [],
-                  "bindingSourceId": "Path",
-                  "descriptorName": ""
-                }
-              ],
-              "returnValue": {
-                "type": "Volo.Abp.AspNetCore.Mvc.MultiTenancy.FindTenantResultDto",
-                "typeSimple": "Volo.Abp.AspNetCore.Mvc.MultiTenancy.FindTenantResultDto"
-              },
-              "allowAnonymous": null,
-              "implementFrom": "Volo.Abp.AspNetCore.Mvc.MultiTenancy.IAbpTenantAppService"
-            },
-            "FindTenantByIdAsyncById": {
-              "uniqueName": "FindTenantByIdAsyncById",
-              "name": "FindTenantByIdAsync",
-              "httpMethod": "GET",
-              "url": "api/abp/multi-tenancy/tenants/by-id/{id}",
-              "supportedVersions": [],
-              "parametersOnMethod": [
-                {
-                  "name": "id",
-                  "typeAsString": "System.Guid, System.Private.CoreLib",
-                  "type": "System.Guid",
-                  "typeSimple": "string",
-                  "isOptional": false,
-                  "defaultValue": null
-                }
-              ],
-              "parameters": [
-                {
-                  "nameOnMethod": "id",
-                  "name": "id",
-                  "jsonName": null,
-                  "type": "System.Guid",
-                  "typeSimple": "string",
-                  "isOptional": false,
-                  "defaultValue": null,
-                  "constraintTypes": [],
-                  "bindingSourceId": "Path",
-                  "descriptorName": ""
-                }
-              ],
-              "returnValue": {
-                "type": "Volo.Abp.AspNetCore.Mvc.MultiTenancy.FindTenantResultDto",
-                "typeSimple": "Volo.Abp.AspNetCore.Mvc.MultiTenancy.FindTenantResultDto"
-              },
-              "allowAnonymous": null,
-              "implementFrom": "Volo.Abp.AspNetCore.Mvc.MultiTenancy.IAbpTenantAppService"
-            }
-          }
-        },
         "Volo.Abp.AspNetCore.Mvc.ApiExploring.AbpApiDefinitionController": {
           "controllerName": "AbpApiDefinition",
           "controllerGroupName": "AbpApiDefinition",
@@ -343,329 +217,27 @@
       "rootPath": "app",
       "remoteServiceName": "Default",
       "controllers": {
-        "Valtx.Project.Controllers.DatabaseController": {
-          "controllerName": "Database",
-          "controllerGroupName": null,
-          "isRemoteService": false,
-          "isIntegrationService": false,
-          "apiVersion": null,
-          "type": "Valtx.Project.Controllers.DatabaseController",
-          "interfaces": [],
-          "actions": {
-            "GetFieldByTableAndSchema": {
-              "uniqueName": "GetFieldByTableAndSchema",
-              "name": "GetField",
-              "httpMethod": "GET",
-              "url": "api/app/select/field/{table}",
-              "supportedVersions": [],
-              "parametersOnMethod": [
-                {
-                  "name": "table",
-                  "typeAsString": "System.String, System.Private.CoreLib",
-                  "type": "System.String",
-                  "typeSimple": "string",
-                  "isOptional": false,
-                  "defaultValue": null
-                },
-                {
-                  "name": "schema",
-                  "typeAsString": "System.String, System.Private.CoreLib",
-                  "type": "System.String",
-                  "typeSimple": "string",
-                  "isOptional": false,
-                  "defaultValue": null
-                }
-              ],
-              "parameters": [
-                {
-                  "nameOnMethod": "table",
-                  "name": "table",
-                  "jsonName": null,
-                  "type": "System.String",
-                  "typeSimple": "string",
-                  "isOptional": false,
-                  "defaultValue": null,
-                  "constraintTypes": [],
-                  "bindingSourceId": "Path",
-                  "descriptorName": ""
-                },
-                {
-                  "nameOnMethod": "schema",
-                  "name": "schema",
-                  "jsonName": null,
-                  "type": "System.String",
-                  "typeSimple": "string",
-                  "isOptional": false,
-                  "defaultValue": null,
-                  "constraintTypes": null,
-                  "bindingSourceId": "ModelBinding",
-                  "descriptorName": ""
-                }
-              ],
-              "returnValue": {
-                "type": "System.Collections.Generic.IEnumerable<Valtx.Project.Controllers.ColumnsOutput>",
-                "typeSimple": "[Valtx.Project.Controllers.ColumnsOutput]"
-              },
-              "allowAnonymous": null,
-              "implementFrom": "Valtx.Project.Controllers.DatabaseController"
-            },
-            "GetTables": {
-              "uniqueName": "GetTables",
-              "name": "GetTables",
-              "httpMethod": "GET",
-              "url": "api/app/select/table",
-              "supportedVersions": [],
-              "parametersOnMethod": [],
-              "parameters": [],
-              "returnValue": {
-                "type": "System.Collections.Generic.IEnumerable<Valtx.Project.Controllers.TableOutput>",
-                "typeSimple": "[Valtx.Project.Controllers.TableOutput]"
-              },
-              "allowAnonymous": null,
-              "implementFrom": "Valtx.Project.Controllers.DatabaseController"
-            },
-            "GetDataByInput": {
-              "uniqueName": "GetDataByInput",
-              "name": "GetData",
-              "httpMethod": "GET",
-              "url": "api/app/data",
-              "supportedVersions": [],
-              "parametersOnMethod": [
-                {
-                  "name": "input",
-                  "typeAsString": "Valtx.Project.Controllers.GetDataInput, Washyn.Sales",
-                  "type": "Valtx.Project.Controllers.GetDataInput",
-                  "typeSimple": "Valtx.Project.Controllers.GetDataInput",
-                  "isOptional": false,
-                  "defaultValue": null
-                }
-              ],
-              "parameters": [
-                {
-                  "nameOnMethod": "input",
-                  "name": "Table",
-                  "jsonName": null,
-                  "type": "System.String",
-                  "typeSimple": "string",
-                  "isOptional": false,
-                  "defaultValue": null,
-                  "constraintTypes": null,
-                  "bindingSourceId": "ModelBinding",
-                  "descriptorName": "input"
-                },
-                {
-                  "nameOnMethod": "input",
-                  "name": "Fields",
-                  "jsonName": null,
-                  "type": "System.Collections.Generic.List<System.String>",
-                  "typeSimple": "[string]",
-                  "isOptional": false,
-                  "defaultValue": null,
-                  "constraintTypes": null,
-                  "bindingSourceId": "ModelBinding",
-                  "descriptorName": "input"
-                }
-              ],
-              "returnValue": {
-                "type": "Valtx.Project.Controllers.TableDataOutput",
-                "typeSimple": "Valtx.Project.Controllers.TableDataOutput"
-              },
-              "allowAnonymous": null,
-              "implementFrom": "Valtx.Project.Controllers.DatabaseController"
-            },
-            "GetReportExcelByInput": {
-              "uniqueName": "GetReportExcelByInput",
-              "name": "GetReportExcel",
-              "httpMethod": "GET",
-              "url": "api/app/data/excel",
-              "supportedVersions": [],
-              "parametersOnMethod": [
-                {
-                  "name": "input",
-                  "typeAsString": "Valtx.Project.Controllers.GetDataInput, Washyn.Sales",
-                  "type": "Valtx.Project.Controllers.GetDataInput",
-                  "typeSimple": "Valtx.Project.Controllers.GetDataInput",
-                  "isOptional": false,
-                  "defaultValue": null
-                }
-              ],
-              "parameters": [
-                {
-                  "nameOnMethod": "input",
-                  "name": "Table",
-                  "jsonName": null,
-                  "type": "System.String",
-                  "typeSimple": "string",
-                  "isOptional": false,
-                  "defaultValue": null,
-                  "constraintTypes": null,
-                  "bindingSourceId": "ModelBinding",
-                  "descriptorName": "input"
-                },
-                {
-                  "nameOnMethod": "input",
-                  "name": "Fields",
-                  "jsonName": null,
-                  "type": "System.Collections.Generic.List<System.String>",
-                  "typeSimple": "[string]",
-                  "isOptional": false,
-                  "defaultValue": null,
-                  "constraintTypes": null,
-                  "bindingSourceId": "ModelBinding",
-                  "descriptorName": "input"
-                }
-              ],
-              "returnValue": {
-                "type": "Volo.Abp.Content.IRemoteStreamContent",
-                "typeSimple": "Volo.Abp.Content.IRemoteStreamContent"
-              },
-              "allowAnonymous": null,
-              "implementFrom": "Valtx.Project.Controllers.DatabaseController"
-            }
-          }
-        },
-        "Washyn.Sales.Services.ContribuyenteAppService": {
-          "controllerName": "Contribuyente",
-          "controllerGroupName": "Contribuyente",
+        "Acme.BookStore.Services.DocenteAppService": {
+          "controllerName": "Docente",
+          "controllerGroupName": "Docente",
           "isRemoteService": true,
           "isIntegrationService": false,
           "apiVersion": null,
-          "type": "Washyn.Sales.Services.ContribuyenteAppService",
-          "interfaces": [],
-          "actions": {
-            "GetAsyncById": {
-              "uniqueName": "GetAsyncById",
-              "name": "GetAsync",
-              "httpMethod": "GET",
-              "url": "api/app/contribuyente/{id}",
-              "supportedVersions": [],
-              "parametersOnMethod": [
-                {
-                  "name": "id",
-                  "typeAsString": "System.String, System.Private.CoreLib",
-                  "type": "System.String",
-                  "typeSimple": "string",
-                  "isOptional": false,
-                  "defaultValue": null
-                }
-              ],
-              "parameters": [
-                {
-                  "nameOnMethod": "id",
-                  "name": "id",
-                  "jsonName": null,
-                  "type": "System.String",
-                  "typeSimple": "string",
-                  "isOptional": false,
-                  "defaultValue": null,
-                  "constraintTypes": [],
-                  "bindingSourceId": "Path",
-                  "descriptorName": ""
-                }
-              ],
-              "returnValue": {
-                "type": "Washyn.Sales.Services.ContribuyenteDto",
-                "typeSimple": "Washyn.Sales.Services.ContribuyenteDto"
-              },
-              "allowAnonymous": null,
-              "implementFrom": "Volo.Abp.Application.Services.IReadOnlyAppService<Washyn.Sales.Services.ContribuyenteDto,Washyn.Sales.Services.ContribuyenteDto,System.String,Washyn.Sales.Services.ContribuyenteFilter>"
-            },
-            "GetListAsyncByInput": {
-              "uniqueName": "GetListAsyncByInput",
-              "name": "GetListAsync",
-              "httpMethod": "GET",
-              "url": "api/app/contribuyente",
-              "supportedVersions": [],
-              "parametersOnMethod": [
-                {
-                  "name": "input",
-                  "typeAsString": "Washyn.Sales.Services.ContribuyenteFilter, Washyn.Sales",
-                  "type": "Washyn.Sales.Services.ContribuyenteFilter",
-                  "typeSimple": "Washyn.Sales.Services.ContribuyenteFilter",
-                  "isOptional": false,
-                  "defaultValue": null
-                }
-              ],
-              "parameters": [
-                {
-                  "nameOnMethod": "input",
-                  "name": "Filter",
-                  "jsonName": null,
-                  "type": "System.String",
-                  "typeSimple": "string",
-                  "isOptional": false,
-                  "defaultValue": null,
-                  "constraintTypes": null,
-                  "bindingSourceId": "ModelBinding",
-                  "descriptorName": "input"
-                },
-                {
-                  "nameOnMethod": "input",
-                  "name": "Sorting",
-                  "jsonName": null,
-                  "type": "System.String",
-                  "typeSimple": "string",
-                  "isOptional": false,
-                  "defaultValue": null,
-                  "constraintTypes": null,
-                  "bindingSourceId": "ModelBinding",
-                  "descriptorName": "input"
-                },
-                {
-                  "nameOnMethod": "input",
-                  "name": "SkipCount",
-                  "jsonName": null,
-                  "type": "System.Int32",
-                  "typeSimple": "number",
-                  "isOptional": false,
-                  "defaultValue": null,
-                  "constraintTypes": null,
-                  "bindingSourceId": "ModelBinding",
-                  "descriptorName": "input"
-                },
-                {
-                  "nameOnMethod": "input",
-                  "name": "MaxResultCount",
-                  "jsonName": null,
-                  "type": "System.Int32",
-                  "typeSimple": "number",
-                  "isOptional": false,
-                  "defaultValue": null,
-                  "constraintTypes": null,
-                  "bindingSourceId": "ModelBinding",
-                  "descriptorName": "input"
-                }
-              ],
-              "returnValue": {
-                "type": "Volo.Abp.Application.Dtos.PagedResultDto<Washyn.Sales.Services.ContribuyenteDto>",
-                "typeSimple": "Volo.Abp.Application.Dtos.PagedResultDto<Washyn.Sales.Services.ContribuyenteDto>"
-              },
-              "allowAnonymous": null,
-              "implementFrom": "Volo.Abp.Application.Services.IReadOnlyAppService<Washyn.Sales.Services.ContribuyenteDto,Washyn.Sales.Services.ContribuyenteDto,System.String,Washyn.Sales.Services.ContribuyenteFilter>"
-            }
-          }
-        },
-        "Washyn.Sales.Services.ProductoAppService": {
-          "controllerName": "Producto",
-          "controllerGroupName": "Producto",
-          "isRemoteService": true,
-          "isIntegrationService": false,
-          "apiVersion": null,
-          "type": "Washyn.Sales.Services.ProductoAppService",
+          "type": "Acme.BookStore.Services.DocenteAppService",
           "interfaces": [],
           "actions": {
             "CreateAsyncByInput": {
               "uniqueName": "CreateAsyncByInput",
               "name": "CreateAsync",
               "httpMethod": "POST",
-              "url": "api/app/producto",
+              "url": "api/app/docente",
               "supportedVersions": [],
               "parametersOnMethod": [
                 {
                   "name": "input",
-                  "typeAsString": "Washyn.Sales.Services.ProductoDto, Washyn.Sales",
-                  "type": "Washyn.Sales.Services.ProductoDto",
-                  "typeSimple": "Washyn.Sales.Services.ProductoDto",
+                  "typeAsString": "Acme.BookStore.Entities.CreateUpdateDocenteDto, Washyn.UNAJ.Lot",
+                  "type": "Acme.BookStore.Entities.CreateUpdateDocenteDto",
+                  "typeSimple": "Acme.BookStore.Entities.CreateUpdateDocenteDto",
                   "isOptional": false,
                   "defaultValue": null
                 }
@@ -675,8 +247,8 @@
                   "nameOnMethod": "input",
                   "name": "input",
                   "jsonName": null,
-                  "type": "Washyn.Sales.Services.ProductoDto",
-                  "typeSimple": "Washyn.Sales.Services.ProductoDto",
+                  "type": "Acme.BookStore.Entities.CreateUpdateDocenteDto",
+                  "typeSimple": "Acme.BookStore.Entities.CreateUpdateDocenteDto",
                   "isOptional": false,
                   "defaultValue": null,
                   "constraintTypes": null,
@@ -685,32 +257,32 @@
                 }
               ],
               "returnValue": {
-                "type": "Washyn.Sales.Services.ProductoDto",
-                "typeSimple": "Washyn.Sales.Services.ProductoDto"
+                "type": "Acme.BookStore.Entities.DocenteDto",
+                "typeSimple": "Acme.BookStore.Entities.DocenteDto"
               },
               "allowAnonymous": null,
-              "implementFrom": "Volo.Abp.Application.Services.ICreateAppService<Washyn.Sales.Services.ProductoDto,Washyn.Sales.Services.ProductoDto>"
+              "implementFrom": "Volo.Abp.Application.Services.ICreateAppService<Acme.BookStore.Entities.DocenteDto,Acme.BookStore.Entities.CreateUpdateDocenteDto>"
             },
             "UpdateAsyncByIdAndInput": {
               "uniqueName": "UpdateAsyncByIdAndInput",
               "name": "UpdateAsync",
               "httpMethod": "PUT",
-              "url": "api/app/producto/{id}",
+              "url": "api/app/docente/{id}",
               "supportedVersions": [],
               "parametersOnMethod": [
                 {
                   "name": "id",
-                  "typeAsString": "System.Int64, System.Private.CoreLib",
-                  "type": "System.Int64",
-                  "typeSimple": "number",
+                  "typeAsString": "System.Guid, System.Private.CoreLib",
+                  "type": "System.Guid",
+                  "typeSimple": "string",
                   "isOptional": false,
                   "defaultValue": null
                 },
                 {
                   "name": "input",
-                  "typeAsString": "Washyn.Sales.Services.ProductoDto, Washyn.Sales",
-                  "type": "Washyn.Sales.Services.ProductoDto",
-                  "typeSimple": "Washyn.Sales.Services.ProductoDto",
+                  "typeAsString": "Acme.BookStore.Entities.CreateUpdateDocenteDto, Washyn.UNAJ.Lot",
+                  "type": "Acme.BookStore.Entities.CreateUpdateDocenteDto",
+                  "typeSimple": "Acme.BookStore.Entities.CreateUpdateDocenteDto",
                   "isOptional": false,
                   "defaultValue": null
                 }
@@ -720,8 +292,8 @@
                   "nameOnMethod": "id",
                   "name": "id",
                   "jsonName": null,
-                  "type": "System.Int64",
-                  "typeSimple": "number",
+                  "type": "System.Guid",
+                  "typeSimple": "string",
                   "isOptional": false,
                   "defaultValue": null,
                   "constraintTypes": [],
@@ -732,8 +304,8 @@
                   "nameOnMethod": "input",
                   "name": "input",
                   "jsonName": null,
-                  "type": "Washyn.Sales.Services.ProductoDto",
-                  "typeSimple": "Washyn.Sales.Services.ProductoDto",
+                  "type": "Acme.BookStore.Entities.CreateUpdateDocenteDto",
+                  "typeSimple": "Acme.BookStore.Entities.CreateUpdateDocenteDto",
                   "isOptional": false,
                   "defaultValue": null,
                   "constraintTypes": null,
@@ -742,24 +314,24 @@
                 }
               ],
               "returnValue": {
-                "type": "Washyn.Sales.Services.ProductoDto",
-                "typeSimple": "Washyn.Sales.Services.ProductoDto"
+                "type": "Acme.BookStore.Entities.DocenteDto",
+                "typeSimple": "Acme.BookStore.Entities.DocenteDto"
               },
               "allowAnonymous": null,
-              "implementFrom": "Volo.Abp.Application.Services.IUpdateAppService<Washyn.Sales.Services.ProductoDto,System.Int64,Washyn.Sales.Services.ProductoDto>"
+              "implementFrom": "Volo.Abp.Application.Services.IUpdateAppService<Acme.BookStore.Entities.DocenteDto,System.Guid,Acme.BookStore.Entities.CreateUpdateDocenteDto>"
             },
             "DeleteAsyncById": {
               "uniqueName": "DeleteAsyncById",
               "name": "DeleteAsync",
               "httpMethod": "DELETE",
-              "url": "api/app/producto/{id}",
+              "url": "api/app/docente/{id}",
               "supportedVersions": [],
               "parametersOnMethod": [
                 {
                   "name": "id",
-                  "typeAsString": "System.Int64, System.Private.CoreLib",
-                  "type": "System.Int64",
-                  "typeSimple": "number",
+                  "typeAsString": "System.Guid, System.Private.CoreLib",
+                  "type": "System.Guid",
+                  "typeSimple": "string",
                   "isOptional": false,
                   "defaultValue": null
                 }
@@ -769,8 +341,8 @@
                   "nameOnMethod": "id",
                   "name": "id",
                   "jsonName": null,
-                  "type": "System.Int64",
-                  "typeSimple": "number",
+                  "type": "System.Guid",
+                  "typeSimple": "string",
                   "isOptional": false,
                   "defaultValue": null,
                   "constraintTypes": [],
@@ -783,20 +355,20 @@
                 "typeSimple": "System.Void"
               },
               "allowAnonymous": null,
-              "implementFrom": "Volo.Abp.Application.Services.IDeleteAppService<System.Int64>"
+              "implementFrom": "Volo.Abp.Application.Services.IDeleteAppService<System.Guid>"
             },
             "GetAsyncById": {
               "uniqueName": "GetAsyncById",
               "name": "GetAsync",
               "httpMethod": "GET",
-              "url": "api/app/producto/{id}",
+              "url": "api/app/docente/{id}",
               "supportedVersions": [],
               "parametersOnMethod": [
                 {
                   "name": "id",
-                  "typeAsString": "System.Int64, System.Private.CoreLib",
-                  "type": "System.Int64",
-                  "typeSimple": "number",
+                  "typeAsString": "System.Guid, System.Private.CoreLib",
+                  "type": "System.Guid",
+                  "typeSimple": "string",
                   "isOptional": false,
                   "defaultValue": null
                 }
@@ -806,8 +378,8 @@
                   "nameOnMethod": "id",
                   "name": "id",
                   "jsonName": null,
-                  "type": "System.Int64",
-                  "typeSimple": "number",
+                  "type": "System.Guid",
+                  "typeSimple": "string",
                   "isOptional": false,
                   "defaultValue": null,
                   "constraintTypes": [],
@@ -816,17 +388,17 @@
                 }
               ],
               "returnValue": {
-                "type": "Washyn.Sales.Services.ProductoDto",
-                "typeSimple": "Washyn.Sales.Services.ProductoDto"
+                "type": "Acme.BookStore.Entities.DocenteDto",
+                "typeSimple": "Acme.BookStore.Entities.DocenteDto"
               },
               "allowAnonymous": null,
-              "implementFrom": "Volo.Abp.Application.Services.IReadOnlyAppService<Washyn.Sales.Services.ProductoDto,Washyn.Sales.Services.ProductoDto,System.Int64,Volo.Abp.Application.Dtos.PagedAndSortedResultRequestDto>"
+              "implementFrom": "Volo.Abp.Application.Services.IReadOnlyAppService<Acme.BookStore.Entities.DocenteDto,Acme.BookStore.Entities.DocenteDto,System.Guid,Volo.Abp.Application.Dtos.PagedAndSortedResultRequestDto>"
             },
             "GetListAsyncByInput": {
               "uniqueName": "GetListAsyncByInput",
               "name": "GetListAsync",
               "httpMethod": "GET",
-              "url": "api/app/producto",
+              "url": "api/app/docente",
               "supportedVersions": [],
               "parametersOnMethod": [
                 {
@@ -877,11 +449,82 @@
                 }
               ],
               "returnValue": {
-                "type": "Volo.Abp.Application.Dtos.PagedResultDto<Washyn.Sales.Services.ProductoDto>",
-                "typeSimple": "Volo.Abp.Application.Dtos.PagedResultDto<Washyn.Sales.Services.ProductoDto>"
+                "type": "Volo.Abp.Application.Dtos.PagedResultDto<Acme.BookStore.Entities.DocenteDto>",
+                "typeSimple": "Volo.Abp.Application.Dtos.PagedResultDto<Acme.BookStore.Entities.DocenteDto>"
               },
               "allowAnonymous": null,
-              "implementFrom": "Volo.Abp.Application.Services.IReadOnlyAppService<Washyn.Sales.Services.ProductoDto,Washyn.Sales.Services.ProductoDto,System.Int64,Volo.Abp.Application.Dtos.PagedAndSortedResultRequestDto>"
+              "implementFrom": "Volo.Abp.Application.Services.IReadOnlyAppService<Acme.BookStore.Entities.DocenteDto,Acme.BookStore.Entities.DocenteDto,System.Guid,Volo.Abp.Application.Dtos.PagedAndSortedResultRequestDto>"
+            }
+          }
+        },
+        "Acme.BookStore.Services.SelectAppService": {
+          "controllerName": "Select",
+          "controllerGroupName": "Select",
+          "isRemoteService": true,
+          "isIntegrationService": false,
+          "apiVersion": null,
+          "type": "Acme.BookStore.Services.SelectAppService",
+          "interfaces": [],
+          "actions": {
+            "GetRol": {
+              "uniqueName": "GetRol",
+              "name": "GetRol",
+              "httpMethod": "GET",
+              "url": "api/app/select/rol",
+              "supportedVersions": [],
+              "parametersOnMethod": [],
+              "parameters": [],
+              "returnValue": {
+                "type": "System.Collections.Generic.List<Washyn.UNAJ.Lot.LookupDto>",
+                "typeSimple": "[Washyn.UNAJ.Lot.LookupDto]"
+              },
+              "allowAnonymous": null,
+              "implementFrom": "Acme.BookStore.Services.SelectAppService"
+            },
+            "GetDocente": {
+              "uniqueName": "GetDocente",
+              "name": "GetDocente",
+              "httpMethod": "GET",
+              "url": "api/app/select/docente",
+              "supportedVersions": [],
+              "parametersOnMethod": [],
+              "parameters": [],
+              "returnValue": {
+                "type": "System.Collections.Generic.List<Washyn.UNAJ.Lot.LookupDto>",
+                "typeSimple": "[Washyn.UNAJ.Lot.LookupDto]"
+              },
+              "allowAnonymous": null,
+              "implementFrom": "Acme.BookStore.Services.SelectAppService"
+            },
+            "GetGrado": {
+              "uniqueName": "GetGrado",
+              "name": "GetGrado",
+              "httpMethod": "GET",
+              "url": "api/app/select/grado",
+              "supportedVersions": [],
+              "parametersOnMethod": [],
+              "parameters": [],
+              "returnValue": {
+                "type": "System.Collections.Generic.List<Washyn.UNAJ.Lot.LookupDto>",
+                "typeSimple": "[Washyn.UNAJ.Lot.LookupDto]"
+              },
+              "allowAnonymous": null,
+              "implementFrom": "Acme.BookStore.Services.SelectAppService"
+            },
+            "GetCurso": {
+              "uniqueName": "GetCurso",
+              "name": "GetCurso",
+              "httpMethod": "GET",
+              "url": "api/app/select/curso",
+              "supportedVersions": [],
+              "parametersOnMethod": [],
+              "parameters": [],
+              "returnValue": {
+                "type": "System.Collections.Generic.List<Washyn.UNAJ.Lot.LookupDto>",
+                "typeSimple": "[Washyn.UNAJ.Lot.LookupDto]"
+              },
+              "allowAnonymous": null,
+              "implementFrom": "Acme.BookStore.Services.SelectAppService"
             }
           }
         }
@@ -889,15 +532,15 @@
     }
   },
   "types": {
-    "Valtx.Project.Controllers.ColumnsOutput": {
-      "baseType": null,
+    "Acme.BookStore.Entities.CreateUpdateDocenteDto": {
+      "baseType": "Volo.Abp.Application.Dtos.EntityDto",
       "isEnum": false,
       "enumNames": null,
       "enumValues": null,
       "genericArguments": null,
       "properties": [
         {
-          "name": "Name",
+          "name": "Nombre",
           "jsonName": null,
           "type": "System.String",
           "typeSimple": "string",
@@ -909,9 +552,45 @@
           "regex": null
         },
         {
-          "name": "DataType",
+          "name": "ApellidoPaterno",
           "jsonName": null,
           "type": "System.String",
+          "typeSimple": "string",
+          "isRequired": false,
+          "minLength": null,
+          "maxLength": null,
+          "minimum": null,
+          "maximum": null,
+          "regex": null
+        },
+        {
+          "name": "ApellidoMaterno",
+          "jsonName": null,
+          "type": "System.String",
+          "typeSimple": "string",
+          "isRequired": false,
+          "minLength": null,
+          "maxLength": null,
+          "minimum": null,
+          "maximum": null,
+          "regex": null
+        },
+        {
+          "name": "Genero",
+          "jsonName": null,
+          "type": "Acme.BookStore.Entities.Gender",
+          "typeSimple": "Acme.BookStore.Entities.Gender",
+          "isRequired": false,
+          "minLength": null,
+          "maxLength": null,
+          "minimum": null,
+          "maximum": null,
+          "regex": null
+        },
+        {
+          "name": "GradoId",
+          "jsonName": null,
+          "type": "System.Guid",
           "typeSimple": "string",
           "isRequired": false,
           "minLength": null,
@@ -922,81 +601,15 @@
         }
       ]
     },
-    "Valtx.Project.Controllers.GetDataInput": {
-      "baseType": null,
+    "Acme.BookStore.Entities.DocenteDto": {
+      "baseType": "Volo.Abp.Application.Dtos.EntityDto<System.Guid>",
       "isEnum": false,
       "enumNames": null,
       "enumValues": null,
       "genericArguments": null,
       "properties": [
         {
-          "name": "Table",
-          "jsonName": null,
-          "type": "System.String",
-          "typeSimple": "string",
-          "isRequired": true,
-          "minLength": null,
-          "maxLength": null,
-          "minimum": null,
-          "maximum": null,
-          "regex": null
-        },
-        {
-          "name": "Fields",
-          "jsonName": null,
-          "type": "[System.String]",
-          "typeSimple": "[string]",
-          "isRequired": true,
-          "minLength": null,
-          "maxLength": null,
-          "minimum": null,
-          "maximum": null,
-          "regex": null
-        }
-      ]
-    },
-    "Valtx.Project.Controllers.TableDataOutput": {
-      "baseType": null,
-      "isEnum": false,
-      "enumNames": null,
-      "enumValues": null,
-      "genericArguments": null,
-      "properties": [
-        {
-          "name": "Fields",
-          "jsonName": null,
-          "type": "[System.String]",
-          "typeSimple": "[string]",
-          "isRequired": false,
-          "minLength": null,
-          "maxLength": null,
-          "minimum": null,
-          "maximum": null,
-          "regex": null
-        },
-        {
-          "name": "Data",
-          "jsonName": null,
-          "type": "[System.Object]",
-          "typeSimple": "[object]",
-          "isRequired": false,
-          "minLength": null,
-          "maxLength": null,
-          "minimum": null,
-          "maximum": null,
-          "regex": null
-        }
-      ]
-    },
-    "Valtx.Project.Controllers.TableOutput": {
-      "baseType": null,
-      "isEnum": false,
-      "enumNames": null,
-      "enumValues": null,
-      "genericArguments": null,
-      "properties": [
-        {
-          "name": "Schema",
+          "name": "Nombre",
           "jsonName": null,
           "type": "System.String",
           "typeSimple": "string",
@@ -1008,7 +621,7 @@
           "regex": null
         },
         {
-          "name": "Name",
+          "name": "ApellidoPaterno",
           "jsonName": null,
           "type": "System.String",
           "typeSimple": "string",
@@ -1020,9 +633,33 @@
           "regex": null
         },
         {
-          "name": "FullName",
+          "name": "ApellidoMaterno",
           "jsonName": null,
           "type": "System.String",
+          "typeSimple": "string",
+          "isRequired": false,
+          "minLength": null,
+          "maxLength": null,
+          "minimum": null,
+          "maximum": null,
+          "regex": null
+        },
+        {
+          "name": "Genero",
+          "jsonName": null,
+          "type": "Acme.BookStore.Entities.Gender",
+          "typeSimple": "Acme.BookStore.Entities.Gender",
+          "isRequired": false,
+          "minLength": null,
+          "maxLength": null,
+          "minimum": null,
+          "maximum": null,
+          "regex": null
+        },
+        {
+          "name": "GradoId",
+          "jsonName": null,
+          "type": "System.Guid",
           "typeSimple": "string",
           "isRequired": false,
           "minLength": null,
@@ -1032,6 +669,22 @@
           "regex": null
         }
       ]
+    },
+    "Acme.BookStore.Entities.Gender": {
+      "baseType": "System.Enum",
+      "isEnum": true,
+      "enumNames": [
+        "Unknow",
+        "Male",
+        "Female"
+      ],
+      "enumValues": [
+        0,
+        1,
+        2
+      ],
+      "genericArguments": null,
+      "properties": null
     },
     "Volo.Abp.Application.Dtos.EntityDto": {
       "baseType": null,
@@ -2808,75 +2461,6 @@
         }
       ]
     },
-    "Volo.Abp.AspNetCore.Mvc.MultiTenancy.FindTenantResultDto": {
-      "baseType": null,
-      "isEnum": false,
-      "enumNames": null,
-      "enumValues": null,
-      "genericArguments": null,
-      "properties": [
-        {
-          "name": "Success",
-          "jsonName": null,
-          "type": "System.Boolean",
-          "typeSimple": "boolean",
-          "isRequired": false,
-          "minLength": null,
-          "maxLength": null,
-          "minimum": null,
-          "maximum": null,
-          "regex": null
-        },
-        {
-          "name": "TenantId",
-          "jsonName": null,
-          "type": "System.Guid?",
-          "typeSimple": "string?",
-          "isRequired": false,
-          "minLength": null,
-          "maxLength": null,
-          "minimum": null,
-          "maximum": null,
-          "regex": null
-        },
-        {
-          "name": "Name",
-          "jsonName": null,
-          "type": "System.String",
-          "typeSimple": "string",
-          "isRequired": false,
-          "minLength": null,
-          "maxLength": null,
-          "minimum": null,
-          "maximum": null,
-          "regex": null
-        },
-        {
-          "name": "NormalizedName",
-          "jsonName": null,
-          "type": "System.String",
-          "typeSimple": "string",
-          "isRequired": false,
-          "minLength": null,
-          "maxLength": null,
-          "minimum": null,
-          "maximum": null,
-          "regex": null
-        },
-        {
-          "name": "IsActive",
-          "jsonName": null,
-          "type": "System.Boolean",
-          "typeSimple": "boolean",
-          "isRequired": false,
-          "minLength": null,
-          "maxLength": null,
-          "minimum": null,
-          "maximum": null,
-          "regex": null
-        }
-      ]
-    },
     "Volo.Abp.AspNetCore.Mvc.MultiTenancy.MultiTenancyInfoDto": {
       "baseType": null,
       "isEnum": false,
@@ -2889,51 +2473,6 @@
           "jsonName": null,
           "type": "System.Boolean",
           "typeSimple": "boolean",
-          "isRequired": false,
-          "minLength": null,
-          "maxLength": null,
-          "minimum": null,
-          "maximum": null,
-          "regex": null
-        }
-      ]
-    },
-    "Volo.Abp.Content.IRemoteStreamContent": {
-      "baseType": null,
-      "isEnum": false,
-      "enumNames": null,
-      "enumValues": null,
-      "genericArguments": null,
-      "properties": [
-        {
-          "name": "FileName",
-          "jsonName": null,
-          "type": "System.String",
-          "typeSimple": "string",
-          "isRequired": false,
-          "minLength": null,
-          "maxLength": null,
-          "minimum": null,
-          "maximum": null,
-          "regex": null
-        },
-        {
-          "name": "ContentType",
-          "jsonName": null,
-          "type": "System.String",
-          "typeSimple": "string",
-          "isRequired": false,
-          "minLength": null,
-          "maxLength": null,
-          "minimum": null,
-          "maximum": null,
-          "regex": null
-        },
-        {
-          "name": "ContentLength",
-          "jsonName": null,
-          "type": "System.Int64?",
-          "typeSimple": "number?",
           "isRequired": false,
           "minLength": null,
           "maxLength": null,
@@ -3931,225 +3470,37 @@
         }
       ]
     },
-    "Washyn.Sales.Services.ContribuyenteDto": {
-      "baseType": "Volo.Abp.Application.Dtos.EntityDto<System.String>",
+    "Washyn.UNAJ.Lot.LookupDto": {
+      "baseType": "Washyn.UNAJ.Lot.LookupDto<System.Guid>",
       "isEnum": false,
       "enumNames": null,
       "enumValues": null,
       "genericArguments": null,
-      "properties": [
-        {
-          "name": "RazonSocial",
-          "jsonName": null,
-          "type": "System.String",
-          "typeSimple": "string",
-          "isRequired": false,
-          "minLength": null,
-          "maxLength": null,
-          "minimum": null,
-          "maximum": null,
-          "regex": null
-        },
-        {
-          "name": "EstadoContribuyente",
-          "jsonName": null,
-          "type": "System.String",
-          "typeSimple": "string",
-          "isRequired": false,
-          "minLength": null,
-          "maxLength": null,
-          "minimum": null,
-          "maximum": null,
-          "regex": null
-        },
-        {
-          "name": "CondicionDomicilio",
-          "jsonName": null,
-          "type": "System.String",
-          "typeSimple": "string",
-          "isRequired": false,
-          "minLength": null,
-          "maxLength": null,
-          "minimum": null,
-          "maximum": null,
-          "regex": null
-        },
-        {
-          "name": "Ubigeo",
-          "jsonName": null,
-          "type": "System.String",
-          "typeSimple": "string",
-          "isRequired": false,
-          "minLength": null,
-          "maxLength": null,
-          "minimum": null,
-          "maximum": null,
-          "regex": null
-        },
-        {
-          "name": "TipoVia",
-          "jsonName": null,
-          "type": "System.String",
-          "typeSimple": "string",
-          "isRequired": false,
-          "minLength": null,
-          "maxLength": null,
-          "minimum": null,
-          "maximum": null,
-          "regex": null
-        },
-        {
-          "name": "NombreVia",
-          "jsonName": null,
-          "type": "System.String",
-          "typeSimple": "string",
-          "isRequired": false,
-          "minLength": null,
-          "maxLength": null,
-          "minimum": null,
-          "maximum": null,
-          "regex": null
-        },
-        {
-          "name": "CodigoZona",
-          "jsonName": null,
-          "type": "System.String",
-          "typeSimple": "string",
-          "isRequired": false,
-          "minLength": null,
-          "maxLength": null,
-          "minimum": null,
-          "maximum": null,
-          "regex": null
-        },
-        {
-          "name": "TipoZona",
-          "jsonName": null,
-          "type": "System.String",
-          "typeSimple": "string",
-          "isRequired": false,
-          "minLength": null,
-          "maxLength": null,
-          "minimum": null,
-          "maximum": null,
-          "regex": null
-        },
-        {
-          "name": "Numero",
-          "jsonName": null,
-          "type": "System.String",
-          "typeSimple": "string",
-          "isRequired": false,
-          "minLength": null,
-          "maxLength": null,
-          "minimum": null,
-          "maximum": null,
-          "regex": null
-        },
-        {
-          "name": "Interior",
-          "jsonName": null,
-          "type": "System.String",
-          "typeSimple": "string",
-          "isRequired": false,
-          "minLength": null,
-          "maxLength": null,
-          "minimum": null,
-          "maximum": null,
-          "regex": null
-        },
-        {
-          "name": "Lote",
-          "jsonName": null,
-          "type": "System.String",
-          "typeSimple": "string",
-          "isRequired": false,
-          "minLength": null,
-          "maxLength": null,
-          "minimum": null,
-          "maximum": null,
-          "regex": null
-        },
-        {
-          "name": "Departamento",
-          "jsonName": null,
-          "type": "System.String",
-          "typeSimple": "string",
-          "isRequired": false,
-          "minLength": null,
-          "maxLength": null,
-          "minimum": null,
-          "maximum": null,
-          "regex": null
-        },
-        {
-          "name": "Manzana",
-          "jsonName": null,
-          "type": "System.String",
-          "typeSimple": "string",
-          "isRequired": false,
-          "minLength": null,
-          "maxLength": null,
-          "minimum": null,
-          "maximum": null,
-          "regex": null
-        },
-        {
-          "name": "Kilometro",
-          "jsonName": null,
-          "type": "System.String",
-          "typeSimple": "string",
-          "isRequired": false,
-          "minLength": null,
-          "maxLength": null,
-          "minimum": null,
-          "maximum": null,
-          "regex": null
-        },
-        {
-          "name": "Comentario",
-          "jsonName": null,
-          "type": "System.String",
-          "typeSimple": "string",
-          "isRequired": false,
-          "minLength": null,
-          "maxLength": null,
-          "minimum": null,
-          "maximum": null,
-          "regex": null
-        }
-      ]
+      "properties": []
     },
-    "Washyn.Sales.Services.ContribuyenteFilter": {
-      "baseType": "Volo.Abp.Application.Dtos.PagedAndSortedResultRequestDto",
+    "Washyn.UNAJ.Lot.LookupDto<T0>": {
+      "baseType": null,
       "isEnum": false,
       "enumNames": null,
       "enumValues": null,
-      "genericArguments": null,
+      "genericArguments": [
+        "TKey"
+      ],
       "properties": [
         {
-          "name": "Filter",
+          "name": "Id",
           "jsonName": null,
-          "type": "System.String",
-          "typeSimple": "string",
+          "type": "TKey",
+          "typeSimple": "TKey",
           "isRequired": false,
           "minLength": null,
           "maxLength": null,
           "minimum": null,
           "maximum": null,
           "regex": null
-        }
-      ]
-    },
-    "Washyn.Sales.Services.ProductoDto": {
-      "baseType": "Volo.Abp.Application.Dtos.EntityDto<System.Int64>",
-      "isEnum": false,
-      "enumNames": null,
-      "enumValues": null,
-      "genericArguments": null,
-      "properties": [
+        },
         {
-          "name": "Codigo",
+          "name": "DisplayName",
           "jsonName": null,
           "type": "System.String",
           "typeSimple": "string",
@@ -4161,70 +3512,10 @@
           "regex": null
         },
         {
-          "name": "Nombre",
+          "name": "AlternativeText",
           "jsonName": null,
           "type": "System.String",
           "typeSimple": "string",
-          "isRequired": false,
-          "minLength": null,
-          "maxLength": null,
-          "minimum": null,
-          "maximum": null,
-          "regex": null
-        },
-        {
-          "name": "Descripcion",
-          "jsonName": null,
-          "type": "System.String",
-          "typeSimple": "string",
-          "isRequired": false,
-          "minLength": null,
-          "maxLength": null,
-          "minimum": null,
-          "maximum": null,
-          "regex": null
-        },
-        {
-          "name": "Observacion",
-          "jsonName": null,
-          "type": "System.String",
-          "typeSimple": "string",
-          "isRequired": false,
-          "minLength": null,
-          "maxLength": null,
-          "minimum": null,
-          "maximum": null,
-          "regex": null
-        },
-        {
-          "name": "Precio",
-          "jsonName": null,
-          "type": "System.Decimal",
-          "typeSimple": "number",
-          "isRequired": false,
-          "minLength": null,
-          "maxLength": null,
-          "minimum": null,
-          "maximum": null,
-          "regex": null
-        },
-        {
-          "name": "CantidadStock",
-          "jsonName": null,
-          "type": "System.Int32?",
-          "typeSimple": "number?",
-          "isRequired": false,
-          "minLength": null,
-          "maxLength": null,
-          "minimum": null,
-          "maximum": null,
-          "regex": null
-        },
-        {
-          "name": "Expires",
-          "jsonName": null,
-          "type": "System.DateTime?",
-          "typeSimple": "string?",
           "isRequired": false,
           "minLength": null,
           "maxLength": null,

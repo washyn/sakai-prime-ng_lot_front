@@ -26,7 +26,6 @@ export class AbpNotifyService {
             severity: type,
             summary: title,
             detail: message,
-            life: 2000,
             ...options,
         });
     }

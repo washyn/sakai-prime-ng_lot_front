@@ -8,6 +8,7 @@ import {
     Validators,
 } from '@angular/forms';
 import { TableLazyLoadEvent } from 'primeng/table';
+import { AbpUtilService } from 'src/app/demo/components/pages/utils/abp-util.service';
 import { ExcelTemplateService } from 'src/app/proxy/acme/book-store/controllers';
 import {
     CreateUpdateDocenteDto,
@@ -38,6 +39,7 @@ export class ListComponent implements OnInit {
     constructor(
         public selectService: SelectService,
         public docenteService: DocenteService,
+        public util: AbpUtilService,
         public excelTemplate: ExcelTemplateService,
         public formBuilder: FormBuilder
     ) {}
@@ -153,21 +155,18 @@ export class ListComponent implements OnInit {
         });
     }
 
-    // TODO: add confirmation service...
-    // TODO: add notification service...
     delete(id: string) {
-        // this.confirmation
-        //     .warn('::AreYouSureToDelete', '::AreYouSure')
-        //     .subscribe((status) => {
-        //         if (status === Confirmation.Status.confirm) {
-        //             this.roleService.delete(id).subscribe(() => {
-        //                 // this.list.get()
-        //                 this.listData();
-        //             });
-        //         }
-        //     });
-        this.docenteService.delete(id).subscribe(() => {
-            this.listData();
-        });
+        this.util.message.confirm(
+            'Esta seguro de eliminar esto?',
+            'Esta seguro',
+            (res) => {
+                if (res) {
+                    this.docenteService.delete(id).subscribe(() => {
+                        this.listData();
+                        this.util.notify.info('Se elimino el registro.');
+                    });
+                }
+            }
+        );
     }
 }

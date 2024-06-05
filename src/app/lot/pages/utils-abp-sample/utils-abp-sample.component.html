@@ -1,0 +1,52 @@
+<div class="grid">
+    <div class="col-12">
+        <div class="card">
+            <h4>Empty Page</h4>
+            <p>
+                This is your empty page template to start building beautiful
+                applications.
+            </p>
+            <hr />
+            <p-button size="small" (click)="util.message.warn('warn', 'warn')"
+                >Message warn
+            </p-button>
+            <p-button
+                size="small"
+                (click)="util.message.success('success', 'success')"
+                >Message success
+            </p-button>
+            <p-button
+                size="small"
+                (click)="util.message.error('error', 'error')"
+                >Message error
+            </p-button>
+            <p-button size="small" (click)="util.message.info('info', 'info')"
+                >Message info
+            </p-button>
+            <p-button
+                class="mr-4"
+                size="small"
+                (click)="util.message.confirm('confirm', 'confirm')"
+                >Message confirm
+            </p-button>
+            <hr />
+            <p-button size="small" (click)="util.notify.warn('warn', 'warn')"
+                >Notify warn
+            </p-button>
+            <p-button size="small" (click)="util.notify.info('info', 'info')"
+                >Notify info
+            </p-button>
+            <p-button size="small" (click)="util.notify.error('error', 'error')"
+                >Notify error
+            </p-button>
+            <p-button
+                class="mr-4"
+                size="small"
+                (click)="util.notify.success('success', 'success')"
+                >Notify success</p-button
+            >
+        </div>
+    </div>
+</div>
+
+<app-utils></app-utils>

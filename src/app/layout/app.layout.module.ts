@@ -15,8 +15,10 @@ import { RouterModule } from '@angular/router';
 import { AppTopBarComponent } from './app.topbar.component';
 import { AppFooterComponent } from './app.footer.component';
 import { AppConfigModule } from './config/config.module';
-import { AppSidebarComponent } from "./app.sidebar.component";
-import { AppLayoutComponent } from "./app.layout.component";
+import { AppSidebarComponent } from './app.sidebar.component';
+import { AppLayoutComponent } from './app.layout.component';
+import { ToastModule } from 'primeng/toast';
+import { AbpUtilsModule } from '../lot/utils/abp-util.module';
 
 @NgModule({
     declarations: [
@@ -39,8 +41,10 @@ import { AppLayoutComponent } from "./app.layout.component";
         InputSwitchModule,
         RippleModule,
         RouterModule,
-        AppConfigModule
+        AppConfigModule,
+        ToastModule,
+        AbpUtilsModule,
     ],
-    exports: [AppLayoutComponent]
+    exports: [AppLayoutComponent],
 })
-export class AppLayoutModule { }
+export class AppLayoutModule {}

@@ -13,6 +13,7 @@ import { NodeService } from './demo/service/node.service';
 import { PhotoService } from './demo/service/photo.service';
 import { AbpCustomModule } from './abp.module';
 import { GenderPipe } from './lot/pages/gender.pipe';
+import { ToastModule } from 'primeng/toast';
 
 @NgModule({
     declarations: [AppComponent, NotfoundComponent],

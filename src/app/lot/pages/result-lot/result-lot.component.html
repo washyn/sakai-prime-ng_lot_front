@@ -58,27 +58,27 @@
     <!-- [paginator]="true" -->
     <p-table
         lazy="false"
-        [value]="data"
+        [value]="data.items"
         [tableStyle]="{ 'min-width': '50rem' }"
     >
         <ng-template pTemplate="header">
             <tr>
                 <th>Apellidos y nombres</th>
                 <th>Genero</th>
-                <th>Grado</th>
+                <th>Fecha</th>
                 <th>Opciones</th>
             </tr>
         </ng-template>
         <ng-template pTemplate="body" let-item>
             <tr>
                 <td>
-                    {{ item.docente }}
+                    {{ item.docenteFullName }}
                 </td>
                 <td>
-                    {{ item.rol }}
+                    {{ item.rolDisplay }}
                 </td>
                 <td>
-                    {{ item.fechaSorteo | date }}
+                    {{ item.creationTime | date }}
                 </td>
                 <td class="p-1">
                     <!-- add button with text -->

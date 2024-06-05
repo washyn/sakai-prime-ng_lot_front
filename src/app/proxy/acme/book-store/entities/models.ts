@@ -1,4 +1,4 @@
-import type { EntityDto } from '@abp/ng.core';
+import type { EntityDto, FullAuditedEntityDto } from '@abp/ng.core';
 import type { Gender } from './gender.enum';
 import type { Area } from './area.enum';
 
@@ -10,7 +10,7 @@ export interface CreateUpdateDocenteDto extends EntityDto {
   gradoId?: string;
 }
 
-export interface DocenteDto extends EntityDto<string> {
+export interface DocenteDto extends FullAuditedEntityDto<string> {
   nombre?: string;
   apellidoPaterno?: string;
   apellidoMaterno?: string;

@@ -8,11 +8,13 @@ import { DropdownModule } from 'primeng/dropdown';
 import { RadioButtonModule } from 'primeng/radiobutton';
 import { ResultLotComponent } from './result-lot.component';
 import { ResultLotRoutingModule } from './result-lot-routing.module';
+import { TableModule } from 'primeng/table';
 @NgModule({
     imports: [
         CommonModule,
         ResultLotRoutingModule,
         FormsModule,
+        TableModule,
         ReactiveFormsModule,
         InputTextModule,
         ButtonModule,

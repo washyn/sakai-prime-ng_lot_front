@@ -94,15 +94,22 @@
                     <p-button
                         icon="pi pi-pencil"
                         severity="warning"
-                        class="mr-2"
+                        class=""
                         [outlined]="true"
                         (onClick)="editModal(item.id)"
                     ></p-button>
                     <p-button
                         icon="pi pi-trash"
                         severity="danger"
+                        class="ml-2"
                         [outlined]="true"
                         (onClick)="delete(item.id)"
+                    ></p-button>
+                    <p-button
+                        icon="pi pi-file-pdf"
+                        [outlined]="true"
+                        class="ml-2"
+                        (onClick)="downloadPdf(item.id)"
                     ></p-button>
                 </td>
             </tr>

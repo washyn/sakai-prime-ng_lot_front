@@ -12,6 +12,13 @@ import { RouterModule } from '@angular/router';
                     ),
             },
             {
+                path: 'lot-result',
+                loadChildren: () =>
+                    import('./result-lot/result-lot.module').then(
+                        (m) => m.ResultLotModule
+                    ),
+            },
+            {
                 path: 'list-teachers',
                 loadChildren: () =>
                     import('./list/list.module').then((m) => m.ListModule),

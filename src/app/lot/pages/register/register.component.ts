@@ -7,6 +7,7 @@ import {
     Validators,
 } from '@angular/forms';
 import { Dictionary } from '@fullcalendar/core/internal';
+import { AbpUtilService } from 'src/app/demo/components/pages/utils/abp-util.service';
 import {
     CreateUpdateDocenteDto,
     Gender,
@@ -29,6 +30,7 @@ export class RegisterComponent implements OnInit {
 
     constructor(
         public selectService: SelectService,
+        public util: AbpUtilService,
         public formBuilder: FormBuilder,
         public docenteService: DocenteService
     ) {}
@@ -62,6 +64,12 @@ export class RegisterComponent implements OnInit {
             .create({
                 ...this.formGroup.value,
             } as CreateUpdateDocenteDto)
-            .subscribe(() => {});
+            .subscribe(() => {
+                this.util.message.success(
+                    'Se registro correctamente.',
+                    'Registro'
+                );
+                this.buildForm();
+            });
     }
 }

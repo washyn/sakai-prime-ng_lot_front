@@ -5,6 +5,7 @@ import { ConfirmationService } from 'primeng/api';
     providedIn: 'root',
 })
 export class AbpMessageService {
+    // TODO: set text for acept and reject to spanish, en el registro y en la edicion
     // var showMessage = function (type, message, title) {
     //     var opts = $.extend(
     //         {},

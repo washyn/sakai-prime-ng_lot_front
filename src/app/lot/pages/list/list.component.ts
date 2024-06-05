@@ -19,6 +19,7 @@ import {
     DocenteService,
     SelectService,
 } from 'src/app/proxy/acme/book-store/services';
+import { ReportService } from 'src/app/proxy/washyn/unaj/lot/controllers';
 import { LookupDto } from 'src/app/proxy/washyn/unaj/lot/models';
 
 @Component({
@@ -39,6 +40,7 @@ export class ListComponent implements OnInit {
     constructor(
         public selectService: SelectService,
         public docenteService: DocenteService,
+        public reporteService: ReportService,
         public util: AbpUtilService,
         public excelTemplate: ExcelTemplateService,
         public formBuilder: FormBuilder
@@ -153,6 +155,14 @@ export class ListComponent implements OnInit {
             this.buildForm();
             this.isModalOpen = true;
         });
+    }
+
+    downloadPdf(docenteId: string) {
+        this.reporteService
+            .getSamplePdfReportById(docenteId)
+            .subscribe((res) => {
+                this.saveBlobToFile(res, 'Documento.pdf');
+            });
     }
 
     delete(id: string) {

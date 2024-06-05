@@ -590,11 +590,75 @@
               "implementFrom": "Acme.BookStore.Services.SelectAppService"
             }
           }
+        },
+        "Washyn.UNAJ.Lot.Controllers.ReportController": {
+          "controllerName": "Report",
+          "controllerGroupName": "Report",
+          "isRemoteService": true,
+          "isIntegrationService": false,
+          "apiVersion": null,
+          "type": "Washyn.UNAJ.Lot.Controllers.ReportController",
+          "interfaces": [],
+          "actions": {
+            "GetSamplePdfReportById": {
+              "uniqueName": "GetSamplePdfReportById",
+              "name": "GetSamplePdfReport",
+              "httpMethod": "GET",
+              "url": "report/sample",
+              "supportedVersions": [],
+              "parametersOnMethod": [
+                {
+                  "name": "id",
+                  "typeAsString": "System.Guid, System.Private.CoreLib",
+                  "type": "System.Guid",
+                  "typeSimple": "string",
+                  "isOptional": false,
+                  "defaultValue": null
+                }
+              ],
+              "parameters": [
+                {
+                  "nameOnMethod": "id",
+                  "name": "id",
+                  "jsonName": null,
+                  "type": "System.Guid",
+                  "typeSimple": "string",
+                  "isOptional": false,
+                  "defaultValue": null,
+                  "constraintTypes": null,
+                  "bindingSourceId": "ModelBinding",
+                  "descriptorName": ""
+                }
+              ],
+              "returnValue": {
+                "type": "Volo.Abp.Content.IRemoteStreamContent",
+                "typeSimple": "Volo.Abp.Content.IRemoteStreamContent"
+              },
+              "allowAnonymous": null,
+              "implementFrom": "Washyn.UNAJ.Lot.Controllers.ReportController"
+            }
+          }
         }
       }
     }
   },
   "types": {
+    "Acme.BookStore.Entities.Area": {
+      "baseType": "System.Enum",
+      "isEnum": true,
+      "enumNames": [
+        "Biomedicas",
+        "Sociales",
+        "Desconocido"
+      ],
+      "enumValues": [
+        0,
+        1,
+        2
+      ],
+      "genericArguments": null,
+      "properties": null
+    },
     "Acme.BookStore.Entities.CreateUpdateDocenteDto": {
       "baseType": "Volo.Abp.Application.Dtos.EntityDto",
       "isEnum": false,
@@ -730,6 +794,18 @@
           "minimum": null,
           "maximum": null,
           "regex": null
+        },
+        {
+          "name": "Area",
+          "jsonName": null,
+          "type": "Acme.BookStore.Entities.Area?",
+          "typeSimple": "Acme.BookStore.Entities.Area?",
+          "isRequired": false,
+          "minLength": null,
+          "maxLength": null,
+          "minimum": null,
+          "maximum": null,
+          "regex": null
         }
       ]
     },
@@ -823,6 +899,30 @@
           "minimum": null,
           "maximum": null,
           "regex": null
+        },
+        {
+          "name": "Area",
+          "jsonName": null,
+          "type": "Acme.BookStore.Entities.Area?",
+          "typeSimple": "Acme.BookStore.Entities.Area?",
+          "isRequired": false,
+          "minLength": null,
+          "maxLength": null,
+          "minimum": null,
+          "maximum": null,
+          "regex": null
+        },
+        {
+          "name": "FullName",
+          "jsonName": null,
+          "type": "System.String",
+          "typeSimple": "string",
+          "isRequired": false,
+          "minLength": null,
+          "maxLength": null,
+          "minimum": null,
+          "maximum": null,
+          "regex": null
         }
       ]
     },
@@ -841,6 +941,41 @@
       ],
       "genericArguments": null,
       "properties": null
+    },
+    "System.Nullable<T0>": {
+      "baseType": "System.ValueType",
+      "isEnum": false,
+      "enumNames": null,
+      "enumValues": null,
+      "genericArguments": [
+        "T"
+      ],
+      "properties": [
+        {
+          "name": "HasValue",
+          "jsonName": null,
+          "type": "System.Boolean",
+          "typeSimple": "boolean",
+          "isRequired": false,
+          "minLength": null,
+          "maxLength": null,
+          "minimum": null,
+          "maximum": null,
+          "regex": null
+        },
+        {
+          "name": "Value",
+          "jsonName": null,
+          "type": "T",
+          "typeSimple": "T",
+          "isRequired": false,
+          "minLength": null,
+          "maxLength": null,
+          "minimum": null,
+          "maximum": null,
+          "regex": null
+        }
+      ]
     },
     "Volo.Abp.Application.Dtos.EntityDto": {
       "baseType": null,

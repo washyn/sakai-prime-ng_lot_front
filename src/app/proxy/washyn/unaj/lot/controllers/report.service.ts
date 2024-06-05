@@ -8,6 +8,16 @@ export class ReportService {
   apiName = 'Default';
   
 
+  getAllPdfReportById = (id: string, config?: Partial<Rest.Config>) =>
+    this.restService.request<any, Blob>({
+      method: 'GET',
+      responseType: 'blob',
+      url: '/report/all-lot-result',
+      params: { id },
+    },
+    { apiName: this.apiName,...config });
+  
+
   getSamplePdfReportById = (id: string, config?: Partial<Rest.Config>) =>
     this.restService.request<any, Blob>({
       method: 'GET',

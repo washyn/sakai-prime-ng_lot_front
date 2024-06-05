@@ -69,6 +69,13 @@ export class RegisterComponent implements OnInit {
     }
 
     save() {
+        if (this.formGroup.invalid) {
+            this.util.notify.error(
+                'Asegurese de llenar todos los datos del formulario.',
+                'Mensaje de validacion'
+            );
+            return;
+        }
         this.docenteService
             .create({
                 ...this.formGroup.value,

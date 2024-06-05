@@ -14,27 +14,32 @@ export class AppMenuComponent implements OnInit {
     ngOnInit() {
         this.model = [
             {
+                label: 'Menu',
+                items: [
+                    {
+                        label: 'Registro docentes',
+                        icon: 'pi pi-fw pi-id-card',
+                        routerLink: ['/lot/register'],
+                    },
+                    {
+                        label: 'Lista docentes registrados',
+                        icon: 'pi pi-fw pi-list',
+                        routerLink: ['/lot/list-teachers'],
+                    },
+                    {
+                        label: 'Resultado sorteo',
+                        icon: 'pi pi-fw pi-chart-bar',
+                        routerLink: ['/lot/lot-result'],
+                    },
+                ],
+            },
+            {
                 label: 'Home',
                 items: [
                     {
                         label: 'Dashboard',
                         icon: 'pi pi-fw pi-home',
                         routerLink: ['/'],
-                    },
-                    {
-                        label: 'Registro docentes',
-                        icon: 'pi pi-fw pi-pencil',
-                        routerLink: ['/lot/register'],
-                    },
-                    {
-                        label: 'Lista docentes registrados',
-                        icon: 'pi pi-fw pi-pencil',
-                        routerLink: ['/lot/list-teachers'],
-                    },
-                    {
-                        label: 'Resultado sorteo',
-                        icon: 'pi pi-fw pi-pencil',
-                        routerLink: ['/lot/lot-result'],
                     },
                     {
                         label: 'Crud ABP',

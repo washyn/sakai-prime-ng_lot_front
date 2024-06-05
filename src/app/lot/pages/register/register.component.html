@@ -3,7 +3,7 @@
         class="mb-3 flex align-items-start flex-column lg:justify-content-between lg:flex-row"
     >
         <div>
-            <div class="font-medium text-3xl text-900">Registro docentes</div>
+            <div class="font-medium text-3xl text-700">Registro docentes</div>
         </div>
         <div class="mt-3 lg:mt-0">
             <!-- <button
@@ -38,7 +38,7 @@
         (ngSubmit)="save()"
     >
         <div class="field col-12">
-            <label class="font-medium text-900">Nombres</label>
+            <label class="font-medium text-700">Nombres</label>
             <input
                 type="text"
                 pInputText
@@ -47,7 +47,7 @@
             />
         </div>
         <div class="field col-12">
-            <label class="font-medium text-900" for="apellidoPaterno"
+            <label class="font-medium text-700" for="apellidoPaterno"
                 >Apellido paterno</label
             >
             <input
@@ -58,7 +58,7 @@
             />
         </div>
         <div class="field col-12">
-            <label class="font-medium text-900">Apellido paterno</label>
+            <label class="font-medium text-700">Apellido materno</label>
             <input
                 type="text"
                 pInputText
@@ -67,13 +67,13 @@
             />
         </div>
         <div class="field col-12">
-            <label class="font-medium text-900">Grado</label>
+            <label class="font-medium text-700">Grado</label>
             <p-dropdown
                 formControlName="gradoId"
                 [options]="grados"
                 optionLabel="displayName"
                 optionValue="id"
-                placeholder="Selecione un grado"
+                placeholder="Selecione su grado"
             />
         </div>
 
@@ -86,7 +86,7 @@
         inputId="ingredient3" -->
 
         <div class="field col-12">
-            <label class="font-medium text-900">Genero</label>
+            <label class="font-medium text-700">Genero</label>
             <div class="flex flex-wrap gap-3">
                 <div class="flex align-items-center">
                     <p-radioButton formControlName="genero" value="0" />
@@ -109,7 +109,7 @@
                 binary="true"
                 inputId="isDefault"
             ></p-checkbox>
-            <label class="font-medium text-900 ml-2" for="isDefault"
+            <label class="font-medium text-700 ml-2" for="isDefault"
                 >Is default</label
             >
         </div>
@@ -120,86 +120,19 @@
                 inputId="isPublic"
             >
             </p-checkbox>
-            <label class="font-medium text-900 ml-2" for="isPublic">
+            <label class="font-medium text-700 ml-2" for="isPublic">
                 Is public
             </label>
         </div> -->
 
         <div class="field col-12">
-            <p-button label="Registrar" (onClick)="save()" />
+            <p-button
+                [disabled]="formGroup.invalid"
+                label="Registrar"
+                [outlined]="true"
+                (onClick)="save()"
+            />
         </div>
     </form>
 </div>
 <br />
-
-<!--TODO: can be create component modal-->
-<!--class="p-fluid"-->
-
-<!-- 
-<p-dialog
-    [(visible)]="isModalOpen"
-    [style]="{ width: '450px' }"
-    header="Registrar nuevo rol"
-    [modal]="true"
-    [draggable]="false"
-    [resizable]="false"
->
-    <ng-template pTemplate="content">
-        <form
-            class="grid formgrid p-fluid"
-            [formGroup]="form"
-            (ngSubmit)="save()"
-        >
-            <div class="field col-12">
-                <label class="font-medium text-900" for="name">Name</label>
-                <input
-                    type="text"
-                    pInputText
-                    id="name"
-                    class="p-inputtext-sm"
-                    formControlName="name"
-                />
-            </div>
-            <div class="field-checkbox col-12">
-                <p-checkbox
-                    formControlName="isDefault"
-                    binary="true"
-                    inputId="isDefault"
-                ></p-checkbox>
-                <label class="font-medium text-900 ml-2" for="isDefault"
-                    >Is default</label
-                >
-            </div>
-            <div class="field-checkbox col-12 mb-0">
-                <p-checkbox
-                    formControlName="isPublic"
-                    binary="true"
-                    inputId="isPublic"
-                >
-                </p-checkbox>
-                <label class="font-medium text-900 ml-2" for="isPublic">
-                    Is public
-                </label>
-            </div>
-        </form>
-    </ng-template>
-
-    <ng-template pTemplate="footer">
-        <button
-            pButton
-            pRipple
-            label="Cancelar"
-            icon="pi pi-times"
-            class="p-button-text"
-            (click)="isModalOpen = false"
-        ></button>
-        <button
-            pButton
-            pRipple
-            label="Guardar"
-            icon="pi pi-check"
-            class="p-button-text"
-            (click)="save()"
-        ></button>
-    </ng-template>
-</p-dialog> -->

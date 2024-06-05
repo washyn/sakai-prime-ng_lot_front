@@ -49,9 +49,18 @@ export class RegisterComponent implements OnInit {
             gradoId: FormControl<string>;
             genero: FormControl<Gender>;
         }>({
-            nombre: new FormControl<string>('', [Validators.required]),
-            apellidoPaterno: new FormControl<string>('', [Validators.required]),
-            apellidoMaterno: new FormControl<string>('', [Validators.required]),
+            nombre: new FormControl<string>('', [
+                Validators.required,
+                Validators.maxLength(100),
+            ]),
+            apellidoPaterno: new FormControl<string>('', [
+                Validators.required,
+                Validators.maxLength(100),
+            ]),
+            apellidoMaterno: new FormControl<string>('', [
+                Validators.required,
+                Validators.maxLength(100),
+            ]),
             gradoId: new FormControl<string>('', [Validators.required]),
             genero: new FormControl<Gender>(Gender.Unknow, [
                 Validators.required,

@@ -105,14 +105,15 @@ export class ListComponent implements OnInit {
         }>({
             nombre: new FormControl<string>(this.selectedDocente.nombre || '', [
                 Validators.required,
+                Validators.maxLength(100),
             ]),
             apellidoPaterno: new FormControl<string>(
                 this.selectedDocente.apellidoPaterno || '',
-                [Validators.required]
+                [Validators.required, Validators.maxLength(100)]
             ),
             apellidoMaterno: new FormControl<string>(
                 this.selectedDocente.apellidoMaterno || '',
-                [Validators.required]
+                [Validators.required, Validators.maxLength(100)]
             ),
             gradoId: new FormControl<string>(
                 this.selectedDocente.gradoId || '',

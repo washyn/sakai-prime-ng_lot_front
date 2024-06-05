@@ -16,3 +16,13 @@ export interface DocenteDto extends EntityDto<string> {
   genero: Gender;
   gradoId?: string;
 }
+
+export interface DocenteWithLookup extends EntityDto<string> {
+  nombre?: string;
+  apellidoPaterno?: string;
+  apellidoMaterno?: string;
+  genero: Gender;
+  gradoId?: string;
+  gradoName?: string;
+  gradoPrefix?: string;
+}

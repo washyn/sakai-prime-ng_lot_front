@@ -11,7 +11,8 @@ import { EventService } from './demo/service/event.service';
 import { IconService } from './demo/service/icon.service';
 import { NodeService } from './demo/service/node.service';
 import { PhotoService } from './demo/service/photo.service';
-import {AbpCustomModule} from "./abp.module";
+import { AbpCustomModule } from './abp.module';
+import { GenderPipe } from './lot/pages/gender.pipe';
 
 @NgModule({
     declarations: [AppComponent, NotfoundComponent],

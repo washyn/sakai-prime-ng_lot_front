@@ -73,18 +73,20 @@
             <tr>
                 <td>
                     {{
-                        item.apellidoPaterno +
+                        item.gradoPrefix +
                             " " +
-                            item.apellidoMaterno +
+                            item.nombre +
                             " " +
-                            item.nombre
+                            item.apellidoPaterno +
+                            " " +
+                            item.apellidoMaterno
                     }}
                 </td>
                 <td>
-                    {{ item.genero }}
+                    {{ item.genero | appGender }}
                 </td>
                 <td>
-                    {{ item.gradoId }}
+                    {{ item.gradoName }}
                 </td>
                 <td class="p-1">
                     <p-button

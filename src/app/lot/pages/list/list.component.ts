@@ -91,10 +91,6 @@ export class ListComponent implements OnInit {
         window.URL.revokeObjectURL(blobURL);
     }
 
-    // Usage example
-    // const blob = new Blob(['Hello, World!'], { type: 'text/plain' });
-    // saveBlobToFile(blob, 'hello.txt');
-
     buildForm() {
         this.formGroup = this.formBuilder.group<{
             nombre: FormControl<string>;
@@ -144,8 +140,6 @@ export class ListComponent implements OnInit {
     }
 
     createModal() {
-        console.log('open modal btn clickjeddd');
-
         this.selectedDocente = {} as DocenteDto;
         this.buildForm();
         this.isModalOpen = true;
@@ -160,6 +154,7 @@ export class ListComponent implements OnInit {
     }
 
     // TODO: add confirmation service...
+    // TODO: add notification service...
     delete(id: string) {
         // this.confirmation
         //     .warn('::AreYouSureToDelete', '::AreYouSure')

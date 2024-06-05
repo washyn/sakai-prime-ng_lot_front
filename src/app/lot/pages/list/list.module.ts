@@ -12,6 +12,7 @@ import { TableModule } from 'primeng/table';
 import { CardModule } from 'primeng/card';
 import { CheckboxModule } from 'primeng/checkbox';
 import { DialogModule } from 'primeng/dialog';
+import { GenderPipe } from '../gender.pipe';
 @NgModule({
     imports: [
         CommonModule,
@@ -32,6 +33,6 @@ import { DialogModule } from 'primeng/dialog';
         CheckboxModule,
         DialogModule,
     ],
-    declarations: [ListComponent],
+    declarations: [ListComponent, GenderPipe],
 })
 export class ListModule {}

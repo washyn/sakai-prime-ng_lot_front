@@ -11,7 +11,7 @@ import { registerLocale } from '@abp/ng.core/locale';
             environment: environment,
             registerLocaleFn: registerLocale(),
         }),
-        ],
+    ],
     exports: [],
 })
 export class AbpCustomModule {

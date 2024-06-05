@@ -1,7 +1,7 @@
 import { RestService, Rest } from '@abp/ng.core';
 import type { PagedAndSortedResultRequestDto, PagedResultDto } from '@abp/ng.core';
 import { Injectable } from '@angular/core';
-import type { CreateUpdateDocenteDto, DocenteDto } from '../entities/models';
+import type { CreateUpdateDocenteDto, DocenteDto, DocenteWithLookup } from '../entities/models';
 
 @Injectable({
   providedIn: 'root',
@@ -36,7 +36,7 @@ export class DocenteService {
   
 
   getList = (input: PagedAndSortedResultRequestDto, config?: Partial<Rest.Config>) =>
-    this.restService.request<any, PagedResultDto<DocenteDto>>({
+    this.restService.request<any, PagedResultDto<DocenteWithLookup>>({
       method: 'GET',
       url: '/api/app/docente',
       params: { sorting: input.sorting, skipCount: input.skipCount, maxResultCount: input.maxResultCount },

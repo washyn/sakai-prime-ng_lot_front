@@ -31,6 +31,11 @@ export class AppMenuComponent implements OnInit {
                         icon: 'pi pi-fw pi-chart-bar',
                         routerLink: ['/lot/lot-result'],
                     },
+                    {
+                        label: 'Sorteo',
+                        icon: 'pi pi-fw pi-box',
+                        routerLink: ['/lot/process'],
+                    },
                 ],
             },
             {

@@ -1,0 +1,104 @@
+<!-- add as small table -->
+<div class="grid">
+    <div class="col-6">
+        <!-- TODO: add title of card -->
+        <div class="surface-card p-3 shadow-1 border-round">
+            <h4 class="text-700 mb-0 text-center">Pendientes</h4>
+            <p-table
+                lazy="false"
+                [value]="docenteBefore.items"
+                styleClass="p-datatable-sm"
+                scrollHeight="250px"
+                [tableStyle]="{ 'min-width': '20rem' }"
+            >
+                <ng-template pTemplate="header">
+                    <tr>
+                        <th>Apellidos y nombres</th>
+                    </tr>
+                </ng-template>
+                <ng-template pTemplate="body" let-item>
+                    <tr>
+                        <td>
+                            {{ item.fullName }}
+                        </td>
+                    </tr>
+                </ng-template>
+            </p-table>
+        </div>
+    </div>
+    <div class="col-6">
+        <div class="surface-card p-3 shadow-1 border-round">
+            <h4 class="text-700 mb-0 text-center">Sorteados</h4>
+            <p-table
+                lazy="false"
+                scrollHeight="250px"
+                [value]="docenteAfter.items"
+                styleClass="p-datatable-sm"
+                [tableStyle]="{ 'min-width': '20rem' }"
+            >
+                <ng-template pTemplate="header">
+                    <tr>
+                        <th>Apellidos y nombres</th>
+                    </tr>
+                </ng-template>
+                <ng-template pTemplate="body" let-item>
+                    <tr>
+                        <td>
+                            {{ item.fullName }}
+                        </td>
+                    </tr>
+                </ng-template>
+            </p-table>
+        </div>
+    </div>
+</div>
+
+<div class="surface-card p-3 shadow-1 border-round">
+    <form class="grid formgrid p-fluid" [formGroup]="formLot">
+        <div class="field col-12">
+            <label class="font-medium text-700">Participante</label>
+            <!-- <input
+                type="text"
+                pInputText
+                class="p-inputtext-sm"
+                formControlName="nombre"
+            /> -->
+            <p-autoComplete
+                [dropdown]="true"
+                (completeMethod)="filter($event)"
+                formControlName="docente"
+                [suggestions]="filteredDocentes"
+                field="fullName"
+            />
+        </div>
+    </form>
+    <hr />
+    <p-button label="Choise random role" outlined="true"> </p-button>
+    <hr />
+
+    <div class="grid">
+        <div class="col-4"></div>
+        <!-- TODO: add color bg gray -->
+        <!--  -->
+        <!-- bg-primary -->
+
+        <div class="col-4">
+            <div class="flex flex-column">
+                <!-- bg-primary-reverse -->
+                <div
+                    *ngFor="let item of roles"
+                    class="flex align-items-center justify-content-center h-2rem border-round m-1 border-400 text-700 border-1"
+                >
+                    {{ item.displayName }}
+                </div>
+
+                <div
+                    class="flex align-items-center justify-content-center h-2rem bg-primary border-round m-1 border-400 text-700 border-1"
+                >
+                    Item displayName
+                </div>
+            </div>
+        </div>
+        <div class="col-4"></div>
+    </div>
+</div>

@@ -1,13 +1,16 @@
 import { Injectable } from '@angular/core';
 import { AbpNotifyService } from './abp-notify.service';
 import { AbpMessageService } from './abp-message.service';
+import { AbpUiService } from 'src/app/lot/utils/abp-ui.service';
 
 @Injectable({
     providedIn: 'root',
 })
 export class AbpUtilService {
+    // TODO: en el main page mostrar la foto diseñada
     constructor(
         public notify: AbpNotifyService,
+        public ui: AbpUiService,
         public message: AbpMessageService
     ) {}
 }

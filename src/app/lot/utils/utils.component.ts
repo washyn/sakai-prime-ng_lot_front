@@ -5,13 +5,16 @@ import { ConfirmDialogModule } from 'primeng/confirmdialog';
 import { ConfirmationService, MessageService } from 'primeng/api';
 import { AbpMessageService } from './abp-message.service';
 import { AbpNotifyService } from './abp-notify.service';
+import { AbpUiService } from './abp-ui.service';
 
+// TODO: add component here
 @Component({
     selector: 'app-utils',
     // imports: [ToastModule, ConfirmDialogModule],
     // standalone: true,
     template: `
         <div>
+            <!-- <p-blockUI [blocked]="blockedDocument" /> -->
             <p-toast position="bottom-right"></p-toast>
             <p-confirmDialog [position]="'center'"></p-confirmDialog>
         </div>
@@ -23,8 +26,10 @@ import { AbpNotifyService } from './abp-notify.service';
         AbpUtilService,
         AbpMessageService,
         AbpNotifyService,
+        AbpUiService,
     ],
 })
 export class UtilsComponent {
+    // can be add util component.
     constructor() {}
 }

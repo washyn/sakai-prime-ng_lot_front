@@ -49,6 +49,22 @@ export class LotComponent implements OnInit {
         });
     }
 
+    choise() {
+        console.log(this.getRandomNum(this.roles.length));
+    }
+    getRandomNum(maxValue: number) {
+        let date = Date.now();
+        let dateMl = new Date().getMilliseconds();
+        let tempValue = date * Math.random();
+        let value = tempValue / dateMl;
+        let rounded = Math.round(value);
+        return rounded % maxValue;
+    }
+
+    getRandomInt(max: number) {
+        return Math.floor(Math.random() * max);
+    }
+
     loadData() {
         this.docenteService
             .getList({

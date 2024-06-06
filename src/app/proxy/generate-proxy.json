@@ -710,14 +710,16 @@
       "baseType": "System.Enum",
       "isEnum": true,
       "enumNames": [
+        "Desconocido",
         "Biomedicas",
         "Sociales",
-        "Desconocido"
+        "Ingenierias"
       ],
       "enumValues": [
         0,
         1,
-        2
+        2,
+        3
       ],
       "genericArguments": null,
       "properties": null
@@ -782,6 +784,18 @@
           "jsonName": null,
           "type": "System.Guid",
           "typeSimple": "string",
+          "isRequired": false,
+          "minLength": null,
+          "maxLength": null,
+          "minimum": null,
+          "maximum": null,
+          "regex": null
+        },
+        {
+          "name": "Area",
+          "jsonName": null,
+          "type": "Acme.BookStore.Entities.Area?",
+          "typeSimple": "Acme.BookStore.Entities.Area?",
           "isRequired": false,
           "minLength": null,
           "maxLength": null,

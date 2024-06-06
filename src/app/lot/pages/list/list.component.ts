@@ -11,6 +11,7 @@ import { TableLazyLoadEvent } from 'primeng/table';
 import { AbpUtilService } from 'src/app/demo/components/pages/utils/abp-util.service';
 import { ExcelTemplateService } from 'src/app/proxy/acme/book-store/controllers';
 import {
+    Area,
     CreateUpdateDocenteDto,
     DocenteDto,
     Gender,
@@ -29,7 +30,7 @@ import { LookupDto } from 'src/app/proxy/washyn/unaj/lot/models';
 })
 export class ListComponent implements OnInit {
     tableFilterModel = {
-        maxResultCount: 17,
+        maxResultCount: 15,
     } as PagedAndSortedResultRequestDto;
     data: PagedResultDto<DocenteDto> = { items: [], totalCount: 0 };
     formGroup: FormGroup;
@@ -102,6 +103,7 @@ export class ListComponent implements OnInit {
             apellidoMaterno: FormControl<string>;
             gradoId: FormControl<string>;
             genero: FormControl<Gender>;
+            area?: FormControl<Area>;
         }>({
             nombre: new FormControl<string>(this.selectedDocente.nombre || '', [
                 Validators.required,
@@ -123,6 +125,7 @@ export class ListComponent implements OnInit {
                 this.selectedDocente.genero || Gender.Unknow,
                 [Validators.required]
             ),
+            area: new FormControl<Area>(this.selectedDocente.area || null, []),
         });
     }
 
@@ -138,6 +141,10 @@ export class ListComponent implements OnInit {
 
     save() {
         if (this.formGroup.invalid) {
+            this.util.notify.error(
+                'Asegurese de llenar todos los datos del formulario.',
+                'Mensaje de validación'
+            );
             return;
         }
 

@@ -6,7 +6,7 @@ import { Gender } from 'src/app/proxy/acme/book-store/entities';
     pure: true,
 })
 export class GenderPipe implements PipeTransform {
-    transform(value: Gender): string {
+    transform(value?: Gender): string {
         switch (value) {
             case Gender.Male:
                 return 'Masculino';
@@ -14,10 +14,10 @@ export class GenderPipe implements PipeTransform {
                 return 'Femenino';
             case Gender.Unknow:
                 return 'Desconocido';
-
+            case null:
+                return '';
             default:
                 return '-';
-                break;
         }
     }
 }

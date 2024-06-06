@@ -9,6 +9,7 @@ import {
 import { Dictionary } from '@fullcalendar/core/internal';
 import { AbpUtilService } from 'src/app/demo/components/pages/utils/abp-util.service';
 import {
+    Area,
     CreateUpdateDocenteDto,
     Gender,
 } from 'src/app/proxy/acme/book-store/entities';
@@ -28,6 +29,8 @@ export class RegisterComponent implements OnInit {
     formGroup: FormGroup;
     grados: LookupDto<string>[] = [];
 
+    private _bottonStatus = true;
+
     constructor(
         public selectService: SelectService,
         public util: AbpUtilService,
@@ -41,6 +44,14 @@ export class RegisterComponent implements OnInit {
         this.buildForm();
     }
 
+    public get bottonDisabled() {
+        return this._bottonStatus;
+    }
+
+    public set bottonDisabled(status: boolean) {
+        this._bottonStatus = status;
+    }
+
     buildForm() {
         this.formGroup = this.formBuilder.group<{
             nombre: FormControl<string>;
@@ -48,6 +59,7 @@ export class RegisterComponent implements OnInit {
             apellidoMaterno: FormControl<string>;
             gradoId: FormControl<string>;
             genero: FormControl<Gender>;
+            area?: FormControl<Area>;
         }>({
             nombre: new FormControl<string>('', [
                 Validators.required,
@@ -65,17 +77,18 @@ export class RegisterComponent implements OnInit {
             genero: new FormControl<Gender>(Gender.Unknow, [
                 Validators.required,
             ]),
+            area: new FormControl<Area>(null, []),
         });
     }
-
     save() {
         if (this.formGroup.invalid) {
             this.util.notify.error(
                 'Asegurese de llenar todos los datos del formulario.',
-                'Mensaje de validacion'
+                'Mensaje de validación'
             );
             return;
         }
+        this.bottonDisabled = false;
         this.docenteService
             .create({
                 ...this.formGroup.value,
@@ -86,6 +99,7 @@ export class RegisterComponent implements OnInit {
                     'Registro'
                 );
                 this.buildForm();
+                this.bottonDisabled = true;
             });
     }
 }

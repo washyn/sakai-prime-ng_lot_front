@@ -100,7 +100,7 @@
                     {{ item.gradoName }}
                 </td>
                 <td>
-                    {{ item.area }}
+                    {{ item.area | appArea }}
                 </td>
                 <td class="p-1">
                     <p-button
@@ -186,6 +186,28 @@
             <!-- Unknow = 0,
             Male = 1,
             Female = 2, -->
+
+            <div class="field col-12 mb-4">
+                <label class="font-medium text-700">Area</label>
+                <div class="flex flex-wrap gap-3">
+                    <!-- <div class="flex align-items-center">
+                        <p-radioButton formControlName="area" value="0" />
+                        <label class="ml-2"> Desconocido </label>
+                    </div> -->
+                    <!-- <div class="flex align-items-center">
+                        <p-radioButton formControlName="area" value="1" />
+                        <label class="ml-2"> Biomedicas </label>
+                    </div> -->
+                    <div class="flex align-items-center">
+                        <p-radioButton formControlName="area" value="2" />
+                        <label class="ml-2"> Sociales </label>
+                    </div>
+                    <div class="flex align-items-center">
+                        <p-radioButton formControlName="area" value="3" />
+                        <label class="ml-2"> Ingenierías </label>
+                    </div>
+                </div>
+            </div>
 
             <div class="field col-12">
                 <label class="font-medium text-700">Genero</label>

@@ -81,9 +81,32 @@
         Male = 1,
         Female = 2, -->
 
-        <!-- inputId="ingredient1"
-        inputId="ingredient2"
-        inputId="ingredient3" -->
+        <!-- Desconocido = 0,
+        Biomedicas = 1,
+        Sociales = 2,
+        Ingenierias = 3, -->
+
+        <div class="field col-12 mb-4">
+            <label class="font-medium text-700">Area</label>
+            <div class="flex flex-wrap gap-3">
+                <!-- <div class="flex align-items-center">
+                    <p-radioButton formControlName="area" value="0" />
+                    <label class="ml-2"> Desconocido </label>
+                </div> -->
+                <!-- <div class="flex align-items-center">
+                    <p-radioButton formControlName="area" value="1" />
+                    <label class="ml-2"> Biomedicas </label>
+                </div> -->
+                <div class="flex align-items-center">
+                    <p-radioButton formControlName="area" value="2" />
+                    <label class="ml-2"> Sociales </label>
+                </div>
+                <div class="flex align-items-center">
+                    <p-radioButton formControlName="area" value="3" />
+                    <label class="ml-2"> Ingenierías </label>
+                </div>
+            </div>
+        </div>
 
         <div class="field col-12">
             <label class="font-medium text-700">Genero</label>
@@ -125,10 +148,12 @@
             </label>
         </div> -->
 
+        <!-- [disabled]="formGroup.invalid" -->
+
         <div class="field col-12">
             <p-button
-                [disabled]="formGroup.invalid"
-                label="Registrar"
+                label="REGISTRAR"
+                [disabled]="formGroup.invalid && bottonDisabled"
                 [outlined]="true"
                 (onClick)="save()"
             />

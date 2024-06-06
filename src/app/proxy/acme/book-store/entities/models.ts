@@ -8,6 +8,7 @@ export interface CreateUpdateDocenteDto extends EntityDto {
   apellidoMaterno?: string;
   genero: Gender;
   gradoId?: string;
+  area?: Area;
 }
 
 export interface DocenteDto extends FullAuditedEntityDto<string> {

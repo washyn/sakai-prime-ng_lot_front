@@ -131,12 +131,10 @@ export class ListComponent implements OnInit {
 
     donwloadAll() {
         this.util.ui.setBusy();
-        this.reporteService
-            .getAllPdfReportById('F6262904-650C-0BF1-F4EB-3A12F74316BA')
-            .subscribe((res) => {
-                this.saveBlobToFile(res, 'all_data.pdf');
-                this.util.ui.clearBusy();
-            });
+        this.reporteService.getAllPdfReport().subscribe((res) => {
+            this.saveBlobToFile(res, 'all_data.pdf');
+            this.util.ui.clearBusy();
+        });
     }
 
     save() {

@@ -7,15 +7,15 @@ import { MessageService } from 'primeng/api';
     providedIn: 'root',
 })
 export class AbpUiService {
-    blockedDocument = false;
+    // blockedDocument = false;
     constructor() {}
 
     setBusy() {
-        this.blockedDocument = true;
-        console.log(this.blockedDocument);
+        // this.blockedDocument = true;
+        // console.log(this.blockedDocument);
     }
     clearBusy() {
-        this.blockedDocument = false;
-        console.log(this.blockedDocument);
+        // this.blockedDocument = false;
+        // console.log(this.blockedDocument);
     }
 }

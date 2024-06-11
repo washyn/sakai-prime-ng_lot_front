@@ -1,8 +1,16 @@
-import { CoreModule } from '@abp/ng.core';
+import { CoreModule, noop } from '@abp/ng.core';
 import { CommonModule } from '@angular/common';
-import { ModuleWithProviders, NgModule } from '@angular/core';
+import {
+    APP_INITIALIZER,
+    ErrorHandler,
+    ModuleWithProviders,
+    NgModule,
+} from '@angular/core';
 import { environment } from 'src/environments/environment';
 import { registerLocale } from '@abp/ng.core/locale';
+import { handleHttpError } from './demo/components/pages/utils/http-error-handler';
+import { CustomErrorHandler } from './demo/components/pages/utils/http-error-handler-custom';
+import { AbpFormatErrorHandlerService } from './demo/components/pages/utils/abp-format-error-handler.service';
 
 @NgModule({
     imports: [
@@ -13,12 +21,22 @@ import { registerLocale } from '@abp/ng.core/locale';
         }),
     ],
     exports: [],
+    providers: [],
 })
 export class AbpCustomModule {
     static forRoot(): ModuleWithProviders<AbpCustomModule> {
         return {
+            // provide = token and use class is implementation
+            // { provide: ErrorHandler, useClass: CustomErrorHandler },
             ngModule: AbpCustomModule,
-            providers: [],
+            providers: [
+                {
+                    provide: APP_INITIALIZER,
+                    multi: true,
+                    deps: [AbpFormatErrorHandlerService],
+                    useFactory: noop,
+                },
+            ],
         };
     }
 }

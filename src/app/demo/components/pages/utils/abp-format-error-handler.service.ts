@@ -1,8 +1,13 @@
 import { inject, Injectable } from '@angular/core';
-import { AuthService, LocalizationParam } from '@abp/ng.core';
+import {
+    AuthService,
+    HttpErrorReporterService,
+    LocalizationParam,
+} from '@abp/ng.core';
 import { HttpErrorResponse } from '@angular/common/http';
 import { AbpUtilService } from './abp-util.service';
 import { er } from '@fullcalendar/core/internal-common';
+import { filter, switchMap } from 'rxjs';
 
 // import { getErrorFromRequestBody } from '../utils/error.utils';
 // import { CustomHttpErrorHandlerService } from '../models/common';
@@ -86,22 +91,39 @@ export interface CustomHttpErrorHandlerService {
     execute(): void;
 }
 
-// protected handleError(err: unknown)
 @Injectable({ providedIn: 'root' })
 // implements CustomHttpErrorHandlerService
 export class AbpFormatErrorHandlerService {
     // readonly priority = CUSTOM_HTTP_ERROR_HANDLER_PRIORITY.high;
     // private confirmationService = inject(ConfirmationService);
-
+    protected readonly httpErrorReporter = inject(HttpErrorReporterService);
     private util = inject(AbpUtilService);
     private authService = inject(AuthService);
     private error: HttpErrorResponse | undefined = undefined;
+
+    constructor() {
+        this.listenToRestError();
+        // add error reporter and use
+    }
+
+    protected listenToRestError() {
+        this.httpErrorReporter.reporter$
+            // .pipe(
+            //     filter(this.filterRestErrors),
+            //     switchMap(this.executeErrorHandler)
+            // )
+            .subscribe((err) => this.handleError(err));
+    }
 
     private navigateToLogin() {
         return this.authService.navigateToLogin();
     }
 
+    // TODO: falta el injecto de solo http error... pero si esta global deberia mostgra trodo
+    // add in constructor...
+
     protected handleError(err: unknown) {
+        console.log('error handkes');
         console.log(err);
 
         if (this.canHandle(err)) {
@@ -119,7 +141,26 @@ export class AbpFormatErrorHandlerService {
         }
         return false;
     }
+    // protected filterRestErrors = ({ status }: HttpErrorResponse): boolean => {
+    //     if (typeof status !== 'number') return false;
 
+    //     if (!this.httpErrorConfig?.skipHandledErrorCodes) {
+    //         return true;
+    //     }
+
+    //     return (
+    //         this.httpErrorConfig.skipHandledErrorCodes?.findIndex(
+    //             (code) => code === status
+    //         ) < 0
+    //     );
+    // };
+    // protected executeErrorHandler = (error: HttpErrorResponse) => {
+    //     if (this.httpErrorHandler) {
+    //         return this.httpErrorHandler(this.injector, error);
+    //     }
+
+    //     return of(error);
+    // };
     execute() {
         const { message, title } = getErrorFromRequestBody(
             this.error?.error?.error

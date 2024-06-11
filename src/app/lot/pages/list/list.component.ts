@@ -76,6 +76,7 @@ export class ListComponent implements OnInit {
         });
     }
 
+    // TODO: refact
     saveBlobToFile(blob, fileName) {
         // Create a blob URL
         const blobURL = window.URL.createObjectURL(blob);
@@ -126,14 +127,6 @@ export class ListComponent implements OnInit {
                 [Validators.required]
             ),
             area: new FormControl<Area>(this.selectedDocente.area || null, []),
-        });
-    }
-
-    donwloadAll() {
-        this.util.ui.setBusy();
-        this.reporteService.getAllPdfReport().subscribe((res) => {
-            this.saveBlobToFile(res, 'all_data.pdf');
-            this.util.ui.clearBusy();
         });
     }
 

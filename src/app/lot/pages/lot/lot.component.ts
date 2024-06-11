@@ -2,6 +2,7 @@ import { PagedResultDto } from '@abp/ng.core';
 import { CommonModule } from '@angular/common';
 import { ChangeDetectionStrategy, Component, type OnInit } from '@angular/core';
 import { FormBuilder, FormControl, FormGroup } from '@angular/forms';
+import { dA } from '@fullcalendar/core/internal-common';
 import { AutoCompleteCompleteEvent } from 'primeng/autocomplete';
 import { DocenteWithLookup } from 'src/app/proxy/acme/book-store/entities';
 import {
@@ -49,9 +50,6 @@ export class LotComponent implements OnInit {
         });
     }
 
-    choise() {
-        console.log(this.getRandomNum(this.roles.length));
-    }
     getRandomNum(maxValue: number) {
         let date = Date.now();
         let dateMl = new Date().getMilliseconds();
@@ -97,5 +95,37 @@ export class LotComponent implements OnInit {
         }
 
         this.filteredDocentes = filtered;
+    }
+
+    // ...
+    generateSecuence(length: number) {
+        let result: number[] = [];
+        for (let index = 0; index < length; index++) {
+            result.push(this.generateRandomNumber(1, 5));
+        }
+        return result;
+    }
+
+    async genAndShowNumbers() {
+        let numbers = this.generateSecuence(this.generateRandomNumber(20, 50));
+        // numero que disminuye...
+        let sleepNumber = 150;
+        for (let ite of numbers) {
+            await this.delay(sleepNumber);
+            this.currentValueRandom = ite;
+            sleepNumber = sleepNumber + 10;
+        }
+    }
+
+    // TODO: generatte random n number as secuence array and show... with sleeep...
+    generateRandomNumber(min: number, max: number) {
+        return Math.floor(Math.random() * max) + min;
+    }
+
+    currentValueRandom = -1;
+    initializedChoise = true;
+
+    delay(ms: number): Promise<void> {
+        return new Promise((resolve) => setTimeout(resolve, ms));
     }
 }

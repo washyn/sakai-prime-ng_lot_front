@@ -67,8 +67,15 @@
         </div>
     </form>
 
-    <p-button label="Choise random role" (onClick)="choise()" outlined="true">
+    <p-button
+        label="Choise random role"
+        (onClick)="genAndShowNumbers()"
+        outlined="true"
+    >
     </p-button>
+    <h2 *ngIf="initializedChoise" class="font-medium text-700">
+        {{ currentValueRandom }}
+    </h2>
     <hr />
     <div class="grid">
         <div class="col-4"></div>

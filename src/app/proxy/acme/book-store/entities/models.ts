@@ -3,6 +3,7 @@ import type { Gender } from './gender.enum';
 import type { Area } from './area.enum';
 
 export interface CreateUpdateDocenteDto extends EntityDto {
+  dni?: string;
   nombre?: string;
   apellidoPaterno?: string;
   apellidoMaterno?: string;
@@ -12,6 +13,7 @@ export interface CreateUpdateDocenteDto extends EntityDto {
 }
 
 export interface DocenteDto extends FullAuditedEntityDto<string> {
+  dni?: string;
   nombre?: string;
   apellidoPaterno?: string;
   apellidoMaterno?: string;
@@ -20,7 +22,8 @@ export interface DocenteDto extends FullAuditedEntityDto<string> {
   area?: Area;
 }
 
-export interface DocenteWithLookup extends EntityDto<string> {
+export interface DocenteWithLookup extends FullAuditedEntityDto<string> {
+  dni?: string;
   nombre?: string;
   apellidoPaterno?: string;
   apellidoMaterno?: string;

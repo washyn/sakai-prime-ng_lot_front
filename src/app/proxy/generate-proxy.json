@@ -710,6 +710,18 @@
       "genericArguments": null,
       "properties": [
         {
+          "name": "Dni",
+          "jsonName": null,
+          "type": "System.String",
+          "typeSimple": "string",
+          "isRequired": false,
+          "minLength": null,
+          "maxLength": null,
+          "minimum": null,
+          "maximum": null,
+          "regex": null
+        },
+        {
           "name": "Nombre",
           "jsonName": null,
           "type": "System.String",
@@ -791,6 +803,18 @@
       "genericArguments": null,
       "properties": [
         {
+          "name": "Dni",
+          "jsonName": null,
+          "type": "System.String",
+          "typeSimple": "string",
+          "isRequired": false,
+          "minLength": null,
+          "maxLength": null,
+          "minimum": null,
+          "maximum": null,
+          "regex": null
+        },
+        {
           "name": "Nombre",
           "jsonName": null,
           "type": "System.String",
@@ -865,12 +889,24 @@
       ]
     },
     "Acme.BookStore.Entities.DocenteWithLookup": {
-      "baseType": "Volo.Abp.Application.Dtos.EntityDto<System.Guid>",
+      "baseType": "Volo.Abp.Application.Dtos.FullAuditedEntityDto<System.Guid>",
       "isEnum": false,
       "enumNames": null,
       "enumValues": null,
       "genericArguments": null,
       "properties": [
+        {
+          "name": "Dni",
+          "jsonName": null,
+          "type": "System.String",
+          "typeSimple": "string",
+          "isRequired": false,
+          "minLength": null,
+          "maxLength": null,
+          "minimum": null,
+          "maximum": null,
+          "regex": null
+        },
         {
           "name": "Nombre",
           "jsonName": null,

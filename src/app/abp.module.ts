@@ -6,7 +6,15 @@ import { registerLocale } from '@abp/ng.core/locale';
 import { handleHttpError } from './demo/components/pages/utils/http-error-handler';
 import { CustomErrorHandler } from './demo/components/pages/utils/http-error-handler-custom';
 import { AbpFormatErrorHandlerService } from './demo/components/pages/utils/abp-format-error-handler.service';
+<<<<<<< HEAD
 import { ErrorHandler, HTTP_ERROR_CONFIG } from './lot/utils/error.handler';
+=======
+import {
+    HTTP_ERROR_CONFIG,
+    RootParams,
+    httpErrorConfigFactory,
+} from './lot/utils/error-handler';
+>>>>>>> e68f36030550c9705b2de18f158d51e72c190068
 
 @NgModule({
     imports: [
@@ -20,7 +28,9 @@ import { ErrorHandler, HTTP_ERROR_CONFIG } from './lot/utils/error.handler';
     providers: [],
 })
 export class AbpCustomModule {
-    static forRoot(): ModuleWithProviders<AbpCustomModule> {
+    static forRoot(
+        { httpErrorConfig } = {} as RootParams
+    ): ModuleWithProviders<AbpCustomModule> {
         return {
             // provide = token and use class is implementation
             // { provide: ErrorHandler, useClass: CustomErrorHandler },
@@ -32,7 +42,7 @@ export class AbpCustomModule {
                     deps: [ErrorHandler],
                     useFactory: noop,
                 },
-                { provide: HTTP_ERROR_CONFIG, useValue: undefined },
+                { provide: HTTP_ERROR_CONFIG, useValue: httpErrorConfig },
             ],
         };
     }

@@ -44,10 +44,12 @@ export class ResultLotComponent implements OnInit {
     }
 
     donwloadAll() {
-        this.util.ui.setBusy();
-        this.reporteService.getAllPdfReport().subscribe((res) => {
-            this.util.saveBlobToFile(res, 'all_data.pdf');
-            this.util.ui.clearBusy();
-        });
+        // this.util.ui.setBusy();
+        // this.reporteService.getAllPdfReport().subscribe((res) => {
+        //     this.util.saveBlobToFile(res, 'all_data.pdf');
+        //     this.util.ui.clearBusy();
+        // });
+
+        throw new Error('error');
     }
 }

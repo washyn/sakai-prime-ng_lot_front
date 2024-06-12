@@ -1,4 +1,4 @@
-import { NgModule } from '@angular/core';
+import { APP_INITIALIZER, NgModule } from '@angular/core';
 import { PathLocationStrategy, LocationStrategy } from '@angular/common';
 import { AppComponent } from './app.component';
 import { AppRoutingModule } from './app-routing.module';
@@ -14,6 +14,8 @@ import { PhotoService } from './demo/service/photo.service';
 import { AbpCustomModule } from './abp.module';
 import { GenderPipe } from './lot/pages/gender.pipe';
 import { ToastModule } from 'primeng/toast';
+import { ErrorHandler, HTTP_ERROR_CONFIG } from './lot/utils/error.handler';
+import { noop } from 'rxjs';
 
 @NgModule({
     declarations: [AppComponent, NotfoundComponent],

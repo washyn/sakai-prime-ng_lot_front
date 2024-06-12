@@ -37,6 +37,18 @@
         [formGroup]="formGroup"
         (ngSubmit)="save()"
     >
+        <!-- <p-inputNumber mode="decimal" [useGrouping]="false" /> -->
+
+        <div class="field col-12">
+            <label class="font-medium text-700">DNI</label>
+            <p-inputNumber
+                class="p-inputtext-sm"
+                mode="decimal"
+                maxlength="8"
+                [useGrouping]="false"
+                formControlName="dni"
+            />
+        </div>
         <div class="field col-12">
             <label class="font-medium text-700">Nombres</label>
             <input
@@ -46,7 +58,7 @@
                 formControlName="nombre"
             />
         </div>
-        <div class="field col-12">
+        <div class="field col-6">
             <label class="font-medium text-700" for="apellidoPaterno"
                 >Apellido paterno</label
             >
@@ -57,7 +69,7 @@
                 formControlName="apellidoPaterno"
             />
         </div>
-        <div class="field col-12">
+        <div class="field col-6">
             <label class="font-medium text-700">Apellido materno</label>
             <input
                 type="text"
@@ -75,6 +87,24 @@
                 optionValue="id"
                 placeholder="Selecione su grado"
             />
+        </div>
+
+        <div class="field col-12">
+            <label class="font-medium text-700">Genero</label>
+            <div class="flex flex-wrap gap-3">
+                <div class="flex align-items-center">
+                    <p-radioButton formControlName="genero" value="0" />
+                    <label class="ml-2"> Desconocido </label>
+                </div>
+                <div class="flex align-items-center">
+                    <p-radioButton formControlName="genero" value="2" />
+                    <label class="ml-2"> Femenino </label>
+                </div>
+                <div class="flex align-items-center">
+                    <p-radioButton formControlName="genero" value="1" />
+                    <label class="ml-2"> Masculino </label>
+                </div>
+            </div>
         </div>
 
         <!-- Unknow = 0,
@@ -104,24 +134,6 @@
                 <div class="flex align-items-center">
                     <p-radioButton formControlName="area" value="3" />
                     <label class="ml-2"> Ingenierías </label>
-                </div>
-            </div>
-        </div>
-
-        <div class="field col-12">
-            <label class="font-medium text-700">Genero</label>
-            <div class="flex flex-wrap gap-3">
-                <div class="flex align-items-center">
-                    <p-radioButton formControlName="genero" value="0" />
-                    <label class="ml-2"> Desconocido </label>
-                </div>
-                <div class="flex align-items-center">
-                    <p-radioButton formControlName="genero" value="2" />
-                    <label class="ml-2"> Femenino </label>
-                </div>
-                <div class="flex align-items-center">
-                    <p-radioButton formControlName="genero" value="1" />
-                    <label class="ml-2"> Masculino </label>
                 </div>
             </div>
         </div>

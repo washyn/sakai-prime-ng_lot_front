@@ -54,6 +54,7 @@ export class RegisterComponent implements OnInit {
 
     buildForm() {
         this.formGroup = this.formBuilder.group<{
+            dni: FormControl<number>;
             nombre: FormControl<string>;
             apellidoPaterno: FormControl<string>;
             apellidoMaterno: FormControl<string>;
@@ -61,6 +62,10 @@ export class RegisterComponent implements OnInit {
             genero: FormControl<Gender>;
             area?: FormControl<Area>;
         }>({
+            dni: new FormControl<number>(null, [
+                Validators.required,
+                Validators.maxLength(8),
+            ]),
             nombre: new FormControl<string>('', [
                 Validators.required,
                 Validators.maxLength(100),
@@ -74,9 +79,7 @@ export class RegisterComponent implements OnInit {
                 Validators.maxLength(100),
             ]),
             gradoId: new FormControl<string>('', [Validators.required]),
-            genero: new FormControl<Gender>(Gender.Unknow, [
-                Validators.required,
-            ]),
+            genero: new FormControl<Gender>(null, [Validators.required]),
             area: new FormControl<Area>(null, []),
         });
     }
@@ -92,6 +95,7 @@ export class RegisterComponent implements OnInit {
         this.docenteService
             .create({
                 ...this.formGroup.value,
+                dni: this.formGroup.value.dni.toString(),
             } as CreateUpdateDocenteDto)
             .subscribe(() => {
                 this.util.message.success(

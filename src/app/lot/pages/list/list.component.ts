@@ -72,33 +72,13 @@ export class ListComponent implements OnInit {
 
     downloadTemplateFile() {
         this.excelTemplate.getFileTemplate().subscribe((blob) => {
-            this.saveBlobToFile(blob, 'Plantilla sorteo docentes.xlsx');
+            this.util.saveBlobToFile(blob, 'Plantilla sorteo docentes.xlsx');
         });
-    }
-
-    // TODO: refact
-    saveBlobToFile(blob, fileName) {
-        // Create a blob URL
-        const blobURL = window.URL.createObjectURL(blob);
-
-        // Create an anchor element for the download
-        const a = document.createElement('a');
-        a.href = blobURL;
-        a.download = fileName || 'download.dat'; // Provide a default file name if none is provided
-
-        // Append the anchor to the document
-        document.body.appendChild(a);
-
-        // Simulate a click on the anchor to initiate the download
-        a.click();
-
-        // Clean up: remove the anchor and revoke the blob URL
-        document.body.removeChild(a);
-        window.URL.revokeObjectURL(blobURL);
     }
 
     buildForm() {
         this.formGroup = this.formBuilder.group<{
+            dni: FormControl<number>;
             nombre: FormControl<string>;
             apellidoPaterno: FormControl<string>;
             apellidoMaterno: FormControl<string>;
@@ -106,6 +86,10 @@ export class ListComponent implements OnInit {
             genero: FormControl<Gender>;
             area?: FormControl<Area>;
         }>({
+            dni: new FormControl<number>(+this.selectedDocente.dni || null, [
+                Validators.required,
+                Validators.maxLength(8),
+            ]),
             nombre: new FormControl<string>(this.selectedDocente.nombre || '', [
                 Validators.required,
                 Validators.maxLength(100),
@@ -123,7 +107,7 @@ export class ListComponent implements OnInit {
                 [Validators.required]
             ),
             genero: new FormControl<Gender>(
-                this.selectedDocente.genero || Gender.Unknow,
+                this.selectedDocente.genero || null,
                 [Validators.required]
             ),
             area: new FormControl<Area>(this.selectedDocente.area || null, []),
@@ -142,8 +126,12 @@ export class ListComponent implements OnInit {
         const request = this.selectedDocente.id
             ? this.docenteService.update(this.selectedDocente.id, {
                   ...this.formGroup.value,
+                  dni: this.formGroup.value.dni.toString(),
               })
-            : this.docenteService.create({ ...this.formGroup.value });
+            : this.docenteService.create({
+                  ...this.formGroup.value,
+                  dni: this.formGroup.value.dni.toString(),
+              });
 
         request.subscribe(() => {
             this.isModalOpen = false;
@@ -170,7 +158,7 @@ export class ListComponent implements OnInit {
         this.reporteService
             .getSamplePdfReportById(docenteId)
             .subscribe((res) => {
-                this.saveBlobToFile(res, 'Documento.pdf');
+                this.util.saveBlobToFile(res, 'Documento.pdf');
             });
     }
 

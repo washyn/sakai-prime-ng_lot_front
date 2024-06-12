@@ -14,6 +14,7 @@ import { CheckboxModule } from 'primeng/checkbox';
 import { DialogModule } from 'primeng/dialog';
 import { GenderPipe } from '../gender.pipe';
 import { AreaPipe } from '../area.pipe';
+import { InputNumberModule } from 'primeng/inputnumber';
 @NgModule({
     imports: [
         CommonModule,
@@ -33,6 +34,7 @@ import { AreaPipe } from '../area.pipe';
         CardModule,
         CheckboxModule,
         DialogModule,
+        InputNumberModule,
     ],
     declarations: [ListComponent, GenderPipe, AreaPipe],
 })

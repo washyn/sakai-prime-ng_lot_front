@@ -7,7 +7,7 @@ import { ConfirmationService, MessageService } from 'primeng/api';
 import { UtilsComponent } from './utils.component';
 import { ProgressSpinnerModule } from 'primeng/progressspinner';
 import { BlockUIModule } from 'primeng/blockui';
-// TODO: add dependencies for work...
+
 @NgModule({
     declarations: [UtilsComponent],
     imports: [

@@ -8,6 +8,7 @@ import { ButtonModule } from 'primeng/button';
 import { AutoCompleteModule } from 'primeng/autocomplete';
 import { DropdownModule } from 'primeng/dropdown';
 import { RadioButtonModule } from 'primeng/radiobutton';
+import { InputNumberModule } from 'primeng/inputnumber';
 @NgModule({
     imports: [
         CommonModule,
@@ -18,6 +19,7 @@ import { RadioButtonModule } from 'primeng/radiobutton';
         ButtonModule,
         AutoCompleteModule,
         DropdownModule,
+        InputNumberModule,
         RadioButtonModule,
     ],
     declarations: [RegisterComponent],

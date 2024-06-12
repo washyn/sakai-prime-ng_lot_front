@@ -11,13 +11,13 @@ import { RouterModule } from '@angular/router';
             //             (m) => m.DynamicTableModule
             //         ),
             // },
-            {
-                path: 'abp-utils',
-                loadChildren: () =>
-                    import('./utils-abp-sample/utils-abp-sample.module').then(
-                        (m) => m.UtilsAbpSampleModule
-                    ),
-            },
+            // {
+            //     path: 'abp-utils',
+            //     loadChildren: () =>
+            //         import('./utils-abp-sample/utils-abp-sample.module').then(
+            //             (m) => m.UtilsAbpSampleModule
+            //         ),
+            // },
             // {
             //     path: 'abp-table-paging',
             //     loadChildren: () =>

@@ -8,7 +8,6 @@ import {
     Validators,
 } from '@angular/forms';
 import { TableLazyLoadEvent } from 'primeng/table';
-import { AbpUtilService } from 'src/app/demo/components/pages/utils/abp-util.service';
 import { ExcelTemplateService } from 'src/app/proxy/acme/book-store/controllers';
 import {
     Area,
@@ -22,6 +21,7 @@ import {
 } from 'src/app/proxy/acme/book-store/services';
 import { ReportService } from 'src/app/proxy/washyn/unaj/lot/controllers';
 import { LookupDto } from 'src/app/proxy/washyn/unaj/lot/models';
+import { AbpUtilService } from '../../utils/abp-util.service';
 
 @Component({
     selector: 'app-list',

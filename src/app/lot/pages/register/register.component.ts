@@ -7,7 +7,6 @@ import {
     Validators,
 } from '@angular/forms';
 import { Dictionary } from '@fullcalendar/core/internal';
-import { AbpUtilService } from 'src/app/demo/components/pages/utils/abp-util.service';
 import {
     Area,
     CreateUpdateDocenteDto,
@@ -18,6 +17,7 @@ import {
     SelectService,
 } from 'src/app/proxy/acme/book-store/services';
 import { LookupDto } from 'src/app/proxy/washyn/unaj/lot';
+import { AbpUtilService } from '../../utils/abp-util.service';
 
 @Component({
     selector: 'app-register',

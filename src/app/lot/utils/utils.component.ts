@@ -7,6 +7,7 @@ import { AbpMessageService } from './abp-message.service';
 import { AbpNotifyService } from './abp-notify.service';
 import { AbpUiService } from './abp-ui.service';
 
+// TODO: add global error handler... add interceptor and ...
 // TODO: add component here
 @Component({
     selector: 'app-utils',

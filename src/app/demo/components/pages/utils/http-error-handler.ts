@@ -1,7 +1,7 @@
 import { HttpErrorResponse } from '@angular/common/http';
 import { Injector } from '@angular/core';
-import { AbpUtilService } from './abp-util.service';
 import { EMPTY, of } from 'rxjs';
+import { AbpUtilService } from 'src/app/lot/utils/abp-util.service';
 
 export function handleHttpError(
     injector: Injector,

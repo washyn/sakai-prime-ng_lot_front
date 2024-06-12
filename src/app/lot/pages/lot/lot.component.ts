@@ -84,7 +84,6 @@ export class LotComponent implements OnInit {
         const filtered: DocenteWithLookup[] = [];
         const query = event.query;
         for (let i = 0; i < this.allTeachers.length; i++) {
-            // TODO: fix filter method...
             const docentee = this.allTeachers[i];
             if (docentee.fullName.toLowerCase().includes(query.toLowerCase())) {
                 filtered.push(docentee);

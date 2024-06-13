@@ -1,4 +1,4 @@
-import type { ResultLotDto } from './models';
+import type { ResultLotDto, ResultLotFilterDto } from './models';
 import { RestService, Rest } from '@abp/ng.core';
 import type { PagedResultDto } from '@abp/ng.core';
 import { Injectable } from '@angular/core';
@@ -10,10 +10,11 @@ export class ResultLotService {
   apiName = 'Default';
   
 
-  getList = (config?: Partial<Rest.Config>) =>
+  getList = (filter: ResultLotFilterDto, config?: Partial<Rest.Config>) =>
     this.restService.request<any, PagedResultDto<ResultLotDto>>({
       method: 'GET',
       url: '/api/app/result-lot',
+      params: { filter: filter.filter, sorting: filter.sorting, skipCount: filter.skipCount, maxResultCount: filter.maxResultCount },
     },
     { apiName: this.apiName,...config });
 

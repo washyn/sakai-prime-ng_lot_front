@@ -675,14 +675,72 @@
           "type": "Washyn.UNAJ.Lot.Services.ResultLotAppService",
           "interfaces": [],
           "actions": {
-            "GetListAsync": {
-              "uniqueName": "GetListAsync",
+            "GetListAsyncByFilter": {
+              "uniqueName": "GetListAsyncByFilter",
               "name": "GetListAsync",
               "httpMethod": "GET",
               "url": "api/app/result-lot",
               "supportedVersions": [],
-              "parametersOnMethod": [],
-              "parameters": [],
+              "parametersOnMethod": [
+                {
+                  "name": "filter",
+                  "typeAsString": "Washyn.UNAJ.Lot.Services.ResultLotFilterDto, Washyn.UNAJ.Lot",
+                  "type": "Washyn.UNAJ.Lot.Services.ResultLotFilterDto",
+                  "typeSimple": "Washyn.UNAJ.Lot.Services.ResultLotFilterDto",
+                  "isOptional": false,
+                  "defaultValue": null
+                }
+              ],
+              "parameters": [
+                {
+                  "nameOnMethod": "filter",
+                  "name": "Filter",
+                  "jsonName": null,
+                  "type": "System.String",
+                  "typeSimple": "string",
+                  "isOptional": false,
+                  "defaultValue": null,
+                  "constraintTypes": null,
+                  "bindingSourceId": "ModelBinding",
+                  "descriptorName": "filter"
+                },
+                {
+                  "nameOnMethod": "filter",
+                  "name": "Sorting",
+                  "jsonName": null,
+                  "type": "System.String",
+                  "typeSimple": "string",
+                  "isOptional": false,
+                  "defaultValue": null,
+                  "constraintTypes": null,
+                  "bindingSourceId": "ModelBinding",
+                  "descriptorName": "filter"
+                },
+                {
+                  "nameOnMethod": "filter",
+                  "name": "SkipCount",
+                  "jsonName": null,
+                  "type": "System.Int32",
+                  "typeSimple": "number",
+                  "isOptional": false,
+                  "defaultValue": null,
+                  "constraintTypes": null,
+                  "bindingSourceId": "ModelBinding",
+                  "descriptorName": "filter"
+                },
+                {
+                  "nameOnMethod": "filter",
+                  "name": "MaxResultCount",
+                  "jsonName": null,
+                  "type": "System.Int32",
+                  "typeSimple": "number",
+                  "isOptional": false,
+                  "defaultValue": null,
+                  "constraintTypes": null,
+                  "bindingSourceId": "ModelBinding",
+                  "descriptorName": "filter"
+                }
+              ],
               "returnValue": {
                 "type": "Volo.Abp.Application.Dtos.PagedResultDto<Washyn.UNAJ.Lot.Services.ResultLotDto>",
                 "typeSimple": "Volo.Abp.Application.Dtos.PagedResultDto<Washyn.UNAJ.Lot.Services.ResultLotDto>"
@@ -4234,6 +4292,27 @@
         },
         {
           "name": "RolDisplay",
+          "jsonName": null,
+          "type": "System.String",
+          "typeSimple": "string",
+          "isRequired": false,
+          "minLength": null,
+          "maxLength": null,
+          "minimum": null,
+          "maximum": null,
+          "regex": null
+        }
+      ]
+    },
+    "Washyn.UNAJ.Lot.Services.ResultLotFilterDto": {
+      "baseType": "Volo.Abp.Application.Dtos.PagedAndSortedResultRequestDto",
+      "isEnum": false,
+      "enumNames": null,
+      "enumValues": null,
+      "genericArguments": null,
+      "properties": [
+        {
+          "name": "Filter",
           "jsonName": null,
           "type": "System.String",
           "typeSimple": "string",

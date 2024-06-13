@@ -1,6 +1,10 @@
-import type { FullAuditedEntityDto } from '@abp/ng.core';
+import type { FullAuditedEntityDto, PagedAndSortedResultRequestDto } from '@abp/ng.core';
 
 export interface ResultLotDto extends FullAuditedEntityDto {
   docenteFullName?: string;
   rolDisplay?: string;
+}
+
+export interface ResultLotFilterDto extends PagedAndSortedResultRequestDto {
+  filter?: string;
 }

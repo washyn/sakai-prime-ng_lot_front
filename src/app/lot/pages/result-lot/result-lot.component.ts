@@ -9,9 +9,11 @@ import { FormBuilder, FormControl, FormGroup } from '@angular/forms';
 import { ReportService } from 'src/app/proxy/washyn/unaj/lot/controllers';
 import {
     ResultLotDto,
+    ResultLotFilterDto,
     ResultLotService,
 } from 'src/app/proxy/washyn/unaj/lot/services';
 import { AbpUtilService } from '../../utils/abp-util.service';
+import { debounceTime } from 'rxjs';
 
 @Component({
     selector: 'app-result-lot',
@@ -20,6 +22,10 @@ import { AbpUtilService } from '../../utils/abp-util.service';
 })
 export class ResultLotComponent implements OnInit {
     formFilter: FormGroup;
+
+    lotResultFilter: ResultLotFilterDto = {
+        maxResultCount: 15,
+    };
 
     data: PagedResultDto<ResultLotDto> = {
         totalCount: 0,
@@ -35,10 +41,26 @@ export class ResultLotComponent implements OnInit {
     ) {}
     ngOnInit(): void {
         this.listData();
+        this.formFilter = this.formBuilder.group<{
+            filter: FormControl<string>;
+        }>({
+            filter: new FormControl<string>(''),
+        });
+
+        this.formFilter
+            .get('filter')
+            .valueChanges.pipe(debounceTime(300))
+            .subscribe((value: string | null) => {
+                this.lotResultFilter = {
+                    ...this.lotResultFilter,
+                    filter: value,
+                };
+                this.listData();
+            });
     }
 
     listData() {
-        this.lotResult.getList().subscribe((res) => {
+        this.lotResult.getList(this.lotResultFilter).subscribe((res) => {
             this.data = res;
         });
     }

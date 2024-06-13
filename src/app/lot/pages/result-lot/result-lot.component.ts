@@ -35,11 +35,6 @@ export class ResultLotComponent implements OnInit {
     ) {}
     ngOnInit(): void {
         this.listData();
-        this.formFilter = this.formBuilder.group<{
-            filter: FormControl<string>;
-        }>({
-            filter: new FormControl<string>(''),
-        });
     }
 
     listData() {

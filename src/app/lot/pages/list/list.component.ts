@@ -13,6 +13,7 @@ import {
     Area,
     CreateUpdateDocenteDto,
     DocenteDto,
+    DocenteFilter,
     Gender,
 } from 'src/app/proxy/acme/book-store/entities';
 import {
@@ -22,6 +23,7 @@ import {
 import { ReportService } from 'src/app/proxy/washyn/unaj/lot/controllers';
 import { LookupDto } from 'src/app/proxy/washyn/unaj/lot/models';
 import { AbpUtilService } from '../../utils/abp-util.service';
+import { debounceTime } from 'rxjs';
 
 @Component({
     selector: 'app-list',
@@ -31,9 +33,10 @@ import { AbpUtilService } from '../../utils/abp-util.service';
 export class ListComponent implements OnInit {
     tableFilterModel = {
         maxResultCount: 15,
-    } as PagedAndSortedResultRequestDto;
+    } as DocenteFilter;
     data: PagedResultDto<DocenteDto> = { items: [], totalCount: 0 };
     formGroup: FormGroup;
+    formFilter: FormGroup;
     selectedDocente: DocenteDto = {} as DocenteDto;
     isModalOpen = false;
     grados: LookupDto<string>[] = [];
@@ -53,6 +56,22 @@ export class ListComponent implements OnInit {
         });
         this.listData();
         this.buildForm();
+        this.formFilter = this.formBuilder.group<{
+            filter: FormControl<string>;
+        }>({
+            filter: new FormControl<string>(''),
+        });
+
+        this.formFilter
+            .get('filter')
+            .valueChanges.pipe(debounceTime(300))
+            .subscribe((value: string | null) => {
+                this.tableFilterModel = {
+                    ...this.tableFilterModel,
+                    filter: value,
+                };
+                this.listData();
+            });
     }
 
     listData() {

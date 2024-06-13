@@ -1,8 +1,5 @@
-import { Component } from '@angular/core';
+import { Component, Input, OnInit } from '@angular/core';
 import { AbpUtilService } from './abp-util.service';
-import { ToastModule } from 'primeng/toast';
-import { ConfirmDialogModule } from 'primeng/confirmdialog';
-import { ConfirmationService, MessageService } from 'primeng/api';
 import { AbpMessageService } from './abp-message.service';
 import { AbpNotifyService } from './abp-notify.service';
 import { AbpUiService } from './abp-ui.service';
@@ -10,13 +7,15 @@ import { AbpUiService } from './abp-ui.service';
 // TODO: add global error handler... add interceptor and ...
 // check sample application loader, or set bussy page for create
 // TODO: add component here
+// TODO: add block ui sample...
 @Component({
     selector: 'app-utils',
     // imports: [ToastModule, ConfirmDialogModule],
-    // standalone: true,
     template: `
         <div>
-            <!-- <p-blockUI [blocked]="blockedDocument" /> -->
+            <p-blockUI [blocked]="data">
+                <p-progressSpinner ariaLabel="loading" />
+            </p-blockUI>
             <p-toast position="bottom-right"></p-toast>
             <p-confirmDialog [position]="'center'"></p-confirmDialog>
         </div>
@@ -31,7 +30,25 @@ import { AbpUiService } from './abp-ui.service';
         AbpUiService,
     ],
 })
-export class UtilsComponent {
-    // can be add util component.
-    constructor() {}
+export class UtilsComponent implements OnInit {
+    _data: boolean = false;
+
+    get data(): boolean {
+        let temp = this.uiService.locked;
+        this._data = temp;
+        return temp;
+    }
+
+    set data(value: true) {
+        this._data = value;
+        this.uiService.locked = value;
+    }
+
+    constructor(public uiService: AbpUiService) {}
+    ngOnInit(): void {
+        // this.data = this.uiService.dataSubject.getValue();
+        // this.uiService.dataSubject
+        //     .asObservable()
+        //     .subscribe((data) => (this.data = data));
+    }
 }

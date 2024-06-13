@@ -13,7 +13,7 @@ export class AbpUtilService {
         public message: AbpMessageService
     ) {}
 
-    saveBlobToFile(blob, fileName) {
+    saveBlobToFile(blob: Blob | MediaSource, fileName: string) {
         // Create a blob URL
         const blobURL = window.URL.createObjectURL(blob);
 

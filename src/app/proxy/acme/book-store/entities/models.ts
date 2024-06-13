@@ -1,4 +1,4 @@
-import type { EntityDto, FullAuditedEntityDto } from '@abp/ng.core';
+import type { EntityDto, FullAuditedEntityDto, PagedAndSortedResultRequestDto } from '@abp/ng.core';
 import type { Gender } from './gender.enum';
 import type { Area } from './area.enum';
 
@@ -20,6 +20,10 @@ export interface DocenteDto extends FullAuditedEntityDto<string> {
   genero: Gender;
   gradoId?: string;
   area?: Area;
+}
+
+export interface DocenteFilter extends PagedAndSortedResultRequestDto {
+  filter?: string;
 }
 
 export interface DocenteWithLookup extends FullAuditedEntityDto<string> {

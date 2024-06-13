@@ -1,21 +1,19 @@
-// abp.ui.clearBusy();
-// abp.ui.setBusy();
-import { Injectable } from '@angular/core';
-import { MessageService } from 'primeng/api';
+import { ConfigStateService } from '@abp/ng.core';
+import { Injectable, signal } from '@angular/core';
+import { BehaviorSubject } from 'rxjs';
 
 @Injectable({
     providedIn: 'root',
 })
 export class AbpUiService {
-    // blockedDocument = false;
+    locked: boolean = false;
+
     constructor() {}
 
     setBusy() {
-        // this.blockedDocument = true;
-        // console.log(this.blockedDocument);
+        this.locked = true;
     }
     clearBusy() {
-        // this.blockedDocument = false;
-        // console.log(this.blockedDocument);
+        this.locked = false;
     }
 }

@@ -7,7 +7,7 @@ import { ConfirmDialogModule } from 'primeng/confirmdialog';
 import { ToastModule } from 'primeng/toast';
 // import { AbpUtilsModule } from '../utils/abp-util.module';
 import { ConfirmationService, MessageService } from 'primeng/api';
-import { UtilsComponent } from '../utils/utils.component';
+// import { UtilsComponent } from '../utils/utils.component';
 
 @NgModule({
     imports: [
@@ -17,7 +17,7 @@ import { UtilsComponent } from '../utils/utils.component';
         // AbpUtilsModule,
         // ToastModule,
         // ConfirmDialogModule,
-        UtilsComponent,
+        // UtilsComponent,
     ],
     declarations: [UtilsAbpSampleComponent],
     providers: [

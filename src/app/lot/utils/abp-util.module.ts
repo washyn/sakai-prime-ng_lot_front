@@ -16,6 +16,7 @@ import { BlockUIModule } from 'primeng/blockui';
         ConfirmDialogModule,
         ProgressSpinnerModule,
         BlockUIModule,
+        ProgressSpinnerModule,
     ],
     exports: [UtilsComponent],
     providers: [MessageService, ConfirmationService, AbpUtilService],

@@ -298,14 +298,26 @@
               "parametersOnMethod": [
                 {
                   "name": "input",
-                  "typeAsString": "Volo.Abp.Application.Dtos.PagedAndSortedResultRequestDto, Volo.Abp.Ddd.Application.Contracts",
-                  "type": "Volo.Abp.Application.Dtos.PagedAndSortedResultRequestDto",
-                  "typeSimple": "Volo.Abp.Application.Dtos.PagedAndSortedResultRequestDto",
+                  "typeAsString": "Acme.BookStore.Entities.DocenteFilter, Washyn.UNAJ.Lot",
+                  "type": "Acme.BookStore.Entities.DocenteFilter",
+                  "typeSimple": "Acme.BookStore.Entities.DocenteFilter",
                   "isOptional": false,
                   "defaultValue": null
                 }
               ],
               "parameters": [
+                {
+                  "nameOnMethod": "input",
+                  "name": "Filter",
+                  "jsonName": null,
+                  "type": "System.String",
+                  "typeSimple": "string",
+                  "isOptional": false,
+                  "defaultValue": null,
+                  "constraintTypes": null,
+                  "bindingSourceId": "ModelBinding",
+                  "descriptorName": "input"
+                },
                 {
                   "nameOnMethod": "input",
                   "name": "Sorting",
@@ -348,7 +360,7 @@
                 "typeSimple": "Volo.Abp.Application.Dtos.PagedResultDto<Acme.BookStore.Entities.DocenteWithLookup>"
               },
               "allowAnonymous": null,
-              "implementFrom": "Volo.Abp.Application.Services.IReadOnlyAppService<Acme.BookStore.Entities.DocenteDto,Acme.BookStore.Entities.DocenteWithLookup,System.Guid,Volo.Abp.Application.Dtos.PagedAndSortedResultRequestDto>"
+              "implementFrom": "Volo.Abp.Application.Services.IReadOnlyAppService<Acme.BookStore.Entities.DocenteDto,Acme.BookStore.Entities.DocenteWithLookup,System.Guid,Acme.BookStore.Entities.DocenteFilter>"
             },
             "CreateAsyncByInput": {
               "uniqueName": "CreateAsyncByInput",
@@ -516,7 +528,7 @@
                 "typeSimple": "Acme.BookStore.Entities.DocenteDto"
               },
               "allowAnonymous": null,
-              "implementFrom": "Volo.Abp.Application.Services.IReadOnlyAppService<Acme.BookStore.Entities.DocenteDto,Acme.BookStore.Entities.DocenteWithLookup,System.Guid,Volo.Abp.Application.Dtos.PagedAndSortedResultRequestDto>"
+              "implementFrom": "Volo.Abp.Application.Services.IReadOnlyAppService<Acme.BookStore.Entities.DocenteDto,Acme.BookStore.Entities.DocenteWithLookup,System.Guid,Acme.BookStore.Entities.DocenteFilter>"
             }
           }
         },
@@ -879,6 +891,27 @@
           "jsonName": null,
           "type": "Acme.BookStore.Entities.Area?",
           "typeSimple": "Acme.BookStore.Entities.Area?",
+          "isRequired": false,
+          "minLength": null,
+          "maxLength": null,
+          "minimum": null,
+          "maximum": null,
+          "regex": null
+        }
+      ]
+    },
+    "Acme.BookStore.Entities.DocenteFilter": {
+      "baseType": "Volo.Abp.Application.Dtos.PagedAndSortedResultRequestDto",
+      "isEnum": false,
+      "enumNames": null,
+      "enumValues": null,
+      "genericArguments": null,
+      "properties": [
+        {
+          "name": "Filter",
+          "jsonName": null,
+          "type": "System.String",
+          "typeSimple": "string",
           "isRequired": false,
           "minLength": null,
           "maxLength": null,

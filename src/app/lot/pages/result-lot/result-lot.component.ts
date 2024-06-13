@@ -1,4 +1,8 @@
-import { PagedAndSortedResultRequestDto, PagedResultDto } from '@abp/ng.core';
+import {
+    ConfigStateService,
+    PagedAndSortedResultRequestDto,
+    PagedResultDto,
+} from '@abp/ng.core';
 import { CommonModule } from '@angular/common';
 import { ChangeDetectionStrategy, Component, OnInit } from '@angular/core';
 import { FormBuilder, FormControl, FormGroup } from '@angular/forms';
@@ -25,6 +29,7 @@ export class ResultLotComponent implements OnInit {
     constructor(
         public formBuilder: FormBuilder,
         public util: AbpUtilService,
+        public configState: ConfigStateService,
         public reporteService: ReportService,
         public lotResult: ResultLotService
     ) {}
@@ -44,12 +49,8 @@ export class ResultLotComponent implements OnInit {
     }
 
     donwloadAll() {
-        // this.util.ui.setBusy();
-        // this.reporteService.getAllPdfReport().subscribe((res) => {
-        //     this.util.saveBlobToFile(res, 'all_data.pdf');
-        //     this.util.ui.clearBusy();
-        // });
-
-        throw new Error('error');
+        this.reporteService.getAllPdfReport().subscribe((res) => {
+            this.util.saveBlobToFile(res, 'Informe de sorteo - cartas.pdf');
+        });
     }
 }

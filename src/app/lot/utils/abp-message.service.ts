@@ -82,6 +82,7 @@ export class AbpMessageService {
         this.showMessage('', message, title, options);
     }
 
+    // TODO: change to spanish yes or not text
     confirm(
         message: string,
         title?: string,
@@ -100,12 +101,14 @@ export class AbpMessageService {
             rejectIcon: 'none',
             rejectButtonStyleClass: 'p-button-text',
             closeOnEscape: true,
+
             accept: () => {
                 if (callback) {
                     callback(true);
                 }
             },
             reject: () => {},
+
             ...options,
         });
     }

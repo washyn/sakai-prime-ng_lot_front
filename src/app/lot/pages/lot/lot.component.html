@@ -69,8 +69,15 @@
         label="Choise random role"
         (onClick)="genAndShowNumbers()"
         outlined="true"
-    >
-    </p-button>
+    ></p-button>
+
+    <p-button
+        label="Save temp data"
+        (onClick)="saveResult()"
+        outlined="true"
+        class="ml-2"
+    ></p-button>
+
     <h2 *ngIf="initializedChoise" class="font-medium text-700">
         {{ currentValueRandom }}
     </h2>

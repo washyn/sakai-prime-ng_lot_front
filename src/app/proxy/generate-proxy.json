@@ -289,6 +289,43 @@
           "type": "Acme.BookStore.Services.DocenteAppService",
           "interfaces": [],
           "actions": {
+            "CreateAsyncByInput": {
+              "uniqueName": "CreateAsyncByInput",
+              "name": "CreateAsync",
+              "httpMethod": "POST",
+              "url": "api/app/docente",
+              "supportedVersions": [],
+              "parametersOnMethod": [
+                {
+                  "name": "input",
+                  "typeAsString": "Acme.BookStore.Entities.CreateUpdateDocenteDto, Washyn.UNAJ.Lot",
+                  "type": "Acme.BookStore.Entities.CreateUpdateDocenteDto",
+                  "typeSimple": "Acme.BookStore.Entities.CreateUpdateDocenteDto",
+                  "isOptional": false,
+                  "defaultValue": null
+                }
+              ],
+              "parameters": [
+                {
+                  "nameOnMethod": "input",
+                  "name": "input",
+                  "jsonName": null,
+                  "type": "Acme.BookStore.Entities.CreateUpdateDocenteDto",
+                  "typeSimple": "Acme.BookStore.Entities.CreateUpdateDocenteDto",
+                  "isOptional": false,
+                  "defaultValue": null,
+                  "constraintTypes": null,
+                  "bindingSourceId": "Body",
+                  "descriptorName": ""
+                }
+              ],
+              "returnValue": {
+                "type": "Acme.BookStore.Entities.DocenteDto",
+                "typeSimple": "Acme.BookStore.Entities.DocenteDto"
+              },
+              "allowAnonymous": null,
+              "implementFrom": "Volo.Abp.Application.Services.ICreateAppService<Acme.BookStore.Entities.DocenteDto,Acme.BookStore.Entities.CreateUpdateDocenteDto>"
+            },
             "GetListAsyncByInput": {
               "uniqueName": "GetListAsyncByInput",
               "name": "GetListAsync",
@@ -361,43 +398,6 @@
               },
               "allowAnonymous": null,
               "implementFrom": "Volo.Abp.Application.Services.IReadOnlyAppService<Acme.BookStore.Entities.DocenteDto,Acme.BookStore.Entities.DocenteWithLookup,System.Guid,Acme.BookStore.Entities.DocenteFilter>"
-            },
-            "CreateAsyncByInput": {
-              "uniqueName": "CreateAsyncByInput",
-              "name": "CreateAsync",
-              "httpMethod": "POST",
-              "url": "api/app/docente",
-              "supportedVersions": [],
-              "parametersOnMethod": [
-                {
-                  "name": "input",
-                  "typeAsString": "Acme.BookStore.Entities.CreateUpdateDocenteDto, Washyn.UNAJ.Lot",
-                  "type": "Acme.BookStore.Entities.CreateUpdateDocenteDto",
-                  "typeSimple": "Acme.BookStore.Entities.CreateUpdateDocenteDto",
-                  "isOptional": false,
-                  "defaultValue": null
-                }
-              ],
-              "parameters": [
-                {
-                  "nameOnMethod": "input",
-                  "name": "input",
-                  "jsonName": null,
-                  "type": "Acme.BookStore.Entities.CreateUpdateDocenteDto",
-                  "typeSimple": "Acme.BookStore.Entities.CreateUpdateDocenteDto",
-                  "isOptional": false,
-                  "defaultValue": null,
-                  "constraintTypes": null,
-                  "bindingSourceId": "Body",
-                  "descriptorName": ""
-                }
-              ],
-              "returnValue": {
-                "type": "Acme.BookStore.Entities.DocenteDto",
-                "typeSimple": "Acme.BookStore.Entities.DocenteDto"
-              },
-              "allowAnonymous": null,
-              "implementFrom": "Volo.Abp.Application.Services.ICreateAppService<Acme.BookStore.Entities.DocenteDto,Acme.BookStore.Entities.CreateUpdateDocenteDto>"
             },
             "UpdateAsyncByIdAndInput": {
               "uniqueName": "UpdateAsyncByIdAndInput",
@@ -675,6 +675,43 @@
           "type": "Washyn.UNAJ.Lot.Services.ResultLotAppService",
           "interfaces": [],
           "actions": {
+            "CreateLotAsyncByCreate": {
+              "uniqueName": "CreateLotAsyncByCreate",
+              "name": "CreateLotAsync",
+              "httpMethod": "POST",
+              "url": "api/app/result-lot/lot",
+              "supportedVersions": [],
+              "parametersOnMethod": [
+                {
+                  "name": "create",
+                  "typeAsString": "Washyn.UNAJ.Lot.Services.CreateLotResultDto, Washyn.UNAJ.Lot",
+                  "type": "Washyn.UNAJ.Lot.Services.CreateLotResultDto",
+                  "typeSimple": "Washyn.UNAJ.Lot.Services.CreateLotResultDto",
+                  "isOptional": false,
+                  "defaultValue": null
+                }
+              ],
+              "parameters": [
+                {
+                  "nameOnMethod": "create",
+                  "name": "create",
+                  "jsonName": null,
+                  "type": "Washyn.UNAJ.Lot.Services.CreateLotResultDto",
+                  "typeSimple": "Washyn.UNAJ.Lot.Services.CreateLotResultDto",
+                  "isOptional": false,
+                  "defaultValue": null,
+                  "constraintTypes": null,
+                  "bindingSourceId": "Body",
+                  "descriptorName": ""
+                }
+              ],
+              "returnValue": {
+                "type": "System.Void",
+                "typeSimple": "System.Void"
+              },
+              "allowAnonymous": null,
+              "implementFrom": "Washyn.UNAJ.Lot.Services.ResultLotAppService"
+            },
             "GetListAsyncByFilter": {
               "uniqueName": "GetListAsyncByFilter",
               "name": "GetListAsync",
@@ -4261,6 +4298,39 @@
           "name": "AlternativeText",
           "jsonName": null,
           "type": "System.String",
+          "typeSimple": "string",
+          "isRequired": false,
+          "minLength": null,
+          "maxLength": null,
+          "minimum": null,
+          "maximum": null,
+          "regex": null
+        }
+      ]
+    },
+    "Washyn.UNAJ.Lot.Services.CreateLotResultDto": {
+      "baseType": null,
+      "isEnum": false,
+      "enumNames": null,
+      "enumValues": null,
+      "genericArguments": null,
+      "properties": [
+        {
+          "name": "DocenteId",
+          "jsonName": null,
+          "type": "System.Guid",
+          "typeSimple": "string",
+          "isRequired": false,
+          "minLength": null,
+          "maxLength": null,
+          "minimum": null,
+          "maximum": null,
+          "regex": null
+        },
+        {
+          "name": "RoleId",
+          "jsonName": null,
+          "type": "System.Guid",
           "typeSimple": "string",
           "isRequired": false,
           "minLength": null,

@@ -1,8 +1,6 @@
 import { PagedResultDto } from '@abp/ng.core';
-import { CommonModule } from '@angular/common';
 import { ChangeDetectionStrategy, Component, type OnInit } from '@angular/core';
 import { FormBuilder, FormControl, FormGroup } from '@angular/forms';
-import { dA } from '@fullcalendar/core/internal-common';
 import { AutoCompleteCompleteEvent } from 'primeng/autocomplete';
 import { DocenteWithLookup } from 'src/app/proxy/acme/book-store/entities';
 import {
@@ -11,6 +9,7 @@ import {
 } from 'src/app/proxy/acme/book-store/services';
 import { LookupDto } from 'src/app/proxy/washyn/unaj/lot';
 import { ResultLotService } from 'src/app/proxy/washyn/unaj/lot/services';
+import { AbpUtilService } from '../../utils/abp-util.service';
 
 @Component({
     selector: 'app-lot',
@@ -34,6 +33,8 @@ export class LotComponent implements OnInit {
     constructor(
         public docenteService: DocenteService,
         public selectService: SelectService,
+        public lotService: ResultLotService,
+        public util: AbpUtilService,
         public formBuilder: FormBuilder
     ) {
         this.formLot = this.formBuilder.group<{
@@ -48,19 +49,6 @@ export class LotComponent implements OnInit {
         this.selectService.getRol().subscribe((res) => {
             this.roles = res;
         });
-    }
-
-    getRandomNum(maxValue: number) {
-        let date = Date.now();
-        let dateMl = new Date().getMilliseconds();
-        let tempValue = date * Math.random();
-        let value = tempValue / dateMl;
-        let rounded = Math.round(value);
-        return rounded % maxValue;
-    }
-
-    getRandomInt(max: number) {
-        return Math.floor(Math.random() * max);
     }
 
     loadData() {
@@ -78,6 +66,21 @@ export class LotComponent implements OnInit {
                 this.allTeachers = [...res.items];
             });
     }
+
+    saveResult() {
+        this.lotService
+            .createLot({
+                roleId: '201E0D36-B405-68D7-DDA8-3A12FB51F8B9',
+                docenteId: 'A3D35644-2D99-8598-5ECE-3A1300233A37',
+            })
+            .subscribe(() => {
+                this.util.notify.info('Sorteo registrado.', 'Registrado!');
+            });
+    }
+
+    //////////////////////////////////////////////////////////////////////////////////////////
+    //////////////////////////////////////////////////////////////////////////////////////////
+    //////////////////////////////////////////////////////////////////////////////////////////
 
     // event autocomplete...
     filter(event: AutoCompleteCompleteEvent) {
@@ -100,6 +103,19 @@ export class LotComponent implements OnInit {
             result.push(this.generateRandomNumber(1, 5));
         }
         return result;
+    }
+
+    getRandomNum(maxValue: number) {
+        let date = Date.now();
+        let dateMl = new Date().getMilliseconds();
+        let tempValue = date * Math.random();
+        let value = tempValue / dateMl;
+        let rounded = Math.round(value);
+        return rounded % maxValue;
+    }
+
+    getRandomInt(max: number) {
+        return Math.floor(Math.random() * max);
     }
 
     async genAndShowNumbers() {

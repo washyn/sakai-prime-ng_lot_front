@@ -173,14 +173,6 @@ export class ListComponent implements OnInit {
         });
     }
 
-    downloadPdf(docenteId: string) {
-        this.reporteService
-            .getSamplePdfReportById(docenteId)
-            .subscribe((res) => {
-                this.util.saveBlobToFile(res, 'Documento.pdf');
-            });
-    }
-
     delete(id: string) {
         this.util.message.confirm(
             'Esta seguro de eliminar esto?',

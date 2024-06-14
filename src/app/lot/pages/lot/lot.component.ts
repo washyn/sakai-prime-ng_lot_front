@@ -71,7 +71,7 @@ export class LotComponent implements OnInit {
         this.lotService
             .createLot({
                 roleId: '201E0D36-B405-68D7-DDA8-3A12FB51F8B9',
-                docenteId: 'A3D35644-2D99-8598-5ECE-3A1300233A37',
+                docenteId: 'BC8D8766-9577-7905-8436-3A12FC6EDD48',
             })
             .subscribe(() => {
                 this.util.notify.info('Sorteo registrado.', 'Registrado!');

@@ -612,43 +612,6 @@
           "type": "Washyn.UNAJ.Lot.Controllers.ReportController",
           "interfaces": [],
           "actions": {
-            "GetSamplePdfReportById": {
-              "uniqueName": "GetSamplePdfReportById",
-              "name": "GetSamplePdfReport",
-              "httpMethod": "GET",
-              "url": "report/sample",
-              "supportedVersions": [],
-              "parametersOnMethod": [
-                {
-                  "name": "id",
-                  "typeAsString": "System.Guid, System.Private.CoreLib",
-                  "type": "System.Guid",
-                  "typeSimple": "string",
-                  "isOptional": false,
-                  "defaultValue": null
-                }
-              ],
-              "parameters": [
-                {
-                  "nameOnMethod": "id",
-                  "name": "id",
-                  "jsonName": null,
-                  "type": "System.Guid",
-                  "typeSimple": "string",
-                  "isOptional": false,
-                  "defaultValue": null,
-                  "constraintTypes": null,
-                  "bindingSourceId": "ModelBinding",
-                  "descriptorName": ""
-                }
-              ],
-              "returnValue": {
-                "type": "Volo.Abp.Content.IRemoteStreamContent",
-                "typeSimple": "Volo.Abp.Content.IRemoteStreamContent"
-              },
-              "allowAnonymous": null,
-              "implementFrom": "Washyn.UNAJ.Lot.Controllers.ReportController"
-            },
             "GetAllPdfReport": {
               "uniqueName": "GetAllPdfReport",
               "name": "GetAllPdfReport",
@@ -712,15 +675,15 @@
               "allowAnonymous": null,
               "implementFrom": "Washyn.UNAJ.Lot.Services.ResultLotAppService"
             },
-            "GetListAsyncByFilter": {
-              "uniqueName": "GetListAsyncByFilter",
+            "GetListAsyncByInput": {
+              "uniqueName": "GetListAsyncByInput",
               "name": "GetListAsync",
               "httpMethod": "GET",
               "url": "api/app/result-lot",
               "supportedVersions": [],
               "parametersOnMethod": [
                 {
-                  "name": "filter",
+                  "name": "input",
                   "typeAsString": "Washyn.UNAJ.Lot.Services.ResultLotFilterDto, Washyn.UNAJ.Lot",
                   "type": "Washyn.UNAJ.Lot.Services.ResultLotFilterDto",
                   "typeSimple": "Washyn.UNAJ.Lot.Services.ResultLotFilterDto",
@@ -730,7 +693,7 @@
               ],
               "parameters": [
                 {
-                  "nameOnMethod": "filter",
+                  "nameOnMethod": "input",
                   "name": "Filter",
                   "jsonName": null,
                   "type": "System.String",
@@ -739,10 +702,10 @@
                   "defaultValue": null,
                   "constraintTypes": null,
                   "bindingSourceId": "ModelBinding",
-                  "descriptorName": "filter"
+                  "descriptorName": "input"
                 },
                 {
-                  "nameOnMethod": "filter",
+                  "nameOnMethod": "input",
                   "name": "Sorting",
                   "jsonName": null,
                   "type": "System.String",
@@ -751,10 +714,10 @@
                   "defaultValue": null,
                   "constraintTypes": null,
                   "bindingSourceId": "ModelBinding",
-                  "descriptorName": "filter"
+                  "descriptorName": "input"
                 },
                 {
-                  "nameOnMethod": "filter",
+                  "nameOnMethod": "input",
                   "name": "SkipCount",
                   "jsonName": null,
                   "type": "System.Int32",
@@ -763,10 +726,10 @@
                   "defaultValue": null,
                   "constraintTypes": null,
                   "bindingSourceId": "ModelBinding",
-                  "descriptorName": "filter"
+                  "descriptorName": "input"
                 },
                 {
-                  "nameOnMethod": "filter",
+                  "nameOnMethod": "input",
                   "name": "MaxResultCount",
                   "jsonName": null,
                   "type": "System.Int32",
@@ -775,12 +738,12 @@
                   "defaultValue": null,
                   "constraintTypes": null,
                   "bindingSourceId": "ModelBinding",
-                  "descriptorName": "filter"
+                  "descriptorName": "input"
                 }
               ],
               "returnValue": {
-                "type": "Volo.Abp.Application.Dtos.PagedResultDto<Washyn.UNAJ.Lot.Services.ResultLotDto>",
-                "typeSimple": "Volo.Abp.Application.Dtos.PagedResultDto<Washyn.UNAJ.Lot.Services.ResultLotDto>"
+                "type": "Volo.Abp.Application.Dtos.PagedResultDto<Washyn.UNAJ.Lot.Controllers.DocenteRoleData>",
+                "typeSimple": "Volo.Abp.Application.Dtos.PagedResultDto<Washyn.UNAJ.Lot.Controllers.DocenteRoleData>"
               },
               "allowAnonymous": null,
               "implementFrom": "Washyn.UNAJ.Lot.Services.ResultLotAppService"
@@ -1196,39 +1159,6 @@
         }
       ]
     },
-    "Volo.Abp.Application.Dtos.AuditedEntityDto": {
-      "baseType": "Volo.Abp.Application.Dtos.CreationAuditedEntityDto",
-      "isEnum": false,
-      "enumNames": null,
-      "enumValues": null,
-      "genericArguments": null,
-      "properties": [
-        {
-          "name": "LastModificationTime",
-          "jsonName": null,
-          "type": "System.DateTime?",
-          "typeSimple": "string?",
-          "isRequired": false,
-          "minLength": null,
-          "maxLength": null,
-          "minimum": null,
-          "maximum": null,
-          "regex": null
-        },
-        {
-          "name": "LastModifierId",
-          "jsonName": null,
-          "type": "System.Guid?",
-          "typeSimple": "string?",
-          "isRequired": false,
-          "minLength": null,
-          "maxLength": null,
-          "minimum": null,
-          "maximum": null,
-          "regex": null
-        }
-      ]
-    },
     "Volo.Abp.Application.Dtos.AuditedEntityDto<T0>": {
       "baseType": "Volo.Abp.Application.Dtos.CreationAuditedEntityDto<TPrimaryKey>",
       "isEnum": false,
@@ -1252,39 +1182,6 @@
         },
         {
           "name": "LastModifierId",
-          "jsonName": null,
-          "type": "System.Guid?",
-          "typeSimple": "string?",
-          "isRequired": false,
-          "minLength": null,
-          "maxLength": null,
-          "minimum": null,
-          "maximum": null,
-          "regex": null
-        }
-      ]
-    },
-    "Volo.Abp.Application.Dtos.CreationAuditedEntityDto": {
-      "baseType": "Volo.Abp.Application.Dtos.EntityDto",
-      "isEnum": false,
-      "enumNames": null,
-      "enumValues": null,
-      "genericArguments": null,
-      "properties": [
-        {
-          "name": "CreationTime",
-          "jsonName": null,
-          "type": "System.DateTime",
-          "typeSimple": "string",
-          "isRequired": false,
-          "minLength": null,
-          "maxLength": null,
-          "minimum": null,
-          "maximum": null,
-          "regex": null
-        },
-        {
-          "name": "CreatorId",
           "jsonName": null,
           "type": "System.Guid?",
           "typeSimple": "string?",
@@ -1354,51 +1251,6 @@
           "jsonName": null,
           "type": "TKey",
           "typeSimple": "TKey",
-          "isRequired": false,
-          "minLength": null,
-          "maxLength": null,
-          "minimum": null,
-          "maximum": null,
-          "regex": null
-        }
-      ]
-    },
-    "Volo.Abp.Application.Dtos.FullAuditedEntityDto": {
-      "baseType": "Volo.Abp.Application.Dtos.AuditedEntityDto",
-      "isEnum": false,
-      "enumNames": null,
-      "enumValues": null,
-      "genericArguments": null,
-      "properties": [
-        {
-          "name": "IsDeleted",
-          "jsonName": null,
-          "type": "System.Boolean",
-          "typeSimple": "boolean",
-          "isRequired": false,
-          "minLength": null,
-          "maxLength": null,
-          "minimum": null,
-          "maximum": null,
-          "regex": null
-        },
-        {
-          "name": "DeleterId",
-          "jsonName": null,
-          "type": "System.Guid?",
-          "typeSimple": "string?",
-          "isRequired": false,
-          "minLength": null,
-          "maxLength": null,
-          "minimum": null,
-          "maximum": null,
-          "regex": null
-        },
-        {
-          "name": "DeletionTime",
-          "jsonName": null,
-          "type": "System.DateTime?",
-          "typeSimple": "string?",
           "isRequired": false,
           "minLength": null,
           "maxLength": null,
@@ -4253,6 +4105,147 @@
         }
       ]
     },
+    "Washyn.UNAJ.Lot.Controllers.DocenteRoleData": {
+      "baseType": "Volo.Abp.Application.Dtos.FullAuditedEntityDto<System.Guid>",
+      "isEnum": false,
+      "enumNames": null,
+      "enumValues": null,
+      "genericArguments": null,
+      "properties": [
+        {
+          "name": "Dni",
+          "jsonName": null,
+          "type": "System.String",
+          "typeSimple": "string",
+          "isRequired": false,
+          "minLength": null,
+          "maxLength": null,
+          "minimum": null,
+          "maximum": null,
+          "regex": null
+        },
+        {
+          "name": "Nombre",
+          "jsonName": null,
+          "type": "System.String",
+          "typeSimple": "string",
+          "isRequired": false,
+          "minLength": null,
+          "maxLength": null,
+          "minimum": null,
+          "maximum": null,
+          "regex": null
+        },
+        {
+          "name": "ApellidoPaterno",
+          "jsonName": null,
+          "type": "System.String",
+          "typeSimple": "string",
+          "isRequired": false,
+          "minLength": null,
+          "maxLength": null,
+          "minimum": null,
+          "maximum": null,
+          "regex": null
+        },
+        {
+          "name": "ApellidoMaterno",
+          "jsonName": null,
+          "type": "System.String",
+          "typeSimple": "string",
+          "isRequired": false,
+          "minLength": null,
+          "maxLength": null,
+          "minimum": null,
+          "maximum": null,
+          "regex": null
+        },
+        {
+          "name": "Genero",
+          "jsonName": null,
+          "type": "Acme.BookStore.Entities.Gender",
+          "typeSimple": "Acme.BookStore.Entities.Gender",
+          "isRequired": false,
+          "minLength": null,
+          "maxLength": null,
+          "minimum": null,
+          "maximum": null,
+          "regex": null
+        },
+        {
+          "name": "GradoId",
+          "jsonName": null,
+          "type": "System.Guid",
+          "typeSimple": "string",
+          "isRequired": false,
+          "minLength": null,
+          "maxLength": null,
+          "minimum": null,
+          "maximum": null,
+          "regex": null
+        },
+        {
+          "name": "GradoName",
+          "jsonName": null,
+          "type": "System.String",
+          "typeSimple": "string",
+          "isRequired": false,
+          "minLength": null,
+          "maxLength": null,
+          "minimum": null,
+          "maximum": null,
+          "regex": null
+        },
+        {
+          "name": "GradoPrefix",
+          "jsonName": null,
+          "type": "System.String",
+          "typeSimple": "string",
+          "isRequired": false,
+          "minLength": null,
+          "maxLength": null,
+          "minimum": null,
+          "maximum": null,
+          "regex": null
+        },
+        {
+          "name": "Area",
+          "jsonName": null,
+          "type": "Acme.BookStore.Entities.Area?",
+          "typeSimple": "Acme.BookStore.Entities.Area?",
+          "isRequired": false,
+          "minLength": null,
+          "maxLength": null,
+          "minimum": null,
+          "maximum": null,
+          "regex": null
+        },
+        {
+          "name": "FullName",
+          "jsonName": null,
+          "type": "System.String",
+          "typeSimple": "string",
+          "isRequired": false,
+          "minLength": null,
+          "maxLength": null,
+          "minimum": null,
+          "maximum": null,
+          "regex": null
+        },
+        {
+          "name": "RolName",
+          "jsonName": null,
+          "type": "System.String",
+          "typeSimple": "string",
+          "isRequired": false,
+          "minLength": null,
+          "maxLength": null,
+          "minimum": null,
+          "maximum": null,
+          "regex": null
+        }
+      ]
+    },
     "Washyn.UNAJ.Lot.LookupDto": {
       "baseType": "Washyn.UNAJ.Lot.LookupDto<System.Guid>",
       "isEnum": false,
@@ -4331,39 +4324,6 @@
           "name": "RoleId",
           "jsonName": null,
           "type": "System.Guid",
-          "typeSimple": "string",
-          "isRequired": false,
-          "minLength": null,
-          "maxLength": null,
-          "minimum": null,
-          "maximum": null,
-          "regex": null
-        }
-      ]
-    },
-    "Washyn.UNAJ.Lot.Services.ResultLotDto": {
-      "baseType": "Volo.Abp.Application.Dtos.FullAuditedEntityDto",
-      "isEnum": false,
-      "enumNames": null,
-      "enumValues": null,
-      "genericArguments": null,
-      "properties": [
-        {
-          "name": "DocenteFullName",
-          "jsonName": null,
-          "type": "System.String",
-          "typeSimple": "string",
-          "isRequired": false,
-          "minLength": null,
-          "maxLength": null,
-          "minimum": null,
-          "maximum": null,
-          "regex": null
-        },
-        {
-          "name": "RolDisplay",
-          "jsonName": null,
-          "type": "System.String",
           "typeSimple": "string",
           "isRequired": false,
           "minLength": null,

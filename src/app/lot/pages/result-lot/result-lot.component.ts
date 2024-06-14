@@ -6,9 +6,11 @@ import {
 import { CommonModule } from '@angular/common';
 import { ChangeDetectionStrategy, Component, OnInit } from '@angular/core';
 import { FormBuilder, FormControl, FormGroup } from '@angular/forms';
-import { ReportService } from 'src/app/proxy/washyn/unaj/lot/controllers';
 import {
-    ResultLotDto,
+    DocenteRoleData,
+    ReportService,
+} from 'src/app/proxy/washyn/unaj/lot/controllers';
+import {
     ResultLotFilterDto,
     ResultLotService,
 } from 'src/app/proxy/washyn/unaj/lot/services';
@@ -27,7 +29,7 @@ export class ResultLotComponent implements OnInit {
         maxResultCount: 15,
     };
 
-    data: PagedResultDto<ResultLotDto> = {
+    data: PagedResultDto<DocenteRoleData> = {
         totalCount: 0,
         items: [],
     };

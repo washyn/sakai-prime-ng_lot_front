@@ -15,16 +15,6 @@ export class ReportService {
       url: '/report/all-lot-result',
     },
     { apiName: this.apiName,...config });
-  
-
-  getSamplePdfReportById = (id: string, config?: Partial<Rest.Config>) =>
-    this.restService.request<any, Blob>({
-      method: 'GET',
-      responseType: 'blob',
-      url: '/report/sample',
-      params: { id },
-    },
-    { apiName: this.apiName,...config });
 
   constructor(private restService: RestService) {}
 }

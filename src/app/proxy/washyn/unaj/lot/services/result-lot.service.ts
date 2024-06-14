@@ -1,7 +1,8 @@
-import type { CreateLotResultDto, ResultLotDto, ResultLotFilterDto } from './models';
+import type { CreateLotResultDto, ResultLotFilterDto } from './models';
 import { RestService, Rest } from '@abp/ng.core';
 import type { PagedResultDto } from '@abp/ng.core';
 import { Injectable } from '@angular/core';
+import type { DocenteRoleData } from '../controllers/models';
 
 @Injectable({
   providedIn: 'root',
@@ -19,11 +20,11 @@ export class ResultLotService {
     { apiName: this.apiName,...config });
   
 
-  getList = (filter: ResultLotFilterDto, config?: Partial<Rest.Config>) =>
-    this.restService.request<any, PagedResultDto<ResultLotDto>>({
+  getList = (input: ResultLotFilterDto, config?: Partial<Rest.Config>) =>
+    this.restService.request<any, PagedResultDto<DocenteRoleData>>({
       method: 'GET',
       url: '/api/app/result-lot',
-      params: { filter: filter.filter, sorting: filter.sorting, skipCount: filter.skipCount, maxResultCount: filter.maxResultCount },
+      params: { filter: input.filter, sorting: input.sorting, skipCount: input.skipCount, maxResultCount: input.maxResultCount },
     },
     { apiName: this.apiName,...config });
 

@@ -1,12 +1,14 @@
-import { Component, Input, OnInit } from '@angular/core';
-import { AbpUtilService } from './abp-util.service';
-import { AbpMessageService } from './abp-message.service';
-import { AbpNotifyService } from './abp-notify.service';
-import { AbpUiService } from './abp-ui.service';
+import {Component, Input, OnInit} from '@angular/core';
+import {AbpUtilService} from './abp-util.service';
+import {AbpMessageService} from './abp-message.service';
+import {AbpNotifyService} from './abp-notify.service';
+import {AbpUiService} from './abp-ui.service';
 
 // TODO: add global error handler... add interceptor and ...
 // check sample application loader, or set bussy page for create
 
+
+//
 //add component here
 // add block ui sample...
 @Component({
@@ -18,7 +20,7 @@ import { AbpUiService } from './abp-ui.service';
                 <p-progressSpinner ariaLabel="loading" />
             </p-blockUI>
             <p-toast position="bottom-right"></p-toast>
-            <p-confirmDialog [position]="'center'"></p-confirmDialog>
+            <p-confirmDialog [style]="{ width: '30rem' }" [position]="'center'"></p-confirmDialog>
         </div>
     `,
     providers: [
@@ -45,7 +47,9 @@ export class UtilsComponent implements OnInit {
         this.uiService.locked = value;
     }
 
-    constructor(public uiService: AbpUiService) {}
+    constructor(public uiService: AbpUiService) {
+    }
+
     ngOnInit(): void {
         // this.data = this.uiService.dataSubject.getValue();
         // this.uiService.dataSubject

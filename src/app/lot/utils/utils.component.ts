@@ -6,8 +6,9 @@ import { AbpUiService } from './abp-ui.service';
 
 // TODO: add global error handler... add interceptor and ...
 // check sample application loader, or set bussy page for create
-// TODO: add component here
-// TODO: add block ui sample...
+
+//add component here
+// add block ui sample...
 @Component({
     selector: 'app-utils',
     // imports: [ToastModule, ConfirmDialogModule],

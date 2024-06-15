@@ -85,7 +85,6 @@ export class AbpMessageService {
         this.showMessage('', message, title, options);
     }
 
-    // TODO: change to spanish yes or not text
     confirm(
         message: string,
         title?: string,

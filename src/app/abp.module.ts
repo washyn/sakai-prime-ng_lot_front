@@ -1,4 +1,4 @@
-import { CoreModule, noop } from '@abp/ng.core';
+import { CoreModule, LocalizationModule, noop } from '@abp/ng.core';
 import { CommonModule } from '@angular/common';
 import {
     APP_INITIALIZER,
@@ -16,7 +16,10 @@ import {
     RootParams,
     httpErrorConfigFactory,
 } from './lot/utils/error-handler';
+import { HTTP_INTERCEPTORS } from '@angular/common/http';
+import { HttpErrorInterceptor } from './lot/utils/http-error-interceptor';
 
+//TODO: build with electron
 @NgModule({
     imports: [
         CommonModule,
@@ -24,9 +27,17 @@ import {
             environment: environment,
             registerLocaleFn: registerLocale(),
         }),
+        LocalizationModule,
     ],
-    exports: [],
-    providers: [],
+    exports: [LocalizationModule],
+    // TODO: add interceptor for catch all error with error levels, same as abp 8 version...
+    providers: [
+        {
+            provide: HTTP_INTERCEPTORS,
+            useClass: HttpErrorInterceptor,
+            multi: true,
+        },
+    ],
 })
 export class AbpCustomModule {
     static forRoot(

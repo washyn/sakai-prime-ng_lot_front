@@ -60,6 +60,9 @@ export class AbpMessageService {
             rejectButtonStyleClass: 'p-button-text',
             closeOnEscape: true,
             rejectVisible: false,
+            acceptLabel: 'Ok',
+            defaultFocus: 'accept',
+
             accept: () => {},
             reject: () => {},
             ...options,
@@ -101,7 +104,9 @@ export class AbpMessageService {
             rejectIcon: 'none',
             rejectButtonStyleClass: 'p-button-text',
             closeOnEscape: true,
-
+            acceptLabel: 'Sí',
+            rejectLabel: 'No',
+            defaultFocus: 'none',
             accept: () => {
                 if (callback) {
                     callback(true);

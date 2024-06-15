@@ -1,15 +1,16 @@
-import { PagedResultDto } from '@abp/ng.core';
-import { ChangeDetectionStrategy, Component, type OnInit } from '@angular/core';
-import { FormBuilder, FormControl, FormGroup } from '@angular/forms';
-import { AutoCompleteCompleteEvent } from 'primeng/autocomplete';
-import { DocenteWithLookup } from 'src/app/proxy/acme/book-store/entities';
+import {PagedResultDto} from '@abp/ng.core';
+import {ChangeDetectionStrategy, Component, type OnInit} from '@angular/core';
+import {FormBuilder, FormControl, FormGroup} from '@angular/forms';
+import {AutoCompleteCompleteEvent} from 'primeng/autocomplete';
+import {DocenteWithLookup} from 'src/app/proxy/acme/book-store/entities';
 import {
     DocenteService,
     SelectService,
 } from 'src/app/proxy/acme/book-store/services';
-import { LookupDto } from 'src/app/proxy/washyn/unaj/lot';
-import { ResultLotService } from 'src/app/proxy/washyn/unaj/lot/services';
-import { AbpUtilService } from '../../utils/abp-util.service';
+import {LookupDto} from 'src/app/proxy/washyn/unaj/lot';
+import {ResultLotService} from 'src/app/proxy/washyn/unaj/lot/services';
+import {AbpUtilService} from '../../utils/abp-util.service';
+import {ReportService} from 'src/app/proxy/washyn/unaj/lot/controllers';
 
 @Component({
     selector: 'app-lot',
@@ -35,6 +36,7 @@ export class LotComponent implements OnInit {
         public selectService: SelectService,
         public lotService: ResultLotService,
         public util: AbpUtilService,
+        public reportService: ReportService,
         public formBuilder: FormBuilder
     ) {
         this.formLot = this.formBuilder.group<{
@@ -76,6 +78,12 @@ export class LotComponent implements OnInit {
             .subscribe(() => {
                 this.util.notify.info('Sorteo registrado.', 'Registrado!');
             });
+    }
+
+    testError() {
+        this.reportService.sampleErrorFriendly().subscribe((res) => {
+            this.util.notify.info('info error success');
+        });
     }
 
     //////////////////////////////////////////////////////////////////////////////////////////

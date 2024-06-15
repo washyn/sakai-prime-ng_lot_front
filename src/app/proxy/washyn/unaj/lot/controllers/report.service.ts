@@ -15,6 +15,14 @@ export class ReportService {
       url: '/report/all-lot-result',
     },
     { apiName: this.apiName,...config });
+  
+
+  sampleErrorFriendly = (config?: Partial<Rest.Config>) =>
+    this.restService.request<any, void>({
+      method: 'GET',
+      url: '/report/error-frieldy-sample',
+    },
+    { apiName: this.apiName,...config });
 
   constructor(private restService: RestService) {}
 }

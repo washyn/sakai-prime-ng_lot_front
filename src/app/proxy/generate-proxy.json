@@ -612,6 +612,21 @@
           "type": "Washyn.UNAJ.Lot.Controllers.ReportController",
           "interfaces": [],
           "actions": {
+            "SampleErrorFriendly": {
+              "uniqueName": "SampleErrorFriendly",
+              "name": "SampleErrorFriendly",
+              "httpMethod": "GET",
+              "url": "report/error-frieldy-sample",
+              "supportedVersions": [],
+              "parametersOnMethod": [],
+              "parameters": [],
+              "returnValue": {
+                "type": "System.Void",
+                "typeSimple": "System.Void"
+              },
+              "allowAnonymous": null,
+              "implementFrom": "Washyn.UNAJ.Lot.Controllers.ReportController"
+            },
             "GetAllPdfReport": {
               "uniqueName": "GetAllPdfReport",
               "name": "GetAllPdfReport",

@@ -1,4 +1,11 @@
-import {APP_INITIALIZER, ErrorHandler, inject, Injectable, Injector, NgModule} from '@angular/core';
+import {
+    APP_INITIALIZER,
+    ErrorHandler,
+    inject,
+    Injectable,
+    Injector,
+    NgModule,
+} from '@angular/core';
 import { PathLocationStrategy, LocationStrategy } from '@angular/common';
 import { AppComponent } from './app.component';
 import { AppRoutingModule } from './app-routing.module';
@@ -12,13 +19,11 @@ import { IconService } from './demo/service/icon.service';
 import { NodeService } from './demo/service/node.service';
 import { PhotoService } from './demo/service/photo.service';
 import { AbpCustomModule } from './abp.module';
-import {EMPTY, noop, of} from 'rxjs';
-import {AbpUtilService} from "./lot/utils/abp-util.service";
-import {HttpErrorReporterService} from "@abp/ng.core";
-import {filter, switchMap} from "rxjs/operators";
-import {HttpErrorResponse} from "@angular/common/http";
-
-
+import { EMPTY, noop, of } from 'rxjs';
+import { AbpUtilService } from './lot/utils/abp-util.service';
+import { HttpErrorReporterService } from '@abp/ng.core';
+import { filter, switchMap } from 'rxjs/operators';
+import { HttpErrorResponse } from '@angular/common/http';
 
 @NgModule({
     declarations: [AppComponent, NotfoundComponent],
@@ -36,5 +41,3 @@ import {HttpErrorResponse} from "@angular/common/http";
     bootstrap: [AppComponent],
 })
 export class AppModule {}
-
-

@@ -6,14 +6,21 @@ import { BehaviorSubject } from 'rxjs';
     providedIn: 'root',
 })
 export class AbpUiService {
-    locked: boolean = false;
+    private loading: boolean = false;
 
     constructor() {}
 
     setBusy() {
-        this.locked = true;
+        this.loading = true;
     }
     clearBusy() {
-        this.locked = false;
+        this.loading = false;
+    }
+
+    // setLoading(loading: boolean) {
+    //     this.loading = loading;
+    // }
+    getLoading(): boolean {
+        return this.loading;
     }
 }

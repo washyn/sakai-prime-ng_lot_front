@@ -7,7 +7,7 @@ import {AbpUiService} from './abp-ui.service';
 // TODO: add global error handler... add interceptor and ...
 // check sample application loader, or set bussy page for create
 
-
+// TODO: agregar un loader basico, sin importar que sea una libreria externa por mientras...
 //
 //add component here
 // add block ui sample...
@@ -16,9 +16,10 @@ import {AbpUiService} from './abp-ui.service';
     // imports: [ToastModule, ConfirmDialogModule],
     template: `
         <div>
-            <p-blockUI [blocked]="data">
-                <p-progressSpinner ariaLabel="loading" />
-            </p-blockUI>
+<!--            <p-blockUI [blocked]="data">-->
+<!--                <p-progressSpinner ariaLabel="loading" />-->
+<!--            </p-blockUI>-->
+            <app-spinner></app-spinner>
             <p-toast position="bottom-right"></p-toast>
             <p-confirmDialog [style]="{ width: '30rem' }" [position]="'center'"></p-confirmDialog>
         </div>
@@ -34,26 +35,8 @@ import {AbpUiService} from './abp-ui.service';
     ],
 })
 export class UtilsComponent implements OnInit {
-    _data: boolean = false;
-
-    get data(): boolean {
-        let temp = this.uiService.locked;
-        this._data = temp;
-        return temp;
+    constructor() {
     }
-
-    set data(value: true) {
-        this._data = value;
-        this.uiService.locked = value;
-    }
-
-    constructor(public uiService: AbpUiService) {
-    }
-
     ngOnInit(): void {
-        // this.data = this.uiService.dataSubject.getValue();
-        // this.uiService.dataSubject
-        //     .asObservable()
-        //     .subscribe((data) => (this.data = data));
     }
 }

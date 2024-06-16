@@ -97,20 +97,22 @@
                     {{ item.area | appArea }}
                 </td>
                 <td class="p-1">
-                    <p-button
-                        icon="pi pi-pencil"
-                        severity="warning"
-                        class=""
-                        [outlined]="true"
-                        (onClick)="editModal(item.id)"
-                    ></p-button>
-                    <p-button
-                        icon="pi pi-trash"
-                        severity="danger"
-                        class="ml-2"
-                        [outlined]="true"
-                        (onClick)="delete(item.id)"
-                    ></p-button>
+                    <div class="flex">
+                        <p-button
+                            icon="pi pi-pencil"
+                            severity="warning"
+                            class=""
+                            [outlined]="true"
+                            (onClick)="editModal(item.id)"
+                        ></p-button>
+                        <p-button
+                            icon="pi pi-trash"
+                            severity="danger"
+                            class="ml-2"
+                            [outlined]="true"
+                            (onClick)="delete(item.id)"
+                        ></p-button>
+                    </div>
                 </td>
             </tr>
         </ng-template>

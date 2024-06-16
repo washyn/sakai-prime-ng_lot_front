@@ -7,6 +7,8 @@ import { CustomErrorHandlerService } from './lot/utils/error-handler/custom-erro
 import { AbpFormatErrorHandlerService } from './lot/utils/error-handler/abp-format-error-handler.service';
 import { CUSTOM_ERROR_HANDLERS } from './lot/utils/error-handler/http-error.token';
 import { StatusCodeErrorHandlerService } from './lot/utils/error-handler/status-code-error-handler.service';
+import { AbpAuthenticationErrorHandler } from './lot/utils/error-handler/authentication-error-handler.service';
+import { UnknownStatusCodeErrorHandlerService } from './lot/utils/error-handler/unknown-status-code-error-handler.service';
 
 //TODO: build with electron
 @NgModule({
@@ -31,6 +33,16 @@ import { StatusCodeErrorHandlerService } from './lot/utils/error-handler/status-
             provide: CUSTOM_ERROR_HANDLERS,
             multi: true,
             useExisting: StatusCodeErrorHandlerService,
+        },
+        {
+            provide: CUSTOM_ERROR_HANDLERS,
+            multi: true,
+            useExisting: AbpAuthenticationErrorHandler,
+        },
+        {
+            provide: CUSTOM_ERROR_HANDLERS,
+            multi: true,
+            useExisting: UnknownStatusCodeErrorHandlerService,
         },
     ],
 })

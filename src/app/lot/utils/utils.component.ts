@@ -4,30 +4,21 @@ import {AbpMessageService} from './abp-message.service';
 import {AbpNotifyService} from './abp-notify.service';
 import {AbpUiService} from './abp-ui.service';
 
-// TODO: add global error handler... add interceptor and ...
-// check sample application loader, or set bussy page for create
-
+// TODO: add global error handler... add interceptor and ...check sample application loader, or set bussy page for create
 // TODO: agregar un loader basico, sin importar que sea una libreria externa por mientras...
-//
-//add component here
-// add block ui sample...
 @Component({
     selector: 'app-utils',
-    // imports: [ToastModule, ConfirmDialogModule],
     template: `
         <div>
 <!--            <p-blockUI [blocked]="data">-->
 <!--                <p-progressSpinner ariaLabel="loading" />-->
 <!--            </p-blockUI>-->
-            <app-spinner></app-spinner>
+<!--            <app-spinner></app-spinner>-->
             <p-toast position="bottom-right"></p-toast>
             <p-confirmDialog [style]="{ width: '30rem' }" [position]="'center'"></p-confirmDialog>
         </div>
     `,
     providers: [
-        // MessageService,
-        // ConfirmationService,
-
         AbpUtilService,
         AbpMessageService,
         AbpNotifyService,

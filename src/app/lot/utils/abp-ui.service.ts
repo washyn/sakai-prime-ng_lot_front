@@ -17,9 +17,9 @@ export class AbpUiService {
         this.loading = false;
     }
 
-    // setLoading(loading: boolean) {
-    //     this.loading = loading;
-    // }
+    setLoading(loading: boolean) {
+        this.loading = loading;
+    }
     getLoading(): boolean {
         return this.loading;
     }

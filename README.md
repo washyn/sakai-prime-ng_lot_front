@@ -33,3 +33,28 @@ To get more help on the Angular CLI use `ng help` or go check out the [Angular C
 ## Commang for generate proxy services.
 
         ng g @abp/ng.schematics:proxy-add
+
+```ts
+export const DEFAULT_ERROR_MESSAGES_SPANISH = {
+    defaultError: {
+        title: "¡Se ha producido un error!",
+        details: "Detalle del error no enviado por el servidor.",
+    },
+    defaultError401: {
+        title: "No estas autenticado!",
+        details: "Debe estar autenticado (iniciar sesión) para poder realizar esta operación.",
+    },
+    defaultError403: {
+        title: "No estas autorizado!",
+        details: "No está permitido realizar esta operación.",
+    },
+    defaultError404: {
+        title: "Recurso no encontrado!",
+        details: "El recurso solicitado no se pudo encontrar en el servidor.",
+    },
+    defaultError500: {
+        title: "Error interno del servidor!",
+        details: "Detalle del error no enviado por el servidor.",
+    },
+};
+```

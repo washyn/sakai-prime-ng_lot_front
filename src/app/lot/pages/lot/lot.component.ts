@@ -1,16 +1,16 @@
-import {PagedResultDto} from '@abp/ng.core';
-import {ChangeDetectionStrategy, Component, type OnInit} from '@angular/core';
-import {FormBuilder, FormControl, FormGroup} from '@angular/forms';
-import {AutoCompleteCompleteEvent} from 'primeng/autocomplete';
-import {DocenteWithLookup} from 'src/app/proxy/acme/book-store/entities';
+import { PagedResultDto } from '@abp/ng.core';
+import { ChangeDetectionStrategy, Component, type OnInit } from '@angular/core';
+import { FormBuilder, FormControl, FormGroup } from '@angular/forms';
+import { AutoCompleteCompleteEvent } from 'primeng/autocomplete';
+import { DocenteWithLookup } from 'src/app/proxy/acme/book-store/entities';
 import {
     DocenteService,
     SelectService,
 } from 'src/app/proxy/acme/book-store/services';
-import {LookupDto} from 'src/app/proxy/washyn/unaj/lot';
-import {ResultLotService} from 'src/app/proxy/washyn/unaj/lot/services';
-import {AbpUtilService} from '../../utils/abp-util.service';
-import {ReportService} from 'src/app/proxy/washyn/unaj/lot/controllers';
+import { LookupDto } from 'src/app/proxy/washyn/unaj/lot';
+import { ResultLotService } from 'src/app/proxy/washyn/unaj/lot/services';
+import { AbpUtilService } from '../../utils/abp-util.service';
+import { ReportService } from 'src/app/proxy/washyn/unaj/lot/controllers';
 
 @Component({
     selector: 'app-lot',
@@ -85,11 +85,12 @@ export class LotComponent implements OnInit {
             this.util.notify.info('info error success');
         });
     }
+
     loaderBussy() {
         this.util.ui.setBusy();
-        setTimeout(()=>{
+        setTimeout(() => {
             this.util.ui.clearBusy();
-        },1000);
+        }, 1000);
     }
     //////////////////////////////////////////////////////////////////////////////////////////
     //////////////////////////////////////////////////////////////////////////////////////////

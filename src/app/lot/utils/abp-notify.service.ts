@@ -6,11 +6,6 @@ import { MessageService } from 'primeng/api';
 })
 export class AbpNotifyService {
     constructor(private messageService: MessageService) {}
-    //NOTE: no hay una implemetmacopm del servicio MessageService
-
-    // var showNotification = function (type, message, title, options) {
-    //     toastr[type](message, title, options);
-    // };
 
     private showNotification(
         type: string,

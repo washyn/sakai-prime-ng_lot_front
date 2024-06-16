@@ -1,8 +1,8 @@
-import {Component, Input, OnInit} from '@angular/core';
-import {AbpUtilService} from './abp-util.service';
-import {AbpMessageService} from './abp-message.service';
-import {AbpNotifyService} from './abp-notify.service';
-import {AbpUiService} from './abp-ui.service';
+import { Component, Input, OnInit } from '@angular/core';
+import { AbpUtilService } from './abp-util.service';
+import { AbpMessageService } from './abp-message.service';
+import { AbpNotifyService } from './abp-notify.service';
+import { AbpUiService } from './abp-ui.service';
 
 // TODO: add global error handler... add interceptor and ...check sample application loader, or set bussy page for create
 // TODO: agregar un loader basico, sin importar que sea una libreria externa por mientras...
@@ -10,12 +10,15 @@ import {AbpUiService} from './abp-ui.service';
     selector: 'app-utils',
     template: `
         <div>
-<!--            <p-blockUI [blocked]="data">-->
-<!--                <p-progressSpinner ariaLabel="loading" />-->
-<!--            </p-blockUI>-->
-<!--            <app-spinner></app-spinner>-->
+            <!--            <p-blockUI [blocked]="data">-->
+            <!--                <p-progressSpinner ariaLabel="loading" />-->
+            <!--            </p-blockUI>-->
+            <!--            <app-spinner></app-spinner>-->
             <p-toast position="bottom-right"></p-toast>
-            <p-confirmDialog [style]="{ width: '30rem' }" [position]="'center'"></p-confirmDialog>
+            <p-confirmDialog
+                [style]="{ width: '30rem' }"
+                [position]="'center'"
+            ></p-confirmDialog>
         </div>
     `,
     providers: [
@@ -26,8 +29,6 @@ import {AbpUiService} from './abp-ui.service';
     ],
 })
 export class UtilsComponent implements OnInit {
-    constructor() {
-    }
-    ngOnInit(): void {
-    }
+    constructor() {}
+    ngOnInit(): void {}
 }

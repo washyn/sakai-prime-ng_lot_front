@@ -4,6 +4,9 @@ import { ErrorHandler, ModuleWithProviders, NgModule } from '@angular/core';
 import { environment } from 'src/environments/environment';
 import { registerLocale } from '@abp/ng.core/locale';
 import { CustomErrorHandlerService } from './lot/utils/error-handler/custom-error-handler.service';
+import { AbpFormatErrorHandlerService } from './lot/utils/error-handler/abp-format-error-handler.service';
+import { CUSTOM_ERROR_HANDLERS } from './lot/utils/error-handler/http-error.token';
+import { StatusCodeErrorHandlerService } from './lot/utils/error-handler/status-code-error-handler.service';
 
 //TODO: build with electron
 @NgModule({
@@ -18,6 +21,17 @@ import { CustomErrorHandlerService } from './lot/utils/error-handler/custom-erro
     exports: [LocalizationModule],
     providers: [
         { provide: ErrorHandler, useExisting: CustomErrorHandlerService },
+
+        {
+            provide: CUSTOM_ERROR_HANDLERS,
+            multi: true,
+            useExisting: AbpFormatErrorHandlerService,
+        },
+        {
+            provide: CUSTOM_ERROR_HANDLERS,
+            multi: true,
+            useExisting: StatusCodeErrorHandlerService,
+        },
     ],
 })
 export class AbpCustomModule {

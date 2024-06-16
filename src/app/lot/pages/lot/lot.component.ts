@@ -86,6 +86,10 @@ export class LotComponent implements OnInit {
         });
     }
 
+    testCommon() {
+        throw new Error('Custom error');
+    }
+
     loaderBussy() {
         this.util.ui.setBusy();
         setTimeout(() => {

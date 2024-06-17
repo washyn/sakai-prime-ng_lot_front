@@ -60,12 +60,7 @@ export class LotComponent implements OnInit {
         console.log('choisedd');
     }
 
-    randomSelectSuscribable() {
-        this.randomComponent.randomSelect2().subscribe((res) => {
-            console.log('ressulttt');
-            console.log(res);
-        });
-    }
+    randomSelectSuscribable() {}
 
     randomSelect() {
         this.randomComponent
@@ -117,17 +112,6 @@ export class LotComponent implements OnInit {
         });
     }
 
-    testCommon() {
-        throw new Error('Custom error');
-    }
-
-    loaderBussy() {
-        this.util.ui.setBusy();
-        setTimeout(() => {
-            this.util.ui.clearBusy();
-        }, 1000);
-    }
-
     filter(event: AutoCompleteCompleteEvent) {
         const filtered: DocenteWithLookup[] = [];
         const query = event.query;
@@ -140,12 +124,4 @@ export class LotComponent implements OnInit {
 
         this.filteredDocentes = filtered;
     }
-
-    //////////////////////////////////////////////////////////////////////////////////////////
-    //////////////////////////////////////////////////////////////////////////////////////////
-    //////////////////////////////////////////////////////////////////////////////////////////
-
-    // event autocomplete...
-    currentValueRandom = -1;
-    initializedChoise = true;
 }

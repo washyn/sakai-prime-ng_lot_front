@@ -1,37 +1,18 @@
 import { CommonModule } from '@angular/common';
-import {
-    ChangeDetectionStrategy,
-    Component,
-    EventEmitter,
-    OnInit,
-    Output,
-} from '@angular/core';
+import { Component, EventEmitter, OnInit, Output } from '@angular/core';
 import { ButtonModule } from 'primeng/button';
 import { EMPTY, of } from 'rxjs';
-import {
-    DocenteService,
-    SelectService,
-} from 'src/app/proxy/acme/book-store/services';
+import { SelectService } from 'src/app/proxy/acme/book-store/services';
 import { LookupDto } from 'src/app/proxy/washyn/unaj/lot';
-import { Observable, interval, timer } from 'rxjs';
-import { concatMap, map, takeUntil } from 'rxjs/operators';
-import { ResultLotService } from 'src/app/proxy/washyn/unaj/lot/services';
 
-// receive signal for execute lot and returns random element to parent element caller...
 @Component({
     selector: 'app-random-choiser',
     standalone: true,
     imports: [CommonModule, ButtonModule],
     templateUrl: './random-choiser.component.html',
     styleUrl: './random-choiser.component.css',
-    // changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class RandomChoiserComponent implements OnInit {
-    // el parent con una referencia llamaaria a pickRandomTag
-    // receibe input for caller start lot
-    // Ver como se hace en otros componentes random picker en linea...
-    // TODO: check, outputs angular
-    // ... ...
     @Output()
     resultRandomChoise = new EventEmitter<LookupDto<string>>();
 
@@ -77,41 +58,6 @@ export class RandomChoiserComponent implements OnInit {
                 // this.resultRandomChoise.emit(dataResult);
             }, 100);
         }, times * 100);
-    }
-
-    randomSelect2(): Observable<LookupDto<string>> {
-        console.log('called to random select2');
-
-        const times = 30;
-        const highlightDuration = 100;
-
-        // Create an observable that emits after the highlight interval
-        const highlightEnd$ = interval(times * 100).pipe(
-            takeUntil(timer(times * highlightDuration))
-        );
-
-        return highlightEnd$.pipe(
-            map(() => {
-                const randomTag = this.pickRandomTag();
-                this.highlightTag(randomTag);
-
-                return timer(highlightDuration).pipe(
-                    map(() => {
-                        this.unhighlightTag(randomTag);
-
-                        const node = randomTag as HTMLElement; // Type assertion (if necessary)
-
-                        return {
-                            id: node.dataset['id'] as string,
-                            displayName: node.dataset['displayName'] as string,
-                            alternativeText: '', // Optional property
-                        } as LookupDto<string>;
-                    })
-                );
-            }),
-            // Flatten the inner observable using concatMap (or switchMap for later emissions)
-            concatMap((innerObs) => innerObs)
-        );
     }
 
     callRandomMethod(data: any) {

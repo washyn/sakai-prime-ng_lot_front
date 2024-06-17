@@ -1,15 +1,4 @@
 <div class="grid">
-    <div class="col-12">
-        <button pButton (click)="randomSelectSuscribable()">Temppp</button>
-        <button pButton (click)="randomSelect()">
-            Inciar selecion aleatoria
-        </button>
-        <app-random-choiser
-            #randomComponent
-            (resultRandomChoise)="resultChoise($event)"
-        ></app-random-choiser>
-    </div>
-
     <div class="col-6">
         <div class="surface-card p-3 shadow-3 border-round">
             <h4 class="text-700 mb-0 text-center">Pendientes</h4>
@@ -60,72 +49,32 @@
             </p-table>
         </div>
     </div>
-</div>
 
-<div class="surface-card p-3 shadow-3 border-round">
-    <form class="grid formgrid p-fluid" [formGroup]="formLot">
-        <div class="field col-12">
-            <label class="font-medium text-700">Participante</label>
-            <p-autoComplete
-                [dropdown]="true"
-                (completeMethod)="filter($event)"
-                formControlName="docente"
-                [suggestions]="filteredDocentes"
-                field="fullName"
-            />
-        </div>
-    </form>
-
-    <p-button
-        label="Save temp data"
-        (onClick)="saveResult()"
-        outlined="true"
-        class="ml-2"
-    ></p-button>
-    <p-button
-        label="Test error frienly"
-        (onClick)="testError()"
-        outlined="true"
-        class="ml-2"
-    ></p-button>
-    <p-button
-        label="Test error common"
-        (onClick)="testCommon()"
-        outlined="true"
-        class="ml-2"
-    ></p-button>
-    <p-button
-        label="Test loader"
-        (onClick)="loaderBussy()"
-        outlined="true"
-        class="ml-2"
-    ></p-button>
-    <h2>
-        {{ "AbpUi::Login" | abpLocalization }}
-    </h2>
-
-    <h2 *ngIf="initializedChoise" class="font-medium text-700">
-        {{ currentValueRandom }}
-    </h2>
-    <hr />
-    <div class="grid">
-        <div class="col-4"></div>
-        <div class="col-4">
-            <div class="flex flex-column">
-                <div
-                    *ngFor="let item of roles; index as i"
-                    class="flex align-items-center justify-content-center h-2rem border-round m-1 border-primary-400 text-700 border-1"
-                >
-                    {{ item.displayName }}
+    <div class="col-12">
+        <div class="surface-card p-3 shadow-3 border-round">
+            <form class="grid formgrid p-fluid" [formGroup]="formLot">
+                <div class="field col-12">
+                    <label class="font-medium text-700">Participante</label>
+                    <p-autoComplete
+                        [dropdown]="true"
+                        (completeMethod)="filter($event)"
+                        formControlName="docente"
+                        [suggestions]="filteredDocentes"
+                        field="fullName"
+                    />
                 </div>
+            </form>
 
-                <div
-                    class="flex align-items-center justify-content-center h-2rem bg-primary border-round m-1 border-primary-400 text-700 border-1"
-                >
-                    Item displayName
-                </div>
+            <div class="flex align-items-center flex-column">
+                <button pButton (click)="randomSelect()">
+                    Inciar selecion aleatoria
+                </button>
             </div>
+
+            <app-random-choiser
+                #randomComponent
+                (resultRandomChoise)="resultChoise($event)"
+            ></app-random-choiser>
         </div>
-        <div class="col-4"></div>
     </div>
 </div>

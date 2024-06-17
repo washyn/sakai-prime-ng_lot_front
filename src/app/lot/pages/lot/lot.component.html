@@ -66,15 +66,24 @@
             </form>
 
             <div class="flex align-items-center flex-column">
-                <button pButton (click)="randomSelect()">
+                <button pButton (click)="startLot()">
                     Inciar selecion aleatoria
                 </button>
             </div>
 
-            <app-random-choiser
-                #randomComponent
-                (resultRandomChoise)="resultChoise($event)"
-            ></app-random-choiser>
+            <div
+                id="tags"
+                class="container-tags border-solid border-1 border-primary-500 border-round"
+            >
+                <span
+                    *ngFor="let rol of roles; let i = index"
+                    [attr.data-id]="rol.id"
+                    [attr.data-display-name]="rol.displayName"
+                    class="tag"
+                >
+                    {{ rol.displayName }}
+                </span>
+            </div>
         </div>
     </div>
 </div>

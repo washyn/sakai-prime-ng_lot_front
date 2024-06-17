@@ -1,0 +1,18 @@
+.tag {
+    background-color: #f0932b;
+    color: #fff;
+    border-radius: 4px;
+    padding: 8px 10px;
+    margin: 0.2rem 0.2rem 0.2rem 0.2rem;
+    display: inline-flex;
+    font-size: x-small;
+}
+
+.tag.highlight {
+    background-color: #273c75;
+}
+
+.container-tags {
+    margin: 0.5rem 0 0.5rem 0;
+    padding: 0.5rem;
+}

@@ -21,11 +21,9 @@ import { RandomChoiserComponent } from '../components/random-choiser/random-choi
 @Component({
     selector: 'app-lot',
     templateUrl: './lot.component.html',
-    styles: ``,
+    styleUrls: ['./lot.component.css'],
 })
 export class LotComponent implements OnInit {
-    @ViewChild('randomComponent') randomComponent: RandomChoiserComponent;
-
     docenteBefore = {
         items: [],
         totalCount: 0,
@@ -56,30 +54,18 @@ export class LotComponent implements OnInit {
         });
     }
 
-    resultChoise(event: LookupDto<string>) {
-        console.log('choisedd');
-    }
-
-    randomSelectSuscribable() {}
-
-    randomSelect() {
-        this.randomComponent
-            .callRandomMethod({
-                test: 'arg',
-            })
-            .subscribe((res) => {
-                console.log('end called child method');
-            });
-    }
-
     ngOnInit(): void {
-        this.loadData();
+        this.loadDocentes();
+        this.loadRoles();
+    }
+
+    loadRoles() {
         this.selectService.getRol().subscribe((res) => {
             this.roles = res;
         });
     }
 
-    loadData() {
+    loadDocentes() {
         this.docenteService
             .getList({
                 maxResultCount: 1000,
@@ -106,12 +92,6 @@ export class LotComponent implements OnInit {
             });
     }
 
-    testError() {
-        this.reportService.sampleErrorFriendly().subscribe((res) => {
-            this.util.notify.info('info error success');
-        });
-    }
-
     filter(event: AutoCompleteCompleteEvent) {
         const filtered: DocenteWithLookup[] = [];
         const query = event.query;
@@ -123,5 +103,53 @@ export class LotComponent implements OnInit {
         }
 
         this.filteredDocentes = filtered;
+    }
+
+    startLot() {
+        // validate form and check if has value...
+        this.randomSelect();
+    }
+
+    randomSelect() {
+        const times = 30;
+        const interval = setInterval(() => {
+            const randomTag = this.pickRandomTag();
+            this.highlightTag(randomTag);
+            setTimeout(() => {
+                this.unhighlightTag(randomTag);
+            }, 100);
+        }, 100);
+
+        setTimeout(() => {
+            clearInterval(interval);
+            setTimeout(() => {
+                const randomTag = this.pickRandomTag();
+                this.highlightTag(randomTag);
+                // emit event
+
+                let node = <HTMLElement>randomTag;
+
+                let dataResult = {
+                    id: node.dataset['id'],
+                    displayName: node.dataset['displayName'],
+                    alternativeText: '',
+                } as LookupDto<string>;
+                // this.emitResult(dataResult);
+                // this.resultRandomChoise.emit(dataResult);
+            }, 100);
+        }, times * 100);
+    }
+
+    pickRandomTag() {
+        const tags = document.querySelectorAll('.tag');
+        return tags[Math.floor(Math.random() * tags.length)];
+    }
+
+    highlightTag(tag) {
+        tag.classList.add('highlight');
+    }
+
+    unhighlightTag(tag) {
+        tag.classList.remove('highlight');
     }
 }

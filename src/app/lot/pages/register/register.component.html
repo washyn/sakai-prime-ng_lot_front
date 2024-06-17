@@ -40,7 +40,7 @@
         <!-- <p-inputNumber mode="decimal" [useGrouping]="false" /> -->
 
         <div class="field col-12">
-            <label class="font-medium text-700">DNI</label>
+            <label class="font-medium text-700">DNI *</label>
             <p-inputNumber
                 class="p-inputtext-sm"
                 mode="decimal"
@@ -50,7 +50,7 @@
             />
         </div>
         <div class="field col-12">
-            <label class="font-medium text-700">Nombres</label>
+            <label class="font-medium text-700">Nombres *</label>
             <input
                 type="text"
                 pInputText
@@ -60,7 +60,7 @@
         </div>
         <div class="field col-6">
             <label class="font-medium text-700"
-                >Apellido paterno</label
+                >Apellido paterno *</label
             >
             <input
                 type="text"
@@ -70,7 +70,7 @@
             />
         </div>
         <div class="field col-6">
-            <label class="font-medium text-700">Apellido materno</label>
+            <label class="font-medium text-700">Apellido materno*</label>
             <input
                 type="text"
                 pInputText
@@ -79,7 +79,7 @@
             />
         </div>
         <div class="field col-12">
-            <label class="font-medium text-700">Grado</label>
+            <label class="font-medium text-700">Grado *</label>
             <p-dropdown
                 formControlName="gradoId"
                 [options]="grados"
@@ -89,8 +89,8 @@
             />
         </div>
 
-        <div class="field col-12">
-            <label class="font-medium text-700">Genero</label>
+        <div class="field col-12 mb-4">
+            <label class="font-medium text-700">Genero *</label>
             <div class="flex flex-wrap gap-3">
                 <div class="flex align-items-center">
                     <p-radioButton formControlName="genero" value="0" />
@@ -165,7 +165,6 @@
         <div class="field col-12">
             <p-button
                 label="REGISTRAR"
-                [disabled]="formGroup.invalid && bottonDisabled"
                 [outlined]="true"
                 (onClick)="save()"
             />

@@ -9,6 +9,7 @@ import { PanelModule } from 'primeng/panel';
 import { ButtonModule } from 'primeng/button';
 import {RegisterModule} from "../../../lot/pages/register/register.module";
 import {RegistrationListComponent} from "../../../lot/pages/registration-list/registration-list.component";
+import {AbpUtilsModule} from "../../../lot/utils/abp-util.module";
 
 @NgModule({
     imports: [
@@ -20,7 +21,8 @@ import {RegistrationListComponent} from "../../../lot/pages/registration-list/re
         PanelModule,
         ButtonModule,
         RegisterModule,
-        RegistrationListComponent
+        RegistrationListComponent,
+        AbpUtilsModule
     ],
     declarations: [LandingComponent]
 })

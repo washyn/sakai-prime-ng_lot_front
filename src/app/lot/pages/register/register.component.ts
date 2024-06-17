@@ -83,15 +83,16 @@ export class RegisterComponent implements OnInit {
             area: new FormControl<Area>(null, []),
         });
     }
+
     save() {
         if (this.formGroup.invalid) {
             this.util.notify.error(
-                'Asegurese de llenar todos los datos del formulario.',
+                'Asegurese de llenar todos los campos requeridos del formulario.',
                 'Mensaje de validación'
             );
             return;
         }
-        this.bottonDisabled = false;
+
         this.docenteService
             .create({
                 ...this.formGroup.value,
@@ -103,7 +104,6 @@ export class RegisterComponent implements OnInit {
                     'Registro'
                 );
                 this.buildForm();
-                this.bottonDisabled = true;
             });
     }
 }

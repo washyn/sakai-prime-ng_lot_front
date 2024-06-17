@@ -23,5 +23,8 @@ import { InputNumberModule } from 'primeng/inputnumber';
         RadioButtonModule,
     ],
     declarations: [RegisterComponent],
+    exports: [
+        RegisterComponent
+    ]
 })
 export class RegisterModule {}

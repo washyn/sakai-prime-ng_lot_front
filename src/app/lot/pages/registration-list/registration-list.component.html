@@ -1,0 +1,73 @@
+<div class="surface-card p-3 ">
+    <div
+        class="mb-3 flex align-items-center flex-column lg:justify-content-center lg:flex-row"
+    >
+        <div class="font-medium  text-3xl text-700">
+            Docentes registrados
+        </div>
+    </div>
+
+    <form [formGroup]="formFilter" class="grid formgrid p-fluid">
+        <div class="field col-12">
+            <span class="p-input-icon-left">
+                <i class="pi pi-search"></i>
+                <input
+                    type="text"
+                    pInputText
+                    class="p-inputtext-sm"
+                    formControlName="filter"
+                    placeholder="Buscar por nombre"
+                />
+            </span>
+        </div>
+    </form>
+
+    <p-table
+        [lazy]="true"
+        [value]="data.items"
+        (onLazyLoad)="tableLazyLoad($event)"
+        [totalRecords]="data.totalCount"
+        [paginator]="true"
+        [rows]="this.tableFilterModel.maxResultCount"
+        [tableStyle]="{ 'min-width': '50rem' }"
+    >
+        <ng-template pTemplate="header">
+            <tr>
+                <th>DNI</th>
+                <th>Apellidos y nombres</th>
+                <th>Genero</th>
+                <th>Grado</th>
+                <th>Area</th>
+
+            </tr>
+        </ng-template>
+        <ng-template pTemplate="body" let-item>
+            <tr>
+                <td>
+                    {{ item.dni }}
+                </td>
+                <td>
+                    {{
+                        item.gradoPrefix +
+                        " " +
+                        item.nombre +
+                        " " +
+                        item.apellidoPaterno +
+                        " " +
+                        item.apellidoMaterno
+                    }}
+                </td>
+                <td>
+                    {{ item.genero | appGender }}
+                </td>
+                <td>
+                    {{ item.gradoName }}
+                </td>
+                <td>
+                    {{ item.area | appArea }}
+                </td>
+
+            </tr>
+        </ng-template>
+    </p-table>
+</div>

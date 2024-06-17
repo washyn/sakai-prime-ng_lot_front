@@ -37,5 +37,9 @@ import { InputNumberModule } from 'primeng/inputnumber';
         InputNumberModule,
     ],
     declarations: [ListComponent, GenderPipe, AreaPipe],
+    exports: [
+        GenderPipe,
+        AreaPipe
+    ]
 })
 export class ListModule {}

@@ -97,7 +97,7 @@ export class CustomErrorHandlerService {
             key: DEFAULT_ERROR_LOCALIZATIONS.defaultError.details,
             defaultValue: DEFAULT_ERROR_MESSAGES.defaultError.details,
         };
-
+        // TODO:handle 403 error test when register...
         // return this.confirmationService.error(message, title, {
         //     hideCancelBtn: true,
         //     yesText: 'AbpAccount::Close',

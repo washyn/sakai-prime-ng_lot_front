@@ -7,6 +7,8 @@ import { DividerModule } from 'primeng/divider';
 import { ChartModule } from 'primeng/chart';
 import { PanelModule } from 'primeng/panel';
 import { ButtonModule } from 'primeng/button';
+import {RegisterModule} from "../../../lot/pages/register/register.module";
+import {RegistrationListComponent} from "../../../lot/pages/registration-list/registration-list.component";
 
 @NgModule({
     imports: [
@@ -16,7 +18,9 @@ import { ButtonModule } from 'primeng/button';
         StyleClassModule,
         ChartModule,
         PanelModule,
-        ButtonModule
+        ButtonModule,
+        RegisterModule,
+        RegistrationListComponent
     ],
     declarations: [LandingComponent]
 })

@@ -1,4 +1,15 @@
 <div class="grid">
+    <div class="col-12">
+        <button pButton (click)="randomSelectSuscribable()">Temppp</button>
+        <button pButton (click)="randomSelect()">
+            Inciar selecion aleatoria
+        </button>
+        <app-random-choiser
+            #randomComponent
+            (resultRandomChoise)="resultChoise($event)"
+        ></app-random-choiser>
+    </div>
+
     <div class="col-6">
         <div class="surface-card p-3 shadow-3 border-round">
             <h4 class="text-700 mb-0 text-center">Pendientes</h4>
@@ -64,12 +75,6 @@
             />
         </div>
     </form>
-
-    <p-button
-        label="Choise random role"
-        (onClick)="genAndShowNumbers()"
-        outlined="true"
-    ></p-button>
 
     <p-button
         label="Save temp data"

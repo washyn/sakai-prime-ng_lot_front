@@ -1,0 +1,13 @@
+<div
+    id="tags"
+    class="container-tags border-solid border-1 border-primary-500 border-round"
+>
+    <span
+        *ngFor="let rol of roles; let i = index"
+        [attr.data-id]="rol.id"
+        [attr.data-display-name]="rol.displayName"
+        class="tag"
+    >
+        {{ rol.displayName }}
+    </span>
+</div>

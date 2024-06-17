@@ -1,5 +1,10 @@
 import { PagedResultDto } from '@abp/ng.core';
-import { ChangeDetectionStrategy, Component, type OnInit } from '@angular/core';
+import {
+    ChangeDetectionStrategy,
+    Component,
+    ViewChild,
+    type OnInit,
+} from '@angular/core';
 import { FormBuilder, FormControl, FormGroup } from '@angular/forms';
 import { AutoCompleteCompleteEvent } from 'primeng/autocomplete';
 import { DocenteWithLookup } from 'src/app/proxy/acme/book-store/entities';
@@ -11,6 +16,7 @@ import { LookupDto } from 'src/app/proxy/washyn/unaj/lot';
 import { ResultLotService } from 'src/app/proxy/washyn/unaj/lot/services';
 import { AbpUtilService } from '../../utils/abp-util.service';
 import { ReportService } from 'src/app/proxy/washyn/unaj/lot/controllers';
+import { RandomChoiserComponent } from '../components/random-choiser/random-choiser.component';
 
 @Component({
     selector: 'app-lot',
@@ -18,16 +24,20 @@ import { ReportService } from 'src/app/proxy/washyn/unaj/lot/controllers';
     styles: ``,
 })
 export class LotComponent implements OnInit {
+    @ViewChild('randomComponent') randomComponent: RandomChoiserComponent;
+
     docenteBefore = {
         items: [],
         totalCount: 0,
     } as PagedResultDto<DocenteWithLookup>;
-    filteredDocentes: DocenteWithLookup[] = [];
-    allTeachers: DocenteWithLookup[] = [];
+
     docenteAfter = {
         items: [],
         totalCount: 0,
     } as PagedResultDto<DocenteWithLookup>;
+
+    filteredDocentes: DocenteWithLookup[] = [];
+    allTeachers: DocenteWithLookup[] = [];
     formLot: FormGroup;
     roles: LookupDto<string>[] = [];
 
@@ -44,6 +54,27 @@ export class LotComponent implements OnInit {
         }>({
             docente: new FormControl<DocenteWithLookup>(null),
         });
+    }
+
+    resultChoise(event: LookupDto<string>) {
+        console.log('choisedd');
+    }
+
+    randomSelectSuscribable() {
+        this.randomComponent.randomSelect2().subscribe((res) => {
+            console.log('ressulttt');
+            console.log(res);
+        });
+    }
+
+    randomSelect() {
+        this.randomComponent
+            .callRandomMethod({
+                test: 'arg',
+            })
+            .subscribe((res) => {
+                console.log('end called child method');
+            });
     }
 
     ngOnInit(): void {
@@ -96,11 +127,7 @@ export class LotComponent implements OnInit {
             this.util.ui.clearBusy();
         }, 1000);
     }
-    //////////////////////////////////////////////////////////////////////////////////////////
-    //////////////////////////////////////////////////////////////////////////////////////////
-    //////////////////////////////////////////////////////////////////////////////////////////
 
-    // event autocomplete...
     filter(event: AutoCompleteCompleteEvent) {
         const filtered: DocenteWithLookup[] = [];
         const query = event.query;
@@ -114,48 +141,11 @@ export class LotComponent implements OnInit {
         this.filteredDocentes = filtered;
     }
 
-    // ...
-    generateSecuence(length: number) {
-        let result: number[] = [];
-        for (let index = 0; index < length; index++) {
-            result.push(this.generateRandomNumber(1, 5));
-        }
-        return result;
-    }
+    //////////////////////////////////////////////////////////////////////////////////////////
+    //////////////////////////////////////////////////////////////////////////////////////////
+    //////////////////////////////////////////////////////////////////////////////////////////
 
-    getRandomNum(maxValue: number) {
-        let date = Date.now();
-        let dateMl = new Date().getMilliseconds();
-        let tempValue = date * Math.random();
-        let value = tempValue / dateMl;
-        let rounded = Math.round(value);
-        return rounded % maxValue;
-    }
-
-    getRandomInt(max: number) {
-        return Math.floor(Math.random() * max);
-    }
-
-    async genAndShowNumbers() {
-        let numbers = this.generateSecuence(this.generateRandomNumber(20, 50));
-        // numero que disminuye...
-        let sleepNumber = 150;
-        for (let ite of numbers) {
-            await this.delay(sleepNumber);
-            this.currentValueRandom = ite;
-            sleepNumber = sleepNumber + 10;
-        }
-    }
-
-    // TODO: generatte random n number as secuence array and show... with sleeep...
-    generateRandomNumber(min: number, max: number) {
-        return Math.floor(Math.random() * max) + min;
-    }
-
+    // event autocomplete...
     currentValueRandom = -1;
     initializedChoise = true;
-
-    delay(ms: number): Promise<void> {
-        return new Promise((resolve) => setTimeout(resolve, ms));
-    }
 }

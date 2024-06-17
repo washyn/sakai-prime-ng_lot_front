@@ -9,7 +9,7 @@ import { ProgressSpinnerModule } from 'primeng/progressspinner';
 import { BlockUIModule } from 'primeng/blockui';
 
 @NgModule({
-    declarations: [UtilsComponent],
+    declarations: [],
     imports: [
         CommonModule,
         ToastModule,
@@ -18,7 +18,7 @@ import { BlockUIModule } from 'primeng/blockui';
         BlockUIModule,
         ProgressSpinnerModule,
     ],
-    exports: [UtilsComponent],
+    exports: [],
     providers: [MessageService, ConfirmationService, AbpUtilService],
 })
 export class AbpUtilsModule {}

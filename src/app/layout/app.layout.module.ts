@@ -18,6 +18,7 @@ import { AppSidebarComponent } from './app.sidebar.component';
 import { AppLayoutComponent } from './app.layout.component';
 import { ToastModule } from 'primeng/toast';
 import { AbpUtilsModule } from '../lot/utils/abp-util.module';
+import { UtilsComponent } from '../lot/utils/utils.component';
 
 @NgModule({
     declarations: [
@@ -28,6 +29,7 @@ import { AbpUtilsModule } from '../lot/utils/abp-util.module';
         AppSidebarComponent,
         AppLayoutComponent,
     ],
+    exports: [AppLayoutComponent],
     imports: [
         BrowserModule,
         FormsModule,
@@ -42,7 +44,7 @@ import { AbpUtilsModule } from '../lot/utils/abp-util.module';
         RouterModule,
         ToastModule,
         AbpUtilsModule,
+        UtilsComponent,
     ],
-    exports: [AppLayoutComponent],
 })
 export class AppLayoutModule {}

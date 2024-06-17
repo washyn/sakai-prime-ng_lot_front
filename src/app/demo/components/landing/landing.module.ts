@@ -7,11 +7,13 @@ import { DividerModule } from 'primeng/divider';
 import { ChartModule } from 'primeng/chart';
 import { PanelModule } from 'primeng/panel';
 import { ButtonModule } from 'primeng/button';
-import {RegisterModule} from "../../../lot/pages/register/register.module";
-import {RegistrationListComponent} from "../../../lot/pages/registration-list/registration-list.component";
-import {AbpUtilsModule} from "../../../lot/utils/abp-util.module";
+import { RegisterModule } from '../../../lot/pages/register/register.module';
+import { RegistrationListComponent } from '../../../lot/pages/registration-list/registration-list.component';
+import { AbpUtilsModule } from '../../../lot/utils/abp-util.module';
+import { UtilsComponent } from '../../../lot/utils/utils.component';
 
 @NgModule({
+    declarations: [LandingComponent],
     imports: [
         CommonModule,
         LandingRoutingModule,
@@ -22,8 +24,8 @@ import {AbpUtilsModule} from "../../../lot/utils/abp-util.module";
         ButtonModule,
         RegisterModule,
         RegistrationListComponent,
-        AbpUtilsModule
+        AbpUtilsModule,
+        UtilsComponent,
     ],
-    declarations: [LandingComponent]
 })
-export class LandingModule { }
+export class LandingModule {}

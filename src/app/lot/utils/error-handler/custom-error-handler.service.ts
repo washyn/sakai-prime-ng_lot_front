@@ -89,19 +89,21 @@ export class CustomErrorHandlerService {
         this.showError().subscribe();
     }
     protected showError(): Observable<void> {
-        // const title = {
-        //     key: DEFAULT_ERROR_LOCALIZATIONS.defaultError.title,
-        //     defaultValue: DEFAULT_ERROR_MESSAGES.defaultError.title,
-        // };
-        // const message = {
-        //     key: DEFAULT_ERROR_LOCALIZATIONS.defaultError.details,
-        //     defaultValue: DEFAULT_ERROR_MESSAGES.defaultError.details,
-        // };
+        const title = {
+            key: DEFAULT_ERROR_LOCALIZATIONS.defaultError.title,
+            defaultValue: DEFAULT_ERROR_MESSAGES.defaultError.title,
+        };
+        const message = {
+            key: DEFAULT_ERROR_LOCALIZATIONS.defaultError.details,
+            defaultValue: DEFAULT_ERROR_MESSAGES.defaultError.details,
+        };
+
         // return this.confirmationService.error(message, title, {
         //     hideCancelBtn: true,
         //     yesText: 'AbpAccount::Close',
         // });
-        this.util.notify.error('Ocurrio un error inesperado.', 'Error');
+        this.util.notify.error(message.defaultValue, title.defaultValue);
+        // this.util.notify.error('Ocurrio un error inesperado.', 'Error');
         return EMPTY;
     }
     protected filterRestErrors = ({ status }: HttpErrorResponse): boolean => {

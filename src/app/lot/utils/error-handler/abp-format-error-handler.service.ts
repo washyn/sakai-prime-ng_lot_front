@@ -3,16 +3,17 @@ import { AuthService } from '@abp/ng.core';
 import { HttpErrorResponse } from '@angular/common/http';
 import { getErrorFromRequestBody } from './error.utils';
 import { CustomHttpErrorHandlerService } from './common';
-// import { ConfirmationService } from '../services/confirmation.service';
 import { CUSTOM_HTTP_ERROR_HANDLER_PRIORITY } from './default-errors';
 import { AbpUtilService } from '../abp-util.service';
+// import { ConfirmationService } from '../services/confirmation.service';
 
 @Injectable({ providedIn: 'root' })
 export class AbpFormatErrorHandlerService
     implements CustomHttpErrorHandlerService
 {
-    readonly priority = CUSTOM_HTTP_ERROR_HANDLER_PRIORITY.high;
     // private confirmationService = inject(ConfirmationService);
+
+    readonly priority = CUSTOM_HTTP_ERROR_HANDLER_PRIORITY.high;
     private authService = inject(AuthService);
     private util = inject(AbpUtilService);
     private error: HttpErrorResponse | undefined = undefined;

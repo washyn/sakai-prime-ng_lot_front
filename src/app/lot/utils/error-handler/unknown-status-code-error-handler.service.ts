@@ -7,6 +7,7 @@ import {
 import { inject, Injectable } from '@angular/core';
 // import { CreateErrorComponentService } from './create-error-component.service';
 import { CustomHttpErrorHandlerService } from './common';
+import { AbpUtilService } from '../abp-util.service';
 
 @Injectable({ providedIn: 'root' })
 export class UnknownStatusCodeErrorHandlerService
@@ -15,6 +16,7 @@ export class UnknownStatusCodeErrorHandlerService
     readonly priority = CUSTOM_HTTP_ERROR_HANDLER_PRIORITY.normal;
     private statusText = 'Unknown Error';
     private message = '';
+    private util = inject(AbpUtilService);
     // private createErrorComponentService = inject(CreateErrorComponentService);
 
     canHandle(
@@ -42,5 +44,9 @@ export class UnknownStatusCodeErrorHandlerService
         //   details: this.message,
         //   isHomeShow: false,
         // });
+
+        let defaultMessage = DEFAULT_ERROR_MESSAGES.defaultError.title;
+        this.util.notify.error(defaultMessage, this.statusText);
+        // this.util.notify.error(this.message, this.statusText);
     }
 }

@@ -88,6 +88,12 @@ export class StatusCodeErrorHandlerService
         // const canCreateCustomError =
         //     this.createErrorComponentService.canCreateCustomError(this.status);
 
+        let titleText = title.defaultValue;
+        let messageText = message.defaultValue;
+
+        // let titleText = DEFAULT_ERROR_MESSAGES[key].title;
+        // let messageText = DEFAULT_ERROR_MESSAGES[key].details;
+
         switch (this.status) {
             case 401:
             case 404:
@@ -95,17 +101,19 @@ export class StatusCodeErrorHandlerService
                 //     this.showPage();
                 //     break;
                 // }
+                this.util.notify.error(messageText, titleText);
 
                 if (this.status === 401) {
                     this.authService.navigateToLogin();
                     break;
                 }
 
-                this.showConfirmation(title, message).subscribe();
+                // this.showConfirmation(title, message).subscribe();
                 break;
             case 403:
             case 500:
-                this.showPage();
+                this.util.notify.error(messageText, titleText);
+                // this.showPage();
                 break;
         }
     }

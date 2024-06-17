@@ -5,7 +5,12 @@ import {
     ViewChild,
     type OnInit,
 } from '@angular/core';
-import { FormBuilder, FormControl, FormGroup } from '@angular/forms';
+import {
+    FormBuilder,
+    FormControl,
+    FormGroup,
+    Validators,
+} from '@angular/forms';
 import { AutoCompleteCompleteEvent } from 'primeng/autocomplete';
 import { DocenteWithLookup } from 'src/app/proxy/acme/book-store/entities';
 import {
@@ -50,13 +55,28 @@ export class LotComponent implements OnInit {
         this.formLot = this.formBuilder.group<{
             docente?: FormControl<DocenteWithLookup>;
         }>({
-            docente: new FormControl<DocenteWithLookup>(null),
+            docente: new FormControl<DocenteWithLookup>(null, [
+                Validators.required,
+            ]),
         });
     }
 
     ngOnInit(): void {
         this.loadDocentes();
         this.loadRoles();
+    }
+
+    startLot() {
+        if (this.formLot.invalid) {
+            this.util.notify.error(
+                'Selecione un docente antes de realizar el sorteo.',
+                'Mensaje de validación'
+            );
+            return;
+        }
+
+        // validate form and check if has value...
+        this.randomSelect();
     }
 
     loadRoles() {
@@ -105,11 +125,6 @@ export class LotComponent implements OnInit {
         this.filteredDocentes = filtered;
     }
 
-    startLot() {
-        // validate form and check if has value...
-        this.randomSelect();
-    }
-
     randomSelect() {
         const times = 30;
         const interval = setInterval(() => {
@@ -125,17 +140,18 @@ export class LotComponent implements OnInit {
             setTimeout(() => {
                 const randomTag = this.pickRandomTag();
                 this.highlightTag(randomTag);
-                // emit event
 
                 let node = <HTMLElement>randomTag;
-
                 let dataResult = {
                     id: node.dataset['id'],
                     displayName: node.dataset['displayName'],
                     alternativeText: '',
                 } as LookupDto<string>;
-                // this.emitResult(dataResult);
-                // this.resultRandomChoise.emit(dataResult);
+
+                let message = `Se eligió a ${this.formLot.value.docente.fullName} como ${dataResult.displayName}`;
+                this.util.message.success(message, 'Sorteo');
+
+                // TODO: save data result, in back...
             }, 100);
         }, times * 100);
     }

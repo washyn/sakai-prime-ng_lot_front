@@ -28,6 +28,13 @@ import { RouterModule } from '@angular/router';
                 loadChildren: () =>
                     import('./list/list.module').then((m) => m.ListModule),
             },
+            {
+                path: 'prueba',
+                loadChildren: () =>
+                    import('./samples/samples.module').then(
+                        (m) => m.SamplesModule
+                    ),
+            },
             { path: '**', redirectTo: '/notfound' },
         ]),
     ],

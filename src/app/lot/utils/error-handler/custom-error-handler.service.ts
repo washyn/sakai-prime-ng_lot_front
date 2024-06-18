@@ -6,7 +6,7 @@ import {
     inject,
 } from '@angular/core';
 import { AbpUtilService } from '../abp-util.service';
-import { EMPTY, Observable, filter, of } from 'rxjs';
+import { EMPTY, Observable, filter, of, throwError } from 'rxjs';
 import { HttpErrorReporterService, LocalizationParam } from '@abp/ng.core';
 import { switchMap } from 'rxjs/operators';
 import { HttpErrorResponse } from '@angular/common/http';
@@ -88,6 +88,7 @@ export class CustomErrorHandlerService {
 
         this.showError().subscribe();
     }
+
     protected showError(): Observable<void> {
         const title = {
             key: DEFAULT_ERROR_LOCALIZATIONS.defaultError.title,
@@ -106,6 +107,7 @@ export class CustomErrorHandlerService {
         // this.util.notify.error('Ocurrio un error inesperado.', 'Error');
         return EMPTY;
     }
+
     protected filterRestErrors = ({ status }: HttpErrorResponse): boolean => {
         if (typeof status !== 'number') return false;
 

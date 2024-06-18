@@ -89,16 +89,7 @@ export class LotComponent implements OnInit {
         });
     }
 
-    saveResult(role: string, docente: string) {
-        this.lotService
-            .createLot({
-                roleId: role,
-                docenteId: docente,
-            })
-            .subscribe(() => {
-                this.util.notify.info('Sorteo registrado.', 'Registrado!');
-            });
-    }
+
 
     filter(event: AutoCompleteCompleteEvent) {
         const filtered: DocenteWithLookup[] = [];
@@ -136,19 +127,25 @@ export class LotComponent implements OnInit {
                     alternativeText: '',
                 } as LookupDto<string>;
 
-                let message = `Se eligió a ${this.formLot.value.docente.fullName} como ${dataResultRole.displayName}`;
-                this.util.message.success(message, 'Sorteo');
-                console.log(dataResultRole)
-                console.log(this.formLot.value.docente)
-                let docenteId = this.formLot.value.docente.id;
-                this.saveResult(dataResultRole.id, docenteId);
-                this.formLot.reset();
-                // then message
-                this.loadDocentesSorteadosYFaltantes();
-
-                // TODO: save data result, in back...
+                this.resultadoSorteo(dataResultRole, this.formLot.value.docente);
             }, 100);
         }, times * 100);
+    }
+
+    resultadoSorteo(rol: LookupDto<string>, docente: DocenteWithLookup){
+
+        let message = `Se eligió a ${docente.fullName} como ${rol.displayName}`;
+        this.util.message.success(message, 'Sorteo');
+        this.lotService
+            .createLot({
+                roleId: rol.id,
+                docenteId: docente.id,
+            })
+            .subscribe(() => {
+                this.util.notify.info('Sorteo registrado.', 'Registrado!');
+                this.formLot.reset();
+                this.loadDocentesSorteadosYFaltantes();
+            });
     }
 
     pickRandomTag() {

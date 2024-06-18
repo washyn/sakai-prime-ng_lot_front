@@ -2,7 +2,7 @@ import type { CreateLotResultDto, ResultLotFilterDto } from './models';
 import { RestService, Rest } from '@abp/ng.core';
 import type { PagedResultDto } from '@abp/ng.core';
 import { Injectable } from '@angular/core';
-import type { DocenteWithLookup } from '../../../../acme/book-store/entities/models';
+import type { DocenteWithRolDto } from '../../../../acme/book-store/entities/models';
 import type { DocenteRoleData } from '../controllers/models';
 
 @Injectable({
@@ -22,7 +22,7 @@ export class ResultLotService {
   
 
   getAlreadyWithLot = (config?: Partial<Rest.Config>) =>
-    this.restService.request<any, DocenteWithLookup[]>({
+    this.restService.request<any, DocenteWithRolDto[]>({
       method: 'GET',
       url: '/api/app/result-lot/already-with-lot',
     },
@@ -39,7 +39,7 @@ export class ResultLotService {
   
 
   getWithoutLot = (config?: Partial<Rest.Config>) =>
-    this.restService.request<any, DocenteWithLookup[]>({
+    this.restService.request<any, DocenteWithRolDto[]>({
       method: 'GET',
       url: '/api/app/result-lot/without-lot',
     },

@@ -38,3 +38,18 @@ export interface DocenteWithLookup extends FullAuditedEntityDto<string> {
   area?: Area;
   fullName?: string;
 }
+
+export interface DocenteWithRolDto extends EntityDto<string> {
+  dni?: string;
+  nombre?: string;
+  apellidoPaterno?: string;
+  apellidoMaterno?: string;
+  genero: Gender;
+  gradoId?: string;
+  gradoName?: string;
+  gradoPrefix?: string;
+  area?: Area;
+  fullName?: string;
+  rolId?: string;
+  rolName?: string;
+}

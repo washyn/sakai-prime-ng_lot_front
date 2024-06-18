@@ -50,7 +50,7 @@
                 <th>DNI</th>
                 <th>Apellidos y nombres</th>
                 <th>Rol</th>
-<!--                <th>Fecha</th>-->
+                <th>Fecha</th>
                 <!-- <th>Opciones</th> -->
             </tr>
         </ng-template>
@@ -65,9 +65,9 @@
                 <td>
                     {{ item.rolName }}
                 </td>
-<!--                <td>-->
-<!--                    {{ item.creationTime | date }}-->
-<!--                </td>-->
+                <td>
+                    {{ item.creationTime | date:'medium' }}
+                </td>
                 <!-- add button with text -->
                 <!-- <td class="p-1">
                     <p-button

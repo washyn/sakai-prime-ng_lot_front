@@ -2,8 +2,10 @@
     "name": "sakai-ng",
     "version": "17.0.0",
     "license": "MIT",
+    "main" : "main.js",
     "scripts": {
         "ng": "ng",
+        "electron": "ng build && electron .",
         "start": "ng serve",
         "build": "ng build",
         "test": "ng test",
@@ -31,11 +33,11 @@
         "primeflex": "^3.3.1",
         "primeicons": "6.0.1",
         "primeng": "17.2.0",
+        "prismjs": "^1.29.0",
         "quill": "^1.3.7",
         "rxjs": "~7.8.1",
         "tslib": "^2.5.0",
-        "zone.js": "~0.14.0",
-        "prismjs": "^1.29.0"
+        "zone.js": "~0.14.0"
     },
     "devDependencies": {
         "@abp/ng.schematics": "^8.1.2",
@@ -43,6 +45,7 @@
         "@angular/cli": "^17.0.5",
         "@angular/compiler-cli": "^17.0.5",
         "@types/jasmine": "~4.3.1",
+        "electron": "^31.0.1",
         "jasmine-core": "~4.6.0",
         "karma": "~6.4.2",
         "karma-chrome-launcher": "~3.2.0",

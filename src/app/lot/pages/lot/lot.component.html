@@ -37,12 +37,16 @@
                 <ng-template pTemplate="header">
                     <tr>
                         <th>Apellidos y nombres</th>
+                        <th>Rol</th>
                     </tr>
                 </ng-template>
                 <ng-template pTemplate="body" let-item>
                     <tr>
                         <td>
                             {{ item.fullName }}
+                        </td>
+                        <td>
+                            {{ item.rolName }}
                         </td>
                     </tr>
                 </ng-template>

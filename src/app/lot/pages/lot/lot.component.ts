@@ -1,4 +1,4 @@
-import { PagedResultDto } from '@abp/ng.core';
+import {PagedResultDto} from '@abp/ng.core';
 import {
     ChangeDetectionStrategy,
     Component,
@@ -11,17 +11,17 @@ import {
     FormGroup,
     Validators,
 } from '@angular/forms';
-import { AutoCompleteCompleteEvent } from 'primeng/autocomplete';
-import { DocenteWithLookup } from 'src/app/proxy/acme/book-store/entities';
+import {AutoCompleteCompleteEvent} from 'primeng/autocomplete';
+import {DocenteWithLookup} from 'src/app/proxy/acme/book-store/entities';
 import {
     DocenteService,
     SelectService,
 } from 'src/app/proxy/acme/book-store/services';
-import { LookupDto } from 'src/app/proxy/washyn/unaj/lot';
-import { ResultLotService } from 'src/app/proxy/washyn/unaj/lot/services';
-import { AbpUtilService } from '../../utils/abp-util.service';
-import { ReportService } from 'src/app/proxy/washyn/unaj/lot/controllers';
-import { RandomChoiserComponent } from '../components/random-choiser/random-choiser.component';
+import {LookupDto} from 'src/app/proxy/washyn/unaj/lot';
+import {ResultLotService} from 'src/app/proxy/washyn/unaj/lot/services';
+import {AbpUtilService} from '../../utils/abp-util.service';
+import {ReportService} from 'src/app/proxy/washyn/unaj/lot/controllers';
+import {RandomChoiserComponent} from '../components/random-choiser/random-choiser.component';
 
 @Component({
     selector: 'app-lot',
@@ -29,15 +29,6 @@ import { RandomChoiserComponent } from '../components/random-choiser/random-choi
     styleUrls: ['./lot.component.css'],
 })
 export class LotComponent implements OnInit {
-    docenteBefore = {
-        items: [],
-        totalCount: 0,
-    } as PagedResultDto<DocenteWithLookup>;
-
-    docenteAfter = {
-        items: [],
-        totalCount: 0,
-    } as PagedResultDto<DocenteWithLookup>;
 
     filteredDocentes: DocenteWithLookup[] = [];
     allTeachers: DocenteWithLookup[] = [];
@@ -62,8 +53,8 @@ export class LotComponent implements OnInit {
     }
 
     ngOnInit(): void {
-        this.loadDocentes();
         this.loadRoles();
+        this.loadDocentesSorteadosYFaltantes();
     }
 
     startLot() {
@@ -85,27 +76,24 @@ export class LotComponent implements OnInit {
         });
     }
 
-    loadDocentes() {
-        this.docenteService
-            .getList({
-                maxResultCount: 1000,
-            })
-            .subscribe((res) => {
-                this.docenteBefore.items = [...res.items];
-                this.docenteBefore.totalCount = res.totalCount;
+    sorteados: DocenteWithLookup[] = [];
+    faltantes: DocenteWithLookup[] = [];
 
-                this.docenteAfter.items = [...res.items];
-                this.docenteAfter.totalCount = res.totalCount;
-
-                this.allTeachers = [...res.items];
-            });
+    loadDocentesSorteadosYFaltantes() {
+        this.lotService.getAlreadyWithLot().subscribe(res => {
+            this.sorteados = res;
+        });
+        this.lotService.getWithoutLot().subscribe(res => {
+            this.faltantes = res;
+            this.allTeachers = [...res]
+        });
     }
 
-    saveResult() {
+    saveResult(role: string, docente: string) {
         this.lotService
             .createLot({
-                roleId: '201E0D36-B405-68D7-DDA8-3A12FB51F8B9',
-                docenteId: 'BC8D8766-9577-7905-8436-3A12FC6EDD48',
+                roleId: role,
+                docenteId: docente,
             })
             .subscribe(() => {
                 this.util.notify.info('Sorteo registrado.', 'Registrado!');
@@ -142,14 +130,21 @@ export class LotComponent implements OnInit {
                 this.highlightTag(randomTag);
 
                 let node = <HTMLElement>randomTag;
-                let dataResult = {
+                let dataResultRole = {
                     id: node.dataset['id'],
                     displayName: node.dataset['displayName'],
                     alternativeText: '',
                 } as LookupDto<string>;
 
-                let message = `Se eligió a ${this.formLot.value.docente.fullName} como ${dataResult.displayName}`;
+                let message = `Se eligió a ${this.formLot.value.docente.fullName} como ${dataResultRole.displayName}`;
                 this.util.message.success(message, 'Sorteo');
+                console.log(dataResultRole)
+                console.log(this.formLot.value.docente)
+                let docenteId = this.formLot.value.docente.id;
+                this.saveResult(dataResultRole.id, docenteId);
+                this.formLot.reset();
+                // then message
+                this.loadDocentesSorteadosYFaltantes();
 
                 // TODO: save data result, in back...
             }, 100);

@@ -4,7 +4,7 @@
             <h4 class="text-700 mb-0 text-center">Pendientes</h4>
             <p-table
                 lazy="false"
-                [value]="docenteBefore.items"
+                [value]="faltantes"
                 styleClass="p-datatable-sm"
                 scrollHeight="250px"
                 [tableStyle]="{ 'min-width': '20rem' }"
@@ -30,7 +30,7 @@
             <p-table
                 lazy="false"
                 scrollHeight="250px"
-                [value]="docenteAfter.items"
+                [value]="sorteados"
                 styleClass="p-datatable-sm"
                 [tableStyle]="{ 'min-width': '20rem' }"
             >

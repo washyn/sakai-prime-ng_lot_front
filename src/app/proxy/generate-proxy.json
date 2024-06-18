@@ -653,6 +653,36 @@
           "type": "Washyn.UNAJ.Lot.Services.ResultLotAppService",
           "interfaces": [],
           "actions": {
+            "GetAlreadyWithLot": {
+              "uniqueName": "GetAlreadyWithLot",
+              "name": "GetAlreadyWithLot",
+              "httpMethod": "GET",
+              "url": "api/app/result-lot/already-with-lot",
+              "supportedVersions": [],
+              "parametersOnMethod": [],
+              "parameters": [],
+              "returnValue": {
+                "type": "System.Collections.Generic.List<Acme.BookStore.Entities.DocenteWithLookup>",
+                "typeSimple": "[Acme.BookStore.Entities.DocenteWithLookup]"
+              },
+              "allowAnonymous": null,
+              "implementFrom": "Washyn.UNAJ.Lot.Services.ResultLotAppService"
+            },
+            "GetWithoutLot": {
+              "uniqueName": "GetWithoutLot",
+              "name": "GetWithoutLot",
+              "httpMethod": "GET",
+              "url": "api/app/result-lot/without-lot",
+              "supportedVersions": [],
+              "parametersOnMethod": [],
+              "parameters": [],
+              "returnValue": {
+                "type": "System.Collections.Generic.List<Acme.BookStore.Entities.DocenteWithLookup>",
+                "typeSimple": "[Acme.BookStore.Entities.DocenteWithLookup]"
+              },
+              "allowAnonymous": null,
+              "implementFrom": "Washyn.UNAJ.Lot.Services.ResultLotAppService"
+            },
             "CreateLotAsyncByCreate": {
               "uniqueName": "CreateLotAsyncByCreate",
               "name": "CreateLotAsync",

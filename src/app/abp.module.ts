@@ -22,28 +22,28 @@ import { UnknownStatusCodeErrorHandlerService } from './lot/utils/error-handler/
     ],
     exports: [LocalizationModule],
     providers: [
-        { provide: ErrorHandler, useExisting: CustomErrorHandlerService },
-
-        {
-            provide: CUSTOM_ERROR_HANDLERS,
-            multi: true,
-            useExisting: AbpFormatErrorHandlerService,
-        },
-        {
-            provide: CUSTOM_ERROR_HANDLERS,
-            multi: true,
-            useExisting: StatusCodeErrorHandlerService,
-        },
-        {
-            provide: CUSTOM_ERROR_HANDLERS,
-            multi: true,
-            useExisting: AbpAuthenticationErrorHandler,
-        },
-        {
-            provide: CUSTOM_ERROR_HANDLERS,
-            multi: true,
-            useExisting: UnknownStatusCodeErrorHandlerService,
-        },
+        // { provide: ErrorHandler, useExisting: CustomErrorHandlerService },
+        //
+        // {
+        //     provide: CUSTOM_ERROR_HANDLERS,
+        //     multi: true,
+        //     useExisting: AbpFormatErrorHandlerService,
+        // },
+        // {
+        //     provide: CUSTOM_ERROR_HANDLERS,
+        //     multi: true,
+        //     useExisting: StatusCodeErrorHandlerService,
+        // },
+        // {
+        //     provide: CUSTOM_ERROR_HANDLERS,
+        //     multi: true,
+        //     useExisting: AbpAuthenticationErrorHandler,
+        // },
+        // {
+        //     provide: CUSTOM_ERROR_HANDLERS,
+        //     multi: true,
+        //     useExisting: UnknownStatusCodeErrorHandlerService,
+        // },
     ],
 })
 export class AbpCustomModule {

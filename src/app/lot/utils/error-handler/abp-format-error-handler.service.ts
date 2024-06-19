@@ -48,6 +48,7 @@ export class AbpFormatErrorHandlerService
         //         }
         //     });
         // this.util.notify.error(message.toString(), 'Occurrio un error');
+        console.log("abp format error handler...")
         this.util.message.error(message.toString(), 'Occurrio un error');
     }
 }

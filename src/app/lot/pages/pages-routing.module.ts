@@ -29,6 +29,13 @@ import { RouterModule } from '@angular/router';
                     import('./list/list.module').then((m) => m.ListModule),
             },
             {
+                path: 'assignment',
+                loadChildren: () =>
+                    import('./assignment/assignment.module').then(
+                        (m) => m.AssignmentModule
+                    ),
+            },
+            {
                 path: 'prueba',
                 loadChildren: () =>
                     import('./samples/samples.module').then(

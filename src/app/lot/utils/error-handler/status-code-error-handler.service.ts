@@ -93,7 +93,7 @@ export class StatusCodeErrorHandlerService
 
         // let titleText = DEFAULT_ERROR_MESSAGES[key].title;
         // let messageText = DEFAULT_ERROR_MESSAGES[key].details;
-
+        console.log("status code error handler")
         switch (this.status) {
             case 401:
             case 404:

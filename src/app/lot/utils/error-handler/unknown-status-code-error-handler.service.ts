@@ -44,7 +44,7 @@ export class UnknownStatusCodeErrorHandlerService
         //   details: this.message,
         //   isHomeShow: false,
         // });
-
+        console.log("unknow status handler")
         let defaultMessage = DEFAULT_ERROR_MESSAGES.defaultError.title;
         this.util.notify.error(defaultMessage, this.statusText);
         // this.util.notify.error(this.message, this.statusText);

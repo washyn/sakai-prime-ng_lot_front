@@ -36,16 +36,22 @@ export class AppMenuComponent implements OnInit {
                         icon: 'pi pi-fw pi-box',
                         routerLink: ['/lot/process'],
                     },
-                    // {
-                    //     label: 'Landing',
-                    //     icon: 'pi pi-fw pi-box',
-                    //     routerLink: ['/landing'],
-                    // },
-                    // {
-                    //     label: 'Prueba',
-                    //     icon: 'pi pi-fw pi-box',
-                    //     routerLink: ['/lot/prueba'],
-                    // },
+                    {
+                        label: 'Comisiones',
+                        icon: 'pi pi-fw pi-box',
+                        routerLink: ['/lot/assignment'],
+                    },
+                    // assignment
+                    {
+                        label: 'Landing',
+                        icon: 'pi pi-fw pi-box',
+                        routerLink: ['/landing'],
+                    },
+                    {
+                        label: 'Prueba',
+                        icon: 'pi pi-fw pi-box',
+                        routerLink: ['/lot/prueba'],
+                    },
                 ],
             },
             // {

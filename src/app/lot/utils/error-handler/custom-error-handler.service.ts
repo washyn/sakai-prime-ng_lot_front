@@ -103,6 +103,7 @@ export class CustomErrorHandlerService {
         //     hideCancelBtn: true,
         //     yesText: 'AbpAccount::Close',
         // });
+        console.log("custom error handler")
         this.util.notify.error(message.defaultValue, title.defaultValue);
         // this.util.notify.error('Ocurrio un error inesperado.', 'Error');
         return EMPTY;

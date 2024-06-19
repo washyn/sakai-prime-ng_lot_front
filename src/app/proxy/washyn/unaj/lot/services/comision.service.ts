@@ -1,4 +1,4 @@
-import type { ComisionDto, DocenteLookup } from './models';
+import type { AsignComisionDto, ComisionDto, DocenteLookup } from './models';
 import { RestService, Rest } from '@abp/ng.core';
 import type { PagedAndSortedResultRequestDto, PagedResultDto } from '@abp/ng.core';
 import { Injectable } from '@angular/core';
@@ -8,6 +8,15 @@ import { Injectable } from '@angular/core';
 })
 export class ComisionService {
   apiName = 'Default';
+  
+
+  assignToComisionByData = (data: AsignComisionDto[], config?: Partial<Rest.Config>) =>
+    this.restService.request<any, void>({
+      method: 'POST',
+      url: '/api/app/comision/assign-to-comision',
+      body: data,
+    },
+    { apiName: this.apiName,...config });
   
 
   create = (input: ComisionDto, config?: Partial<Rest.Config>) =>
@@ -27,10 +36,27 @@ export class ComisionService {
     { apiName: this.apiName,...config });
   
 
+  deleteIntegranteByIntegranteIdAndComisionId = (integranteId: string, comisionId: string, config?: Partial<Rest.Config>) =>
+    this.restService.request<any, void>({
+      method: 'DELETE',
+      url: '/api/app/comision/integrante',
+      params: { integranteId, comisionId },
+    },
+    { apiName: this.apiName,...config });
+  
+
   get = (id: string, config?: Partial<Rest.Config>) =>
     this.restService.request<any, ComisionDto>({
       method: 'GET',
       url: `/api/app/comision/${id}`,
+    },
+    { apiName: this.apiName,...config });
+  
+
+  getDataByComision = (comisionId: string, config?: Partial<Rest.Config>) =>
+    this.restService.request<any, DocenteLookup[]>({
+      method: 'GET',
+      url: `/api/app/comision/data-by-comision/${comisionId}`,
     },
     { apiName: this.apiName,...config });
   

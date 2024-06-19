@@ -668,6 +668,137 @@
               "allowAnonymous": null,
               "implementFrom": "Washyn.UNAJ.Lot.Services.ComisionAppService"
             },
+            "AssignToComisionByData": {
+              "uniqueName": "AssignToComisionByData",
+              "name": "AssignToComision",
+              "httpMethod": "POST",
+              "url": "api/app/comision/assign-to-comision",
+              "supportedVersions": [],
+              "parametersOnMethod": [
+                {
+                  "name": "data",
+                  "typeAsString": "System.Collections.Generic.List`1[[Washyn.UNAJ.Lot.Services.AsignComisionDto, Washyn.UNAJ.Lot, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null]], System.Private.CoreLib",
+                  "type": "System.Collections.Generic.List<Washyn.UNAJ.Lot.Services.AsignComisionDto>",
+                  "typeSimple": "[Washyn.UNAJ.Lot.Services.AsignComisionDto]",
+                  "isOptional": false,
+                  "defaultValue": null
+                }
+              ],
+              "parameters": [
+                {
+                  "nameOnMethod": "data",
+                  "name": "data",
+                  "jsonName": null,
+                  "type": "System.Collections.Generic.List<Washyn.UNAJ.Lot.Services.AsignComisionDto>",
+                  "typeSimple": "[Washyn.UNAJ.Lot.Services.AsignComisionDto]",
+                  "isOptional": false,
+                  "defaultValue": null,
+                  "constraintTypes": null,
+                  "bindingSourceId": "Body",
+                  "descriptorName": ""
+                }
+              ],
+              "returnValue": {
+                "type": "System.Void",
+                "typeSimple": "System.Void"
+              },
+              "allowAnonymous": null,
+              "implementFrom": "Washyn.UNAJ.Lot.Services.ComisionAppService"
+            },
+            "DeleteIntegranteByIntegranteIdAndComisionId": {
+              "uniqueName": "DeleteIntegranteByIntegranteIdAndComisionId",
+              "name": "DeleteIntegrante",
+              "httpMethod": "DELETE",
+              "url": "api/app/comision/integrante",
+              "supportedVersions": [],
+              "parametersOnMethod": [
+                {
+                  "name": "integranteId",
+                  "typeAsString": "System.Guid, System.Private.CoreLib",
+                  "type": "System.Guid",
+                  "typeSimple": "string",
+                  "isOptional": false,
+                  "defaultValue": null
+                },
+                {
+                  "name": "comisionId",
+                  "typeAsString": "System.Guid, System.Private.CoreLib",
+                  "type": "System.Guid",
+                  "typeSimple": "string",
+                  "isOptional": false,
+                  "defaultValue": null
+                }
+              ],
+              "parameters": [
+                {
+                  "nameOnMethod": "integranteId",
+                  "name": "integranteId",
+                  "jsonName": null,
+                  "type": "System.Guid",
+                  "typeSimple": "string",
+                  "isOptional": false,
+                  "defaultValue": null,
+                  "constraintTypes": null,
+                  "bindingSourceId": "ModelBinding",
+                  "descriptorName": ""
+                },
+                {
+                  "nameOnMethod": "comisionId",
+                  "name": "comisionId",
+                  "jsonName": null,
+                  "type": "System.Guid",
+                  "typeSimple": "string",
+                  "isOptional": false,
+                  "defaultValue": null,
+                  "constraintTypes": null,
+                  "bindingSourceId": "ModelBinding",
+                  "descriptorName": ""
+                }
+              ],
+              "returnValue": {
+                "type": "System.Void",
+                "typeSimple": "System.Void"
+              },
+              "allowAnonymous": null,
+              "implementFrom": "Washyn.UNAJ.Lot.Services.ComisionAppService"
+            },
+            "GetDataByComisionAsyncByComisionId": {
+              "uniqueName": "GetDataByComisionAsyncByComisionId",
+              "name": "GetDataByComisionAsync",
+              "httpMethod": "GET",
+              "url": "api/app/comision/data-by-comision/{comisionId}",
+              "supportedVersions": [],
+              "parametersOnMethod": [
+                {
+                  "name": "comisionId",
+                  "typeAsString": "System.Guid, System.Private.CoreLib",
+                  "type": "System.Guid",
+                  "typeSimple": "string",
+                  "isOptional": false,
+                  "defaultValue": null
+                }
+              ],
+              "parameters": [
+                {
+                  "nameOnMethod": "comisionId",
+                  "name": "comisionId",
+                  "jsonName": null,
+                  "type": "System.Guid",
+                  "typeSimple": "string",
+                  "isOptional": false,
+                  "defaultValue": null,
+                  "constraintTypes": [],
+                  "bindingSourceId": "Path",
+                  "descriptorName": ""
+                }
+              ],
+              "returnValue": {
+                "type": "System.Collections.Generic.List<Washyn.UNAJ.Lot.Services.DocenteLookup>",
+                "typeSimple": "[Washyn.UNAJ.Lot.Services.DocenteLookup]"
+              },
+              "allowAnonymous": null,
+              "implementFrom": "Washyn.UNAJ.Lot.Services.ComisionAppService"
+            },
             "CreateAsyncByInput": {
               "uniqueName": "CreateAsyncByInput",
               "name": "CreateAsync",
@@ -4744,6 +4875,39 @@
           "name": "AlternativeText",
           "jsonName": null,
           "type": "System.String",
+          "typeSimple": "string",
+          "isRequired": false,
+          "minLength": null,
+          "maxLength": null,
+          "minimum": null,
+          "maximum": null,
+          "regex": null
+        }
+      ]
+    },
+    "Washyn.UNAJ.Lot.Services.AsignComisionDto": {
+      "baseType": null,
+      "isEnum": false,
+      "enumNames": null,
+      "enumValues": null,
+      "genericArguments": null,
+      "properties": [
+        {
+          "name": "DocenteId",
+          "jsonName": null,
+          "type": "System.Guid",
+          "typeSimple": "string",
+          "isRequired": false,
+          "minLength": null,
+          "maxLength": null,
+          "minimum": null,
+          "maximum": null,
+          "regex": null
+        },
+        {
+          "name": "ComisionId",
+          "jsonName": null,
+          "type": "System.Guid",
           "typeSimple": "string",
           "isRequired": false,
           "minLength": null,

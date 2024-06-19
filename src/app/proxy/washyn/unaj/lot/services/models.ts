@@ -1,5 +1,10 @@
 import type { EntityDto, PagedAndSortedResultRequestDto } from '@abp/ng.core';
 
+export interface AsignComisionDto {
+  docenteId?: string;
+  comisionId?: string;
+}
+
 export interface ComisionDto extends EntityDto<string> {
   nombre: string;
 }

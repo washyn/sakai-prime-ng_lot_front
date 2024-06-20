@@ -123,7 +123,7 @@ export class LotComponent implements OnInit {
                         });
                 } else {
                     this.util.notify.info(
-                        'Puede realizar un nuevo intento.',
+                        'Puede realizar un nuevo intento de sorteo.',
                         'Mensaje'
                     );
                 }

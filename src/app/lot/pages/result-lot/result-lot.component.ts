@@ -68,8 +68,10 @@ export class ResultLotComponent implements OnInit {
     }
 
     donwloadAll() {
+        this.util.ui.setBusy();
         this.reporteService.getAllPdfReport().subscribe((res) => {
             this.util.saveBlobToFile(res, 'Informe de sorteo - cartas.pdf');
+            this.util.ui.clearBusy();
         });
     }
 }

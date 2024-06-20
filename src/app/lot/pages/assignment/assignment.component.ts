@@ -99,19 +99,31 @@ export class AssignmentComponent implements OnInit {
         });
     }
 
-    editarNombreComision(item: ComisionDto) {}
+    editarNombreComision(item: ComisionDto) {
+        // get and confirma...
+    }
 
-    removerAsignacion(item: ComisionDto) {
+    editComisionModal(id: string) {
+        this.comisionService.get(id).subscribe((element) => {
+            this.selectedComision = element;
+            this.buildFormComision();
+            this.modalComision = true;
+        });
+    }
+
+    removerComision(item: ComisionDto) {
         this.util.message.confirm(
             'Esta seguro de remover esta comisión',
             'Confirmación',
             (isConfirmed) => {
-                this.comisionService.delete(item.id).subscribe(() => {
-                    this.util.notify.info(
-                        `Se elimino la comisión ${item.nombre}.`
-                    );
-                    this.listDataComision();
-                });
+                if (isConfirmed) {
+                    this.comisionService.delete(item.id).subscribe(() => {
+                        this.util.notify.info(
+                            `Se elimino la comisión ${item.nombre}.`
+                        );
+                        this.listDataComision();
+                    });
+                }
             }
         );
     }

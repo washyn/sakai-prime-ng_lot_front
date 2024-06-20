@@ -41,6 +41,8 @@ export class AssignmentComponent implements OnInit {
         this.listDataComision();
     }
 
+    // TODO: add optio for edit...
+
     saveFormComision() {
         if (this.formComision.invalid) {
             this.util.notify.error(
@@ -95,5 +97,22 @@ export class AssignmentComponent implements OnInit {
                 [Validators.required, Validators.maxLength(100)]
             ),
         });
+    }
+
+    editarNombreComision(item: ComisionDto) {}
+
+    removerAsignacion(item: ComisionDto) {
+        this.util.message.confirm(
+            'Esta seguro de remover esta comisión',
+            'Confirmación',
+            (isConfirmed) => {
+                this.comisionService.delete(item.id).subscribe(() => {
+                    this.util.notify.info(
+                        `Se elimino la comisión ${item.nombre}.`
+                    );
+                    this.listDataComision();
+                });
+            }
+        );
     }
 }

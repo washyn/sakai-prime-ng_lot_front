@@ -5,6 +5,7 @@ import { AbpNotifyService } from './abp-notify.service';
 import { AbpUiService } from './abp-ui.service';
 import { ToastModule } from 'primeng/toast';
 import { ConfirmDialogModule } from 'primeng/confirmdialog';
+import {NgxSpinnerComponent} from "ngx-spinner";
 
 // TODO: ...check sample application loader, or set bussy page for create
 // TODO: agregar un loader basico, sin importar que sea una libreria externa por mientras...
@@ -23,6 +24,7 @@ import { ConfirmDialogModule } from 'primeng/confirmdialog';
                 [position]="'center'"
             ></p-confirmDialog>
         </div>
+        <ngx-spinner type="ball-clip-rotate" size="medium" color="#fff"></ngx-spinner>
     `,
     providers: [
         AbpUtilService,
@@ -30,7 +32,7 @@ import { ConfirmDialogModule } from 'primeng/confirmdialog';
         AbpNotifyService,
         AbpUiService,
     ],
-    imports: [ToastModule, ConfirmDialogModule],
+    imports: [ToastModule, ConfirmDialogModule, NgxSpinnerComponent],
 })
 export class UtilsComponent implements OnInit {
     constructor() {}

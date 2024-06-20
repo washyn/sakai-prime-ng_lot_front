@@ -1,26 +1,18 @@
 import { ConfigStateService } from '@abp/ng.core';
 import { Injectable, signal } from '@angular/core';
 import { BehaviorSubject } from 'rxjs';
+import {NgxSpinnerService} from "ngx-spinner";
 
 @Injectable({
     providedIn: 'root',
 })
 export class AbpUiService {
-    private loading: boolean = false;
-
-    constructor() {}
+    constructor(private spinner: NgxSpinnerService) {}
 
     setBusy() {
-        this.loading = true;
+        this.spinner.show();
     }
     clearBusy() {
-        this.loading = false;
-    }
-
-    setLoading(loading: boolean) {
-        this.loading = loading;
-    }
-    getLoading(): boolean {
-        return this.loading;
+        this.spinner.hide();
     }
 }

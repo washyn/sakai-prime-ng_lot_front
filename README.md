@@ -61,5 +61,4 @@ export const DEFAULT_ERROR_MESSAGES_SPANISH = {
 
 ## TODO:
 
--   Agregar la ruleta o juego de azar
 -   Agregar un loader

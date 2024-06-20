@@ -10,7 +10,7 @@ import { StatusCodeErrorHandlerService } from './lot/utils/error-handler/status-
 import { AbpAuthenticationErrorHandler } from './lot/utils/error-handler/authentication-error-handler.service';
 import { UnknownStatusCodeErrorHandlerService } from './lot/utils/error-handler/unknown-status-code-error-handler.service';
 
-//TODO: build with electron
+
 @NgModule({
     imports: [
         CommonModule,

@@ -1,6 +1,8 @@
 import { Injectable } from '@angular/core';
 import { ConfirmationService } from 'primeng/api';
 
+
+// TODO: add suscribable obj when close message dialog.
 @Injectable({
     providedIn: 'root',
 })
@@ -73,11 +75,11 @@ export class AbpMessageService {
             rejectLabel: 'No',
             defaultFocus: 'none',
             accept: () => {
-                if (callback) {
-                    callback(true);
-                }
+                callback && callback(true);
             },
-            reject: () => {},
+            reject: () => {
+                callback && callback(false);
+            },
 
             ...options,
         });

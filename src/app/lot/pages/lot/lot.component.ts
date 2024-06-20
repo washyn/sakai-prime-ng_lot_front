@@ -1,4 +1,4 @@
-import {PagedResultDto} from '@abp/ng.core';
+import { PagedResultDto } from '@abp/ng.core';
 import {
     ChangeDetectionStrategy,
     Component,
@@ -11,17 +11,17 @@ import {
     FormGroup,
     Validators,
 } from '@angular/forms';
-import {AutoCompleteCompleteEvent} from 'primeng/autocomplete';
-import {DocenteWithLookup} from 'src/app/proxy/acme/book-store/entities';
+import { AutoCompleteCompleteEvent } from 'primeng/autocomplete';
+import { DocenteWithLookup } from 'src/app/proxy/acme/book-store/entities';
 import {
     DocenteService,
     SelectService,
 } from 'src/app/proxy/acme/book-store/services';
-import {LookupDto} from 'src/app/proxy/washyn/unaj/lot';
-import {ResultLotService} from 'src/app/proxy/washyn/unaj/lot/services';
-import {AbpUtilService} from '../../utils/abp-util.service';
-import {ReportService} from 'src/app/proxy/washyn/unaj/lot/controllers';
-import {RandomChoiserComponent} from '../components/random-choiser/random-choiser.component';
+import { LookupDto } from 'src/app/proxy/washyn/unaj/lot';
+import { ResultLotService } from 'src/app/proxy/washyn/unaj/lot/services';
+import { AbpUtilService } from '../../utils/abp-util.service';
+import { ReportService } from 'src/app/proxy/washyn/unaj/lot/controllers';
+import { RandomChoiserComponent } from '../components/random-choiser/random-choiser.component';
 
 @Component({
     selector: 'app-lot',
@@ -29,7 +29,6 @@ import {RandomChoiserComponent} from '../components/random-choiser/random-choise
     styleUrls: ['./lot.component.css'],
 })
 export class LotComponent implements OnInit {
-
     filteredDocentes: DocenteWithLookup[] = [];
     allTeachers: DocenteWithLookup[] = [];
     formLot: FormGroup;
@@ -80,16 +79,14 @@ export class LotComponent implements OnInit {
     faltantes: DocenteWithLookup[] = [];
 
     loadDocentesSorteadosYFaltantes() {
-        this.lotService.getAlreadyWithLot().subscribe(res => {
+        this.lotService.getAlreadyWithLot().subscribe((res) => {
             this.sorteados = res;
         });
-        this.lotService.getWithoutLot().subscribe(res => {
+        this.lotService.getWithoutLot().subscribe((res) => {
             this.faltantes = res;
-            this.allTeachers = [...res]
+            this.allTeachers = [...res];
         });
     }
-
-
 
     filter(event: AutoCompleteCompleteEvent) {
         const filtered: DocenteWithLookup[] = [];
@@ -102,6 +99,40 @@ export class LotComponent implements OnInit {
         }
 
         this.filteredDocentes = filtered;
+    }
+
+    resultadoSorteo(rol: LookupDto<string>, docente: DocenteWithLookup) {
+        let message = `Se eligió a ${docente.fullName} como ${rol.displayName}`;
+        this.util.message.confirm(
+            message,
+            'Sorteo',
+            (confirm) => {
+                if (confirm) {
+                    this.lotService
+                        .createLot({
+                            roleId: rol.id,
+                            docenteId: docente.id,
+                        })
+                        .subscribe(() => {
+                            this.util.notify.success(
+                                'Sorteo registrado.',
+                                'Registrado!'
+                            );
+                            this.formLot.reset();
+                            this.loadDocentesSorteadosYFaltantes();
+                        });
+                } else {
+                    this.util.notify.info(
+                        'Puede realizar un nuevo intento.',
+                        'Mensaje'
+                    );
+                }
+            },
+            {
+                acceptLabel: 'Aceptar',
+                rejectLabel: 'Rechazar',
+            }
+        );
     }
 
     randomSelect() {
@@ -127,25 +158,12 @@ export class LotComponent implements OnInit {
                     alternativeText: '',
                 } as LookupDto<string>;
 
-                this.resultadoSorteo(dataResultRole, this.formLot.value.docente);
+                this.resultadoSorteo(
+                    dataResultRole,
+                    this.formLot.value.docente
+                );
             }, 100);
         }, times * 100);
-    }
-
-    resultadoSorteo(rol: LookupDto<string>, docente: DocenteWithLookup){
-
-        let message = `Se eligió a ${docente.fullName} como ${rol.displayName}`;
-        this.util.message.success(message, 'Sorteo');
-        this.lotService
-            .createLot({
-                roleId: rol.id,
-                docenteId: docente.id,
-            })
-            .subscribe(() => {
-                this.util.notify.info('Sorteo registrado.', 'Registrado!');
-                this.formLot.reset();
-                this.loadDocentesSorteadosYFaltantes();
-            });
     }
 
     pickRandomTag() {

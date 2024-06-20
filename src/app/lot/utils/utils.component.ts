@@ -6,7 +6,7 @@ import { AbpUiService } from './abp-ui.service';
 import { ToastModule } from 'primeng/toast';
 import { ConfirmDialogModule } from 'primeng/confirmdialog';
 
-// TODO: add global error handler... add interceptor and ...check sample application loader, or set bussy page for create
+// TODO: ...check sample application loader, or set bussy page for create
 // TODO: agregar un loader basico, sin importar que sea una libreria externa por mientras...
 @Component({
     selector: 'app-utils',

@@ -69,6 +69,9 @@ export class ResultLotComponent implements OnInit {
 
     donwloadAll() {
         this.util.ui.setBusy();
+        setTimeout(()=> {
+            this.util.ui.clearBusy();
+        },60 * 1000);
         this.reporteService.getAllPdfReport().subscribe((res) => {
             this.util.saveBlobToFile(res, 'Informe de sorteo - cartas.pdf');
             this.util.ui.clearBusy();

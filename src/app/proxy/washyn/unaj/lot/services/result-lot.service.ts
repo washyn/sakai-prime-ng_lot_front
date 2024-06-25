@@ -1,4 +1,4 @@
-import type { CreateLotResultDto, ResultLotFilterDto } from './models';
+import type { CreateLotResultDto, RemoveLotResultDto, ResultLotFilterDto } from './models';
 import { RestService, Rest } from '@abp/ng.core';
 import type { PagedResultDto } from '@abp/ng.core';
 import { Injectable } from '@angular/core';
@@ -17,6 +17,23 @@ export class ResultLotService {
       method: 'POST',
       url: '/api/app/result-lot/lot',
       body: create,
+    },
+    { apiName: this.apiName,...config });
+  
+
+  deleteByDocenteId = (docenteId: string, config?: Partial<Rest.Config>) =>
+    this.restService.request<any, void>({
+      method: 'DELETE',
+      url: `/api/app/result-lot/by-docente-id/${docenteId}`,
+    },
+    { apiName: this.apiName,...config });
+  
+
+  deleteLot = (model: RemoveLotResultDto, config?: Partial<Rest.Config>) =>
+    this.restService.request<any, void>({
+      method: 'DELETE',
+      url: '/api/app/result-lot/lot',
+      params: { docenteId: model.docenteId, roleId: model.roleId },
     },
     { apiName: this.apiName,...config });
   

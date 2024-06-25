@@ -38,6 +38,7 @@
                     <tr>
                         <th>Apellidos y nombres</th>
                         <th>Rol</th>
+                        <th>#</th>
                     </tr>
                 </ng-template>
                 <ng-template pTemplate="body" let-item>
@@ -47,6 +48,9 @@
                         </td>
                         <td>
                             {{ item.rolName }}
+                        </td>
+                        <td>
+                            <a class="pointer-cursor" (click)="this.removeResultFromLot(item.id)">Remover</a>
                         </td>
                     </tr>
                 </ng-template>

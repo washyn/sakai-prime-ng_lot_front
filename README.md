@@ -60,5 +60,4 @@ export const DEFAULT_ERROR_MESSAGES_SPANISH = {
 ```
 
 ## TODO:
-
--   Agregar un loader
+- ...

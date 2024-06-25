@@ -14,4 +14,5 @@ export interface DocenteRoleData extends FullAuditedEntityDto<string> {
   area?: Area;
   fullName?: string;
   rolName?: string;
+  comision?: string;
 }

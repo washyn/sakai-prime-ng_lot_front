@@ -18,6 +18,11 @@ export interface DocenteLookup extends EntityDto<string> {
   fullName?: string;
 }
 
+export interface RemoveLotResultDto {
+  docenteId?: string;
+  roleId?: string;
+}
+
 export interface ResultLotFilterDto extends PagedAndSortedResultRequestDto {
   filter?: string;
 }

@@ -124,7 +124,7 @@ export class LotComponent implements OnInit {
                                 'Sorteo registrado.',
                                 'Registrado!'
                             );
-                            this.formLot.reset();
+                            // this.formLot.reset();
                             this.loadDocentesSorteadosYFaltantes();
                         });
                 } else {
@@ -141,7 +141,6 @@ export class LotComponent implements OnInit {
         );
     }
 
-    // TODO: en algunas ocasiones se queda pegado el sorteo anterior antes de iniciar, revisar
     randomSelect() {
         const times = 30;
         const interval = setInterval(() => {
@@ -173,6 +172,16 @@ export class LotComponent implements OnInit {
                 },500);
             }, 100);
         }, times * 100);
+    }
+
+    removeResultFromLot(docenteId: string){
+        this.util.message.confirm("Esta seguro de remover este sorteo?","Esta seguro?", (isConfirmed)=>{
+            if (isConfirmed){
+                this.lotService.deleteByDocenteId(docenteId).subscribe(()=>{
+                    this.loadDocentesSorteadosYFaltantes();
+                });
+            }
+        });
     }
 
     pickRandomTag() {

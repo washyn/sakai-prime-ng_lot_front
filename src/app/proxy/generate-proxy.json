@@ -1069,6 +1069,92 @@
               "allowAnonymous": null,
               "implementFrom": "Washyn.UNAJ.Lot.Services.ResultLotAppService"
             },
+            "DeleteByDocenteIdAsyncByDocenteId": {
+              "uniqueName": "DeleteByDocenteIdAsyncByDocenteId",
+              "name": "DeleteByDocenteIdAsync",
+              "httpMethod": "DELETE",
+              "url": "api/app/result-lot/by-docente-id/{docenteId}",
+              "supportedVersions": [],
+              "parametersOnMethod": [
+                {
+                  "name": "docenteId",
+                  "typeAsString": "System.Guid, System.Private.CoreLib",
+                  "type": "System.Guid",
+                  "typeSimple": "string",
+                  "isOptional": false,
+                  "defaultValue": null
+                }
+              ],
+              "parameters": [
+                {
+                  "nameOnMethod": "docenteId",
+                  "name": "docenteId",
+                  "jsonName": null,
+                  "type": "System.Guid",
+                  "typeSimple": "string",
+                  "isOptional": false,
+                  "defaultValue": null,
+                  "constraintTypes": [],
+                  "bindingSourceId": "Path",
+                  "descriptorName": ""
+                }
+              ],
+              "returnValue": {
+                "type": "System.Void",
+                "typeSimple": "System.Void"
+              },
+              "allowAnonymous": null,
+              "implementFrom": "Washyn.UNAJ.Lot.Services.ResultLotAppService"
+            },
+            "DeleteLotAsyncByModel": {
+              "uniqueName": "DeleteLotAsyncByModel",
+              "name": "DeleteLotAsync",
+              "httpMethod": "DELETE",
+              "url": "api/app/result-lot/lot",
+              "supportedVersions": [],
+              "parametersOnMethod": [
+                {
+                  "name": "model",
+                  "typeAsString": "Washyn.UNAJ.Lot.Services.RemoveLotResultDto, Washyn.UNAJ.Lot",
+                  "type": "Washyn.UNAJ.Lot.Services.RemoveLotResultDto",
+                  "typeSimple": "Washyn.UNAJ.Lot.Services.RemoveLotResultDto",
+                  "isOptional": false,
+                  "defaultValue": null
+                }
+              ],
+              "parameters": [
+                {
+                  "nameOnMethod": "model",
+                  "name": "DocenteId",
+                  "jsonName": null,
+                  "type": "System.Guid",
+                  "typeSimple": "string",
+                  "isOptional": false,
+                  "defaultValue": null,
+                  "constraintTypes": null,
+                  "bindingSourceId": "ModelBinding",
+                  "descriptorName": "model"
+                },
+                {
+                  "nameOnMethod": "model",
+                  "name": "RoleId",
+                  "jsonName": null,
+                  "type": "System.Guid",
+                  "typeSimple": "string",
+                  "isOptional": false,
+                  "defaultValue": null,
+                  "constraintTypes": null,
+                  "bindingSourceId": "ModelBinding",
+                  "descriptorName": "model"
+                }
+              ],
+              "returnValue": {
+                "type": "System.Void",
+                "typeSimple": "System.Void"
+              },
+              "allowAnonymous": null,
+              "implementFrom": "Washyn.UNAJ.Lot.Services.ResultLotAppService"
+            },
             "CreateLotAsyncByCreate": {
               "uniqueName": "CreateLotAsyncByCreate",
               "name": "CreateLotAsync",
@@ -4827,6 +4913,18 @@
           "minimum": null,
           "maximum": null,
           "regex": null
+        },
+        {
+          "name": "Comision",
+          "jsonName": null,
+          "type": "System.String",
+          "typeSimple": "string",
+          "isRequired": false,
+          "minLength": null,
+          "maxLength": null,
+          "minimum": null,
+          "maximum": null,
+          "regex": null
         }
       ]
     },
@@ -4983,6 +5081,39 @@
           "name": "FullName",
           "jsonName": null,
           "type": "System.String",
+          "typeSimple": "string",
+          "isRequired": false,
+          "minLength": null,
+          "maxLength": null,
+          "minimum": null,
+          "maximum": null,
+          "regex": null
+        }
+      ]
+    },
+    "Washyn.UNAJ.Lot.Services.RemoveLotResultDto": {
+      "baseType": null,
+      "isEnum": false,
+      "enumNames": null,
+      "enumValues": null,
+      "genericArguments": null,
+      "properties": [
+        {
+          "name": "DocenteId",
+          "jsonName": null,
+          "type": "System.Guid",
+          "typeSimple": "string",
+          "isRequired": false,
+          "minLength": null,
+          "maxLength": null,
+          "minimum": null,
+          "maximum": null,
+          "regex": null
+        },
+        {
+          "name": "RoleId",
+          "jsonName": null,
+          "type": "System.Guid",
           "typeSimple": "string",
           "isRequired": false,
           "minLength": null,

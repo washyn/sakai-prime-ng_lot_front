@@ -24,6 +24,7 @@ import { AbpUtilService } from './lot/utils/abp-util.service';
 import { HttpErrorReporterService } from '@abp/ng.core';
 import { filter, switchMap } from 'rxjs/operators';
 import { HttpErrorResponse } from '@angular/common/http';
+import {provideRouter, withComponentInputBinding} from "@angular/router";
 
 @NgModule({
     declarations: [AppComponent, NotfoundComponent],
@@ -37,6 +38,7 @@ import { HttpErrorResponse } from '@angular/common/http';
         NodeService,
         PhotoService,
         ProductService,
+        provideRouter([],withComponentInputBinding())
     ],
     bootstrap: [AppComponent],
 })

@@ -39,6 +39,11 @@ export interface DocenteWithLookup extends FullAuditedEntityDto<string> {
   fullName?: string;
 }
 
+export interface RolDto {
+  id?: string;
+  nombre?: string;
+}
+
 export interface DocenteWithRolDto extends EntityDto<string> {
   dni?: string;
   nombre?: string;

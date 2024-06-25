@@ -668,6 +668,21 @@
               "allowAnonymous": null,
               "implementFrom": "Washyn.UNAJ.Lot.Services.ComisionAppService"
             },
+            "GetAllWithDetails": {
+              "uniqueName": "GetAllWithDetails",
+              "name": "GetAllWithDetails",
+              "httpMethod": "GET",
+              "url": "api/app/comision/with-details",
+              "supportedVersions": [],
+              "parametersOnMethod": [],
+              "parameters": [],
+              "returnValue": {
+                "type": "System.Collections.Generic.List<Washyn.UNAJ.Lot.Services.ComisionWithRoles>",
+                "typeSimple": "[Washyn.UNAJ.Lot.Services.ComisionWithRoles]"
+              },
+              "allowAnonymous": null,
+              "implementFrom": "Washyn.UNAJ.Lot.Services.ComisionAppService"
+            },
             "AssignToComisionByData": {
               "uniqueName": "AssignToComisionByData",
               "name": "AssignToComision",
@@ -752,6 +767,43 @@
                   "defaultValue": null,
                   "constraintTypes": null,
                   "bindingSourceId": "ModelBinding",
+                  "descriptorName": ""
+                }
+              ],
+              "returnValue": {
+                "type": "System.Void",
+                "typeSimple": "System.Void"
+              },
+              "allowAnonymous": null,
+              "implementFrom": "Washyn.UNAJ.Lot.Services.ComisionAppService"
+            },
+            "AddRolByModel": {
+              "uniqueName": "AddRolByModel",
+              "name": "AddRol",
+              "httpMethod": "POST",
+              "url": "api/app/comision/rol",
+              "supportedVersions": [],
+              "parametersOnMethod": [
+                {
+                  "name": "model",
+                  "typeAsString": "Washyn.UNAJ.Lot.Services.AddRol, Washyn.UNAJ.Lot",
+                  "type": "Washyn.UNAJ.Lot.Services.AddRol",
+                  "typeSimple": "Washyn.UNAJ.Lot.Services.AddRol",
+                  "isOptional": false,
+                  "defaultValue": null
+                }
+              ],
+              "parameters": [
+                {
+                  "nameOnMethod": "model",
+                  "name": "model",
+                  "jsonName": null,
+                  "type": "Washyn.UNAJ.Lot.Services.AddRol",
+                  "typeSimple": "Washyn.UNAJ.Lot.Services.AddRol",
+                  "isOptional": false,
+                  "defaultValue": null,
+                  "constraintTypes": null,
+                  "bindingSourceId": "Body",
                   "descriptorName": ""
                 }
               ],
@@ -1793,6 +1845,39 @@
       ],
       "genericArguments": null,
       "properties": null
+    },
+    "Acme.BookStore.Entities.RolDto": {
+      "baseType": null,
+      "isEnum": false,
+      "enumNames": null,
+      "enumValues": null,
+      "genericArguments": null,
+      "properties": [
+        {
+          "name": "Id",
+          "jsonName": null,
+          "type": "System.Guid",
+          "typeSimple": "string",
+          "isRequired": false,
+          "minLength": null,
+          "maxLength": null,
+          "minimum": null,
+          "maximum": null,
+          "regex": null
+        },
+        {
+          "name": "Nombre",
+          "jsonName": null,
+          "type": "System.String",
+          "typeSimple": "string",
+          "isRequired": false,
+          "minLength": null,
+          "maxLength": null,
+          "minimum": null,
+          "maximum": null,
+          "regex": null
+        }
+      ]
     },
     "System.Nullable<T0>": {
       "baseType": "System.ValueType",
@@ -4983,6 +5068,39 @@
         }
       ]
     },
+    "Washyn.UNAJ.Lot.Services.AddRol": {
+      "baseType": null,
+      "isEnum": false,
+      "enumNames": null,
+      "enumValues": null,
+      "genericArguments": null,
+      "properties": [
+        {
+          "name": "Nombre",
+          "jsonName": null,
+          "type": "System.String",
+          "typeSimple": "string",
+          "isRequired": true,
+          "minLength": null,
+          "maxLength": null,
+          "minimum": null,
+          "maximum": null,
+          "regex": null
+        },
+        {
+          "name": "ComisionId",
+          "jsonName": null,
+          "type": "System.Guid",
+          "typeSimple": "string",
+          "isRequired": true,
+          "minLength": null,
+          "maxLength": null,
+          "minimum": null,
+          "maximum": null,
+          "regex": null
+        }
+      ]
+    },
     "Washyn.UNAJ.Lot.Services.AsignComisionDto": {
       "baseType": null,
       "isEnum": false,
@@ -5029,6 +5147,39 @@
           "type": "System.String",
           "typeSimple": "string",
           "isRequired": true,
+          "minLength": null,
+          "maxLength": null,
+          "minimum": null,
+          "maximum": null,
+          "regex": null
+        }
+      ]
+    },
+    "Washyn.UNAJ.Lot.Services.ComisionWithRoles": {
+      "baseType": "Volo.Abp.Application.Dtos.EntityDto<System.Guid>",
+      "isEnum": false,
+      "enumNames": null,
+      "enumValues": null,
+      "genericArguments": null,
+      "properties": [
+        {
+          "name": "Nombre",
+          "jsonName": null,
+          "type": "System.String",
+          "typeSimple": "string",
+          "isRequired": false,
+          "minLength": null,
+          "maxLength": null,
+          "minimum": null,
+          "maximum": null,
+          "regex": null
+        },
+        {
+          "name": "Rols",
+          "jsonName": null,
+          "type": "[Acme.BookStore.Entities.RolDto]",
+          "typeSimple": "[Acme.BookStore.Entities.RolDto]",
+          "isRequired": false,
           "minLength": null,
           "maxLength": null,
           "minimum": null,

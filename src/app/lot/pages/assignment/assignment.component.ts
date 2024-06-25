@@ -13,7 +13,7 @@ import {
 import {
     AsignComisionDto,
     ComisionDto,
-    ComisionService,
+    ComisionService, ComisionWithRoles,
     DocenteLookup,
 } from '../../../proxy/washyn/unaj/lot/services';
 import { AbpUtilService } from '../../utils/abp-util.service';
@@ -28,7 +28,9 @@ export class AssignmentComponent implements OnInit {
     modalComision: boolean = false;
 
     formComision: FormGroup;
+    formRol: FormGroup;
     selectedComision: ComisionDto = {} as ComisionDto;
+    modalRol: boolean = false;
 
     constructor(
         public formBuilder: FormBuilder,
@@ -37,11 +39,18 @@ export class AssignmentComponent implements OnInit {
     ) {}
 
     ngOnInit(): void {
+        this.buildRolForm();
         this.buildFormComision();
         this.listDataComision();
     }
 
-    // TODO: add optio for edit...
+    buildRolForm(){
+        this.formRol = this.formBuilder.group<{
+            nombre: FormControl<string>
+        }>({
+            nombre: new FormControl("", [Validators.required, Validators.maxLength(50)])
+        });
+    }
 
     saveFormComision() {
         if (this.formComision.invalid) {
@@ -67,20 +76,39 @@ export class AssignmentComponent implements OnInit {
         });
     }
 
-    comisiones = {
-        items: [],
-        totalCount: 0,
-    } as PagedResultDto<ComisionDto>;
+    saveFormRole() {
+        if (this.formRol.invalid) {
+            this.util.notify.error(
+                'Asegurese de llenar todos los datos del formulario.',
+                'Mensaje de validación'
+            );
+            return;
+        }
 
-    listDataComision() {
-        this.comisionService
-            .getList({
-                maxResultCount: 100,
-            })
-            .subscribe((res) => {
-                this.comisiones = res;
-            });
+        const reqObservable = this.comisionService.addRolByModel({
+            ... this.formRol.value,
+            comisionId : this.selectedComisionId,
+        });
+
+        reqObservable.subscribe(() => {
+            this.modalRol = false;
+            this.formRol.reset();
+            this.selectedComisionId = "";
+            this.listDataComision();
+        });
     }
+
+    comisiones: ComisionWithRoles[] = []
+
+    // Get comisiones y roles...
+    // get with details ...
+    listDataComision() {
+        this.comisionService.getAllWithDetails().subscribe(res =>{
+            this.comisiones = res;
+        });
+    }
+
+
 
     createComisionModal() {
         this.selectedComision = {} as ComisionDto;
@@ -97,6 +125,13 @@ export class AssignmentComponent implements OnInit {
                 [Validators.required, Validators.maxLength(100)]
             ),
         });
+    }
+
+    selectedComisionId: string = '';
+    agregarRol(comisionId: string){
+        this.selectedComisionId = comisionId;
+        this.modalRol = true;
+        // display modal for add rol...
     }
 
     editarNombreComision(item: ComisionDto) {

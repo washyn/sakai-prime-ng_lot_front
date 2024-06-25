@@ -1,4 +1,10 @@
 import type { EntityDto, PagedAndSortedResultRequestDto } from '@abp/ng.core';
+import type { RolDto } from '../../../../acme/book-store/entities/models';
+
+export interface AddRol {
+  nombre: string;
+  comisionId: string;
+}
 
 export interface AsignComisionDto {
   docenteId?: string;
@@ -7,6 +13,11 @@ export interface AsignComisionDto {
 
 export interface ComisionDto extends EntityDto<string> {
   nombre: string;
+}
+
+export interface ComisionWithRoles extends EntityDto<string> {
+  nombre?: string;
+  rols: RolDto[];
 }
 
 export interface CreateLotResultDto {

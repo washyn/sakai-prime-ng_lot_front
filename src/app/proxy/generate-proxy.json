@@ -668,6 +668,43 @@
               "allowAnonymous": null,
               "implementFrom": "Washyn.UNAJ.Lot.Services.ComisionAppService"
             },
+            "GetWithDetailsByComisionId": {
+              "uniqueName": "GetWithDetailsByComisionId",
+              "name": "GetWithDetails",
+              "httpMethod": "GET",
+              "url": "api/app/comision/with-details/{comisionId}",
+              "supportedVersions": [],
+              "parametersOnMethod": [
+                {
+                  "name": "comisionId",
+                  "typeAsString": "System.Guid, System.Private.CoreLib",
+                  "type": "System.Guid",
+                  "typeSimple": "string",
+                  "isOptional": false,
+                  "defaultValue": null
+                }
+              ],
+              "parameters": [
+                {
+                  "nameOnMethod": "comisionId",
+                  "name": "comisionId",
+                  "jsonName": null,
+                  "type": "System.Guid",
+                  "typeSimple": "string",
+                  "isOptional": false,
+                  "defaultValue": null,
+                  "constraintTypes": [],
+                  "bindingSourceId": "Path",
+                  "descriptorName": ""
+                }
+              ],
+              "returnValue": {
+                "type": "Washyn.UNAJ.Lot.Services.ComisionWithRoles",
+                "typeSimple": "Washyn.UNAJ.Lot.Services.ComisionWithRoles"
+              },
+              "allowAnonymous": null,
+              "implementFrom": "Washyn.UNAJ.Lot.Services.ComisionAppService"
+            },
             "GetAllWithDetails": {
               "uniqueName": "GetAllWithDetails",
               "name": "GetAllWithDetails",

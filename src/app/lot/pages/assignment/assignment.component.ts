@@ -146,20 +146,25 @@ export class AssignmentComponent implements OnInit {
         });
     }
 
-    removerComision(item: ComisionDto) {
+    removerComision(item: string) {
         this.util.message.confirm(
             'Esta seguro de remover esta comisión',
             'Confirmación',
             (isConfirmed) => {
                 if (isConfirmed) {
-                    this.comisionService.delete(item.id).subscribe(() => {
+                    this.comisionService.delete(item).subscribe(() => {
                         this.util.notify.info(
-                            `Se elimino la comisión ${item.nombre}.`
+                            `Se elimino la comisión.`
                         );
                         this.listDataComision();
                     });
                 }
             }
         );
+    }
+
+    agregarParticipantes(id: string) {
+        // ...
+        // open modal with all docentes....
     }
 }

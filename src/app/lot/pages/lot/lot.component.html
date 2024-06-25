@@ -1,3 +1,23 @@
+<div
+    class="mb-3 flex align-items-start flex-column lg:justify-content-between lg:flex-row"
+>
+    <div>
+        <div class="font-medium text-3xl text-900">Sorteo para {{comisionWithRoles.nombre}}</div>
+    </div>
+    <div class="mt-3 lg:mt-0">
+        <button
+            pButton
+            pRipple
+            icon="pi pi-download"
+            label="Agregar participante"
+            (click)="showModal()"
+            class="p-button-outlined mr-2"
+        ></button>
+    </div>
+</div>
+
+<!--add modal for load docentes-->
+
 <div class="grid">
     <div class="col-6">
         <div class="surface-card p-3 shadow-3 border-round">
@@ -62,21 +82,12 @@
         <div class="surface-card p-3 shadow-3 border-round">
             <form class="grid formgrid p-fluid" [formGroup]="formLot">
                 <div class="field col-12">
-                    <label class="font-medium text-700">Participante</label>
-<!--                    TODO: change as dropdown-->
+                    <label class="font-medium text-700">Rol</label>
                     <p-dropdown
                         [options]="roles"
                         optionLabel="displayName"
                         formControlName="rol"
                         placeholder="Selecione el rol a sortear" />
-
-<!--                    <p-autoComplete-->
-<!--                        [dropdown]="true"-->
-<!--                        (completeMethod)="filter($event)"-->
-<!--                        formControlName="docente"-->
-<!--                        [suggestions]="filteredDocentes"-->
-<!--                        field="fullName"-->
-<!--                    />-->
                 </div>
             </form>
 
@@ -102,3 +113,73 @@
         </div>
     </div>
 </div>
+
+
+
+<p-dialog
+    [(visible)]="modalIntegrantes"
+    [style]="{ width: '600px' }"
+    header="Agregar participante"
+    [modal]="true"
+    [draggable]="false"
+    [resizable]="false"
+>
+    <ng-template pTemplate="content">
+<!--        <form-->
+<!--            class="grid formgrid p-fluid"-->
+<!--            [formGroup]="formRol"-->
+<!--            (ngSubmit)="saveFormRole()"-->
+<!--        >-->
+<!--            <div class="field col-12">-->
+<!--                <label class="font-medium text-700">Nombre de rol *</label>-->
+<!--                <input-->
+<!--                    class="p-inputtext-sm"-->
+<!--                    pInputText-->
+<!--                    type="text"-->
+<!--                    formControlName="nombre"-->
+<!--                />-->
+<!--            </div>-->
+<!--        </form>-->
+
+        <p-table [value]="docentesForModal" [tableStyle]="{ 'min-width': '20rem' }"
+                 [(selection)]="selectedDocnentes"
+                 dataKey="id"
+        >
+            <ng-template pTemplate="header">
+                <tr>
+                    <th style="width: 4rem"><p-tableHeaderCheckbox /></th>
+                    <th>Nombres</th>
+                </tr>
+            </ng-template>
+            <ng-template pTemplate="body" let-docente>
+                <tr>
+                    <td>
+                        <p-tableCheckbox [value]="docente" />
+                    </td>
+                    <td>{{ docente.fullName }}</td>
+                </tr>
+            </ng-template>
+        </p-table>
+
+    </ng-template>
+
+    <ng-template pTemplate="footer">
+        <button
+            pButton
+            pRipple
+            label="Cancelar"
+            icon="pi pi-times"
+            class="p-button-text"
+            (click)="modalIntegrantes = false"
+        ></button>
+<!--        validate if some  is selected-->
+        <button
+            pButton
+            pRipple
+            label="Guardar"
+            icon="pi pi-check"
+            class="p-button-text"
+
+        ></button>
+    </ng-template>
+</p-dialog>

@@ -95,6 +95,14 @@ export class ComisionService {
     { apiName: this.apiName,...config });
   
 
+  getWithDetailsByComisionId = (comisionId: string, config?: Partial<Rest.Config>) =>
+    this.restService.request<any, ComisionWithRoles>({
+      method: 'GET',
+      url: `/api/app/comision/with-details/${comisionId}`,
+    },
+    { apiName: this.apiName,...config });
+  
+
   update = (id: string, input: ComisionDto, config?: Partial<Rest.Config>) =>
     this.restService.request<any, ComisionDto>({
       method: 'PUT',

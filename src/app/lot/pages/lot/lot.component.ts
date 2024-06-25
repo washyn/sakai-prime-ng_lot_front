@@ -1,9 +1,6 @@
-import { PagedResultDto } from '@abp/ng.core';
 import {
-    ChangeDetectionStrategy,
     Component,
-    ViewChild,
-    type OnInit,
+    type OnInit, Input,
 } from '@angular/core';
 import {
     FormBuilder,
@@ -18,10 +15,8 @@ import {
     SelectService,
 } from 'src/app/proxy/acme/book-store/services';
 import { LookupDto } from 'src/app/proxy/washyn/unaj/lot';
-import { ResultLotService } from 'src/app/proxy/washyn/unaj/lot/services';
+import {ComisionService, ComisionWithRoles, ResultLotService} from 'src/app/proxy/washyn/unaj/lot/services';
 import { AbpUtilService } from '../../utils/abp-util.service';
-import { ReportService } from 'src/app/proxy/washyn/unaj/lot/controllers';
-import { RandomChoiserComponent } from '../components/random-choiser/random-choiser.component';
 
 
 interface RolRegister {
@@ -39,13 +34,17 @@ export class LotComponent implements OnInit {
     allTeachers: DocenteWithLookup[] = [];
     formLot: FormGroup<RolRegister>;
     roles: LookupDto<string>[] = [];
+    comisionWithRoles: ComisionWithRoles;
+    modalIntegrantes = false;
+
+    @Input() comisionId!: string;
 
     constructor(
-        public docenteService: DocenteService,
         public selectService: SelectService,
         public lotService: ResultLotService,
         public util: AbpUtilService,
-        public reportService: ReportService,
+        public docenteService: DocenteService,
+        public comisionService: ComisionService,
         public formBuilder: FormBuilder
     ) {
         this.formLot = this.formBuilder.group<RolRegister>({
@@ -56,8 +55,38 @@ export class LotComponent implements OnInit {
     }
 
     ngOnInit(): void {
-        this.loadRoles();
         this.loadDocentesSorteadosYFaltantes();
+        this.loadWithRoles();
+    }
+
+    docentesForModal: DocenteWithLookup[] = []
+
+    selectedDocnentes: DocenteWithLookup[] = []
+    loadDocentes(){
+        this.docenteService.getList({
+            maxResultCount: 1000
+        }).subscribe(res => {
+            this.docentesForModal = res.items;
+        });
+    }
+    
+    // TODO: Continuer here...
+    showModal(){
+        this.modalIntegrantes = true;
+        this.loadDocentes();
+    }
+
+    loadWithRoles(){
+        this.comisionService.getWithDetailsByComisionId(this.comisionId).subscribe(res =>{
+            this.comisionWithRoles = res;
+            this.roles = res.rols.map(rolDto =>{
+                return {
+                    id: rolDto.id,
+                    displayName: rolDto.nombre,
+                    alternativeText: rolDto.nombre
+                } as LookupDto<string>;
+            });
+        });
     }
 
     startLot() {
@@ -75,12 +104,6 @@ export class LotComponent implements OnInit {
         },100);
     }
 
-    loadRoles() {
-        this.selectService.getRol().subscribe((res) => {
-            this.roles = res;
-        });
-    }
-
     sorteados: DocenteWithLookup[] = [];
     faltantes: DocenteWithLookup[] = [];
 
@@ -92,19 +115,6 @@ export class LotComponent implements OnInit {
             this.faltantes = res;
             this.allTeachers = [...res];
         });
-    }
-
-    filter(event: AutoCompleteCompleteEvent) {
-        const filtered: DocenteWithLookup[] = [];
-        const query = event.query;
-        for (let i = 0; i < this.allTeachers.length; i++) {
-            const docentee = this.allTeachers[i];
-            if (docentee.fullName.toLowerCase().includes(query.toLowerCase())) {
-                filtered.push(docentee);
-            }
-        }
-
-        this.filteredDocentes = filtered;
     }
 
     resultadoSorteo(rol: LookupDto<string>, docente: LookupDto<string>) {

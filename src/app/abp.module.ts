@@ -9,6 +9,8 @@ import { CUSTOM_ERROR_HANDLERS } from './lot/utils/error-handler/http-error.toke
 import { StatusCodeErrorHandlerService } from './lot/utils/error-handler/status-code-error-handler.service';
 import { AbpAuthenticationErrorHandler } from './lot/utils/error-handler/authentication-error-handler.service';
 import { UnknownStatusCodeErrorHandlerService } from './lot/utils/error-handler/unknown-status-code-error-handler.service';
+import {HTTP_INTERCEPTORS} from "@angular/common/http";
+import {HttpErrorInterceptor} from "./lot/utils/http-error-interceptor";
 
 
 @NgModule({
@@ -44,6 +46,11 @@ import { UnknownStatusCodeErrorHandlerService } from './lot/utils/error-handler/
         //     multi: true,
         //     useExisting: UnknownStatusCodeErrorHandlerService,
         // },
+        {
+            provide: HTTP_INTERCEPTORS,
+            useClass: HttpErrorInterceptor,
+            multi: true,
+        }
     ],
 })
 export class AbpCustomModule {

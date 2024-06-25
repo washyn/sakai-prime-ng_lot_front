@@ -35,6 +35,7 @@ export function httpErrorConfigFactory() {
     } as HttpErrorConfig;
 }
 
+// TODO: fix for show another erros in console, or add http error interceptor ...
 @Injectable({
     providedIn: 'root',
 })
@@ -82,10 +83,12 @@ export class CustomErrorHandlerService {
 
             if (errorHandlerService) {
                 errorHandlerService.execute();
+                //throw here
                 return;
             }
         }
 
+        // throw here
         this.showError().subscribe();
     }
 

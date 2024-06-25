@@ -23,6 +23,12 @@ import { AbpUtilService } from '../../utils/abp-util.service';
 import { ReportService } from 'src/app/proxy/washyn/unaj/lot/controllers';
 import { RandomChoiserComponent } from '../components/random-choiser/random-choiser.component';
 
+
+interface RolRegister {
+    rol?: FormControl<LookupDto<string>>;
+}
+
+
 @Component({
     selector: 'app-lot',
     templateUrl: './lot.component.html',
@@ -31,7 +37,7 @@ import { RandomChoiserComponent } from '../components/random-choiser/random-choi
 export class LotComponent implements OnInit {
     filteredDocentes: DocenteWithLookup[] = [];
     allTeachers: DocenteWithLookup[] = [];
-    formLot: FormGroup;
+    formLot: FormGroup<RolRegister>;
     roles: LookupDto<string>[] = [];
 
     constructor(
@@ -42,10 +48,8 @@ export class LotComponent implements OnInit {
         public reportService: ReportService,
         public formBuilder: FormBuilder
     ) {
-        this.formLot = this.formBuilder.group<{
-            docente?: FormControl<DocenteWithLookup>;
-        }>({
-            docente: new FormControl<DocenteWithLookup>(null, [
+        this.formLot = this.formBuilder.group<RolRegister>({
+            rol: new FormControl<LookupDto<string>>(null, [
                 Validators.required,
             ]),
         });
@@ -59,14 +63,16 @@ export class LotComponent implements OnInit {
     startLot() {
         if (this.formLot.invalid) {
             this.util.notify.error(
-                'Selecione un docente antes de realizar el sorteo.',
+                'Selecione un rol para realizar el sorteo.',
                 'Mensaje de validación'
             );
             return;
         }
 
-        // validate form and check if has value...
-        this.randomSelect();
+        this.clearSelectedTag();
+        setTimeout(()=>{
+            this.randomSelect();
+        },100);
     }
 
     loadRoles() {
@@ -101,8 +107,8 @@ export class LotComponent implements OnInit {
         this.filteredDocentes = filtered;
     }
 
-    resultadoSorteo(rol: LookupDto<string>, docente: DocenteWithLookup) {
-        let message = `Se eligió a ${docente.fullName} como ${rol.displayName}`;
+    resultadoSorteo(rol: LookupDto<string>, docente: LookupDto<string>) {
+        let message = `Se sorteó a ${docente.displayName} como ${rol.displayName}`;
         this.util.message.confirm(
             message,
             'Sorteo',
@@ -135,6 +141,7 @@ export class LotComponent implements OnInit {
         );
     }
 
+    // TODO: en algunas ocasiones se queda pegado el sorteo anterior antes de iniciar, revisar
     randomSelect() {
         const times = 30;
         const interval = setInterval(() => {
@@ -152,16 +159,18 @@ export class LotComponent implements OnInit {
                 this.highlightTag(randomTag);
 
                 let node = <HTMLElement>randomTag;
-                let dataResultRole = {
+                let dataResultChoise = {
                     id: node.dataset['id'],
                     displayName: node.dataset['displayName'],
                     alternativeText: '',
                 } as LookupDto<string>;
 
-                this.resultadoSorteo(
-                    dataResultRole,
-                    this.formLot.value.docente
-                );
+                setTimeout(()=>{
+                    this.resultadoSorteo(
+                        this.formLot.value.rol,
+                        dataResultChoise
+                    );
+                },500);
             }, 100);
         }, times * 100);
     }
@@ -177,5 +186,12 @@ export class LotComponent implements OnInit {
 
     unhighlightTag(tag) {
         tag.classList.remove('highlight');
+    }
+
+    clearSelectedTag() {
+        const tags = document.querySelectorAll('.tag');
+        tags.forEach(el =>{
+            this.unhighlightTag(el);
+        });
     }
 }

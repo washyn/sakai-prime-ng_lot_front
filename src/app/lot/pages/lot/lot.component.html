@@ -59,13 +59,20 @@
             <form class="grid formgrid p-fluid" [formGroup]="formLot">
                 <div class="field col-12">
                     <label class="font-medium text-700">Participante</label>
-                    <p-autoComplete
-                        [dropdown]="true"
-                        (completeMethod)="filter($event)"
-                        formControlName="docente"
-                        [suggestions]="filteredDocentes"
-                        field="fullName"
-                    />
+<!--                    TODO: change as dropdown-->
+                    <p-dropdown
+                        [options]="roles"
+                        optionLabel="displayName"
+                        formControlName="rol"
+                        placeholder="Selecione el rol a sortear" />
+
+<!--                    <p-autoComplete-->
+<!--                        [dropdown]="true"-->
+<!--                        (completeMethod)="filter($event)"-->
+<!--                        formControlName="docente"-->
+<!--                        [suggestions]="filteredDocentes"-->
+<!--                        field="fullName"-->
+<!--                    />-->
                 </div>
             </form>
 
@@ -80,12 +87,12 @@
                 class="container-tags border-solid border-1 border-primary-500 border-round"
             >
                 <span
-                    *ngFor="let rol of roles; let i = index"
-                    [attr.data-id]="rol.id"
-                    [attr.data-display-name]="rol.displayName"
+                    *ngFor="let item of sorteados; let i = index"
+                    [attr.data-id]="item.id"
+                    [attr.data-display-name]="item.fullName"
                     class="tag"
                 >
-                    {{ rol.displayName }}
+                    {{ item.fullName }}
                 </span>
             </div>
         </div>

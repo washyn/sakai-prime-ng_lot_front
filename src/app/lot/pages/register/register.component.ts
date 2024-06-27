@@ -1,5 +1,5 @@
 import { CommonModule } from '@angular/common';
-import { ChangeDetectionStrategy, Component, OnInit } from '@angular/core';
+import {ChangeDetectionStrategy, Component, OnInit, ViewEncapsulation} from '@angular/core';
 import {
     FormBuilder,
     FormControl,
@@ -81,6 +81,8 @@ export class RegisterComponent implements OnInit {
             gradoId: new FormControl<string>('', [Validators.required]),
             genero: new FormControl<Gender>(null, [Validators.required]),
             area: new FormControl<Area>(null, []),
+        }, {
+            updateOn:"change"
         });
     }
 

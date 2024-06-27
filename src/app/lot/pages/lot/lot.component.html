@@ -8,7 +8,7 @@
         <button
             pButton
             pRipple
-            icon="pi pi-download"
+            icon="pi pi-plus"
             label="Agregar participante"
             (click)="showModal()"
             class="p-button-outlined mr-2"
@@ -176,10 +176,10 @@
         <button
             pButton
             pRipple
+            (click)="saveIntegrantes()"
             label="Guardar"
             icon="pi pi-check"
             class="p-button-text"
-
         ></button>
     </ng-template>
 </p-dialog>

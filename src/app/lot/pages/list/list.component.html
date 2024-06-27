@@ -131,7 +131,6 @@
         <form
             class="grid formgrid p-fluid"
             [formGroup]="formGroup"
-            (ngSubmit)="save()"
         >
             <div class="field col-12">
                 <label class="font-medium text-700">DNI</label>
@@ -241,6 +240,7 @@
         <button
             pButton
             pRipple
+            type="submit"
             label="Guardar"
             icon="pi pi-check"
             class="p-button-text"

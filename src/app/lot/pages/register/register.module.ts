@@ -9,6 +9,9 @@ import { AutoCompleteModule } from 'primeng/autocomplete';
 import { DropdownModule } from 'primeng/dropdown';
 import { RadioButtonModule } from 'primeng/radiobutton';
 import { InputNumberModule } from 'primeng/inputnumber';
+import {NgxValidateCoreModule} from "@ngx-validate/core";
+
+import {ErrorComponent} from "../../utils/error.component";
 @NgModule({
     imports: [
         CommonModule,
@@ -21,6 +24,7 @@ import { InputNumberModule } from 'primeng/inputnumber';
         DropdownModule,
         InputNumberModule,
         RadioButtonModule,
+        NgxValidateCoreModule,
     ],
     declarations: [RegisterComponent],
     exports: [

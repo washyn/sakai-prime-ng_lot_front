@@ -55,8 +55,8 @@ export class LotComponent implements OnInit {
     }
 
     ngOnInit(): void {
-        this.loadDocentesSorteadosYFaltantes();
         this.loadWithRoles();
+        this.loadDocentesSorteadosYFaltantes();
     }
 
     docentesForModal: DocenteWithLookup[] = []
@@ -69,12 +69,26 @@ export class LotComponent implements OnInit {
             this.docentesForModal = res.items;
         });
     }
-    
+
     // TODO: Continuer here...
     showModal(){
         this.modalIntegrantes = true;
         this.loadDocentes();
+        this.selectedDocnentes = []
+        // load docentes... from backend... ...
     }
+
+    // add func for save modal ... ...
+    saveIntegrantes(){
+        // map fields and send to backend...
+        // ...
+        let identifiers:string[] = this.selectedDocnentes.map(a =>{
+            return a.id;
+        });
+        console.log(identifiers);
+    }
+
+    // TODO: can be change back...
 
     loadWithRoles(){
         this.comisionService.getWithDetailsByComisionId(this.comisionId).subscribe(res =>{

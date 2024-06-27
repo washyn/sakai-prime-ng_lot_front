@@ -15,6 +15,7 @@ import { DialogModule } from 'primeng/dialog';
 import { GenderPipe } from '../gender.pipe';
 import { AreaPipe } from '../area.pipe';
 import { InputNumberModule } from 'primeng/inputnumber';
+import {NgxValidateCoreModule} from "@ngx-validate/core";
 @NgModule({
     imports: [
         CommonModule,
@@ -35,6 +36,7 @@ import { InputNumberModule } from 'primeng/inputnumber';
         CheckboxModule,
         DialogModule,
         InputNumberModule,
+        NgxValidateCoreModule
     ],
     declarations: [ListComponent, GenderPipe, AreaPipe],
     exports: [

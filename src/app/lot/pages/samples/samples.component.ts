@@ -1,7 +1,18 @@
 import { LocalizationModule } from '@abp/ng.core';
 import { CommonModule } from '@angular/common';
-import { ChangeDetectionStrategy, Component } from '@angular/core';
+import {
+    ChangeDetectionStrategy,
+    Component,
+    OnInit,
+    ViewEncapsulation,
+} from '@angular/core';
 import { AbpUtilService } from '../../utils/abp-util.service';
+import {
+    FormBuilder,
+    FormControl,
+    FormGroup,
+    Validators,
+} from '@angular/forms';
 
 // NOTE:can be add methods for test, error methods withoud sleep
 @Component({
@@ -39,12 +50,40 @@ import { AbpUtilService } from '../../utils/abp-util.service';
 
         <hr />
         <button pButton (click)="block()">UI block</button>
+<!--        -->
+        <form [formGroup]="formGroup" (ngSubmit)="submitForm()">
+            <div class="field">
+                <label>Nombre</label>
+                <input formControlName="nombre"/>
+            </div>
+
+            <button type="button" (click)="submitForm()">
+                Submit
+            </button>
+        </form>
     `,
-    styles: ``,
+    // changeDetection: ChangeDetectionStrategy.OnPush,
+    // encapsulation: ViewEncapsulation.None,
 })
-export class SamplesComponent {
+export class SamplesComponent implements OnInit {
     // TODO: test block ui and create...
-    constructor(public util: AbpUtilService) {}
+
+    formGroup: FormGroup;
+
+    constructor(public util: AbpUtilService, public formBuilder: FormBuilder) {}
+
+    ngOnInit(): void {
+        this.formGroup = this.formBuilder.group({
+            nombre: new FormControl('', [
+                Validators.required,
+            ]),
+        });
+    }
+
+    submitForm() {
+        if (!this.formGroup.valid) return;
+        console.log(this.formGroup.value);
+    }
 
     block() {
         this.util.ui.setBusy();

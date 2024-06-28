@@ -31,22 +31,22 @@ export class AppMenuComponent implements OnInit {
                         icon: 'pi pi-fw pi-chart-bar',
                         routerLink: ['/lot/lot-result'],
                     },
-                    {
-                        label: 'Sorteo',
-                        icon: 'pi pi-fw pi-box',
-                        routerLink: ['/lot/process'],
-                    },
+                    // {
+                    //     label: 'Sorteo',
+                    //     icon: 'pi pi-fw pi-box',
+                    //     routerLink: ['/lot/process'],
+                    // },
                     {
                         label: 'Comisiones',
                         icon: 'pi pi-fw pi-box',
                         routerLink: ['/lot/assignment'],
                     },
                     // assignment
-                    {
-                        label: 'Landing',
-                        icon: 'pi pi-fw pi-box',
-                        routerLink: ['/landing'],
-                    },
+                    // {
+                    //     label: 'Landing',
+                    //     icon: 'pi pi-fw pi-box',
+                    //     routerLink: ['/landing'],
+                    // },
                     {
                         label: 'Prueba',
                         icon: 'pi pi-fw pi-box',

@@ -11,7 +11,7 @@
                 (click)="donwloadAll()"
                 pRipple
                 icon="pi pi-download"
-                label="Descargar informe(carta de invitacion)"
+                label="Descargar informe(carta de invitación)"
                 class="p-button-outlined mr-2"
             ></button>
         </div>
@@ -49,8 +49,8 @@
             <tr>
                 <th>DNI</th>
                 <th>Apellidos y nombres</th>
-                <th>Rol</th>
                 <th>Comisión</th>
+                <th>Rol</th>
                 <!-- <th>Opciones</th> -->
             </tr>
         </ng-template>
@@ -63,11 +63,12 @@
                     {{ item.fullName }}
                 </td>
                 <td>
-                    {{ item.rolName }}
-                </td>
-                <td>
                     {{ item.comision }}
                 </td>
+                <td>
+                    {{ item.rolName }}
+                </td>
+
                 <!-- <td>
                     {{ item.creationTime | date : "medium" }}
                 </td> -->

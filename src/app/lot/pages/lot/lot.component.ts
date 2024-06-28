@@ -128,10 +128,10 @@ export class LotComponent implements OnInit {
     faltantes: DocenteWithLookup[] = [];
 
     loadDocentesSorteadosYFaltantes() {
-        this.lotService.getAlreadyWithLot().subscribe((res) => {
+        this.lotService.getAlreadyWithLotByComisionId(this.comisionId).subscribe((res) => {
             this.sorteados = res;
         });
-        this.lotService.getWithoutLot().subscribe((res) => {
+        this.lotService.getWithoutLotByComisionId(this.comisionId).subscribe((res) => {
             this.faltantes = res;
             this.allTeachers = [...res];
         });
@@ -141,7 +141,7 @@ export class LotComponent implements OnInit {
         let message = `Se sorteó a ${docente.displayName} como ${rol.displayName}`;
         this.util.message.confirm(
             message,
-            'Sorteo',
+            'Resultado de sorteo',
             (confirm) => {
                 if (confirm) {
                     this.lotService
@@ -154,7 +154,6 @@ export class LotComponent implements OnInit {
                                 'Sorteo registrado.',
                                 'Registrado!'
                             );
-                            // this.formLot.reset();
                             this.loadDocentesSorteadosYFaltantes();
                         });
                 } else {

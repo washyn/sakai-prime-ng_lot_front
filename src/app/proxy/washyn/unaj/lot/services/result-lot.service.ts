@@ -38,10 +38,10 @@ export class ResultLotService {
     { apiName: this.apiName,...config });
   
 
-  getAlreadyWithLot = (config?: Partial<Rest.Config>) =>
+  getAlreadyWithLotByComisionId = (comisionId: string, config?: Partial<Rest.Config>) =>
     this.restService.request<any, DocenteWithRolDto[]>({
       method: 'GET',
-      url: '/api/app/result-lot/already-with-lot',
+      url: `/api/app/result-lot/already-with-lot/${comisionId}`,
     },
     { apiName: this.apiName,...config });
   
@@ -55,10 +55,10 @@ export class ResultLotService {
     { apiName: this.apiName,...config });
   
 
-  getWithoutLot = (config?: Partial<Rest.Config>) =>
+  getWithoutLotByComisionId = (comisionId: string, config?: Partial<Rest.Config>) =>
     this.restService.request<any, DocenteWithRolDto[]>({
       method: 'GET',
-      url: '/api/app/result-lot/without-lot',
+      url: `/api/app/result-lot/without-lot/${comisionId}`,
     },
     { apiName: this.apiName,...config });
 

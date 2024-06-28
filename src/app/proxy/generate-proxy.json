@@ -1248,14 +1248,36 @@
           "type": "Washyn.UNAJ.Lot.Services.ResultLotAppService",
           "interfaces": [],
           "actions": {
-            "GetAlreadyWithLot": {
-              "uniqueName": "GetAlreadyWithLot",
+            "GetAlreadyWithLotByComisionId": {
+              "uniqueName": "GetAlreadyWithLotByComisionId",
               "name": "GetAlreadyWithLot",
               "httpMethod": "GET",
-              "url": "api/app/result-lot/already-with-lot",
+              "url": "api/app/result-lot/already-with-lot/{comisionId}",
               "supportedVersions": [],
-              "parametersOnMethod": [],
-              "parameters": [],
+              "parametersOnMethod": [
+                {
+                  "name": "comisionId",
+                  "typeAsString": "System.Guid, System.Private.CoreLib",
+                  "type": "System.Guid",
+                  "typeSimple": "string",
+                  "isOptional": false,
+                  "defaultValue": null
+                }
+              ],
+              "parameters": [
+                {
+                  "nameOnMethod": "comisionId",
+                  "name": "comisionId",
+                  "jsonName": null,
+                  "type": "System.Guid",
+                  "typeSimple": "string",
+                  "isOptional": false,
+                  "defaultValue": null,
+                  "constraintTypes": [],
+                  "bindingSourceId": "Path",
+                  "descriptorName": ""
+                }
+              ],
               "returnValue": {
                 "type": "System.Collections.Generic.List<Acme.BookStore.Entities.DocenteWithRolDto>",
                 "typeSimple": "[Acme.BookStore.Entities.DocenteWithRolDto]"
@@ -1263,14 +1285,36 @@
               "allowAnonymous": null,
               "implementFrom": "Washyn.UNAJ.Lot.Services.ResultLotAppService"
             },
-            "GetWithoutLot": {
-              "uniqueName": "GetWithoutLot",
+            "GetWithoutLotByComisionId": {
+              "uniqueName": "GetWithoutLotByComisionId",
               "name": "GetWithoutLot",
               "httpMethod": "GET",
-              "url": "api/app/result-lot/without-lot",
+              "url": "api/app/result-lot/without-lot/{comisionId}",
               "supportedVersions": [],
-              "parametersOnMethod": [],
-              "parameters": [],
+              "parametersOnMethod": [
+                {
+                  "name": "comisionId",
+                  "typeAsString": "System.Guid, System.Private.CoreLib",
+                  "type": "System.Guid",
+                  "typeSimple": "string",
+                  "isOptional": false,
+                  "defaultValue": null
+                }
+              ],
+              "parameters": [
+                {
+                  "nameOnMethod": "comisionId",
+                  "name": "comisionId",
+                  "jsonName": null,
+                  "type": "System.Guid",
+                  "typeSimple": "string",
+                  "isOptional": false,
+                  "defaultValue": null,
+                  "constraintTypes": [],
+                  "bindingSourceId": "Path",
+                  "descriptorName": ""
+                }
+              ],
               "returnValue": {
                 "type": "System.Collections.Generic.List<Acme.BookStore.Entities.DocenteWithRolDto>",
                 "typeSimple": "[Acme.BookStore.Entities.DocenteWithRolDto]"

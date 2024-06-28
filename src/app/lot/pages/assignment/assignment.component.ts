@@ -11,7 +11,6 @@ import {
     Gender,
 } from '../../../proxy/acme/book-store/entities';
 import {
-    AsignComisionDto,
     ComisionDto,
     ComisionService, ComisionWithRoles,
     DocenteLookup,

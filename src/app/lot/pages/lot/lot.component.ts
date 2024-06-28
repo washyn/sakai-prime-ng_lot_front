@@ -34,7 +34,11 @@ export class LotComponent implements OnInit {
     allTeachers: DocenteWithLookup[] = [];
     formLot: FormGroup<RolRegister>;
     roles: LookupDto<string>[] = [];
-    comisionWithRoles: ComisionWithRoles;
+    comisionWithRoles: ComisionWithRoles = {
+        id:"",
+        rols:[],
+        nombre:""
+    };
     modalIntegrantes = false;
 
     @Input() comisionId!: string;
@@ -66,7 +70,7 @@ export class LotComponent implements OnInit {
         this.docenteService.getList({
             maxResultCount: 1000
         }).subscribe(res => {
-            this.docentesForModal = res.items;
+            this.docentesForModal = res.items.sort((a,b) => a.fullName.localeCompare(b.fullName));
         });
     }
 
@@ -78,14 +82,18 @@ export class LotComponent implements OnInit {
         // load docentes... from backend... ...
     }
 
-    // add func for save modal ... ...
+    // add func for save modal
     saveIntegrantes(){
+        this.modalIntegrantes = false;
         // map fields and send to backend...
         // ...
         let identifiers:string[] = this.selectedDocnentes.map(a =>{
             return a.id;
         });
-        console.log(identifiers);
+        this.comisionService.assignToComisionByComisionIdAndDocentes(this.comisionId, identifiers).subscribe(()=>{
+            this.util.notify.info("Se modifico la lista de docentes de esta comision.");
+            this.loadDocentesSorteadosYFaltantes();
+        });
     }
 
     // TODO: can be change back...

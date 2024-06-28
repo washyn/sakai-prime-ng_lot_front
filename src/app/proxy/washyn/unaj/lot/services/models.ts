@@ -6,11 +6,6 @@ export interface AddRol {
   comisionId: string;
 }
 
-export interface AsignComisionDto {
-  docenteId?: string;
-  comisionId?: string;
-}
-
 export interface ComisionDto extends EntityDto<string> {
   nombre: string;
 }

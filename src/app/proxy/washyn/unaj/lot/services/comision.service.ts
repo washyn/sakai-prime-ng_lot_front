@@ -1,4 +1,4 @@
-import type { AddRol, AsignComisionDto, ComisionDto, ComisionWithRoles, DocenteLookup } from './models';
+import type { AddRol, ComisionDto, ComisionWithRoles, DocenteLookup } from './models';
 import { RestService, Rest } from '@abp/ng.core';
 import type { PagedAndSortedResultRequestDto, PagedResultDto } from '@abp/ng.core';
 import { Injectable } from '@angular/core';
@@ -19,11 +19,11 @@ export class ComisionService {
     { apiName: this.apiName,...config });
   
 
-  assignToComisionByData = (data: AsignComisionDto[], config?: Partial<Rest.Config>) =>
+  assignToComisionByComisionIdAndDocentes = (comisionId: string, docentes: string[], config?: Partial<Rest.Config>) =>
     this.restService.request<any, void>({
       method: 'POST',
-      url: '/api/app/comision/assign-to-comision',
-      body: data,
+      url: `/api/app/comision/assign-to-comision/${comisionId}`,
+      body: docentes,
     },
     { apiName: this.apiName,...config });
   
@@ -91,6 +91,14 @@ export class ComisionService {
       method: 'GET',
       url: '/api/app/comision',
       params: { sorting: input.sorting, skipCount: input.skipCount, maxResultCount: input.maxResultCount },
+    },
+    { apiName: this.apiName,...config });
+  
+
+  getParticipantesByComisionId = (comisionId: string, config?: Partial<Rest.Config>) =>
+    this.restService.request<any, DocenteLookup[]>({
+      method: 'GET',
+      url: `/api/app/comision/participantes/${comisionId}`,
     },
     { apiName: this.apiName,...config });
   

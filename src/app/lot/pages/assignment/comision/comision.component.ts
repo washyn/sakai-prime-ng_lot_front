@@ -2,7 +2,7 @@ import { CommonModule } from '@angular/common';
 import { Component, Input, OnInit } from '@angular/core';
 import { AbpUtilService } from 'src/app/lot/utils/abp-util.service';
 import {
-    AsignComisionDto,
+    // AsignComisionDto,
     ComisionDto,
     ComisionService,
     DocenteLookup,
@@ -66,20 +66,20 @@ export class ComisionComponent implements OnInit {
     }
 
     resultSelected() {
-        let data = this.selectedDocente.map((a) => {
-            return {
-                docenteId: a.id,
-                comisionId: this.comision.id,
-            } as AsignComisionDto;
-        });
+        // let data = this.selectedDocente.map((a) => {
+        //     return {
+        //         docenteId: a.id,
+        //         comisionId: this.comision.id,
+        //     } as AsignComisionDto;
+        // });
 
-        this.comisionService.assignToComisionByData(data).subscribe((res) => {
-            this.selectedDocente = [];
-            this.modalAgregarDocente = false;
-            this.util.notify.success(
-                'Se asignó los docentes a la comisión.',
-                'Mensaje confirmación'
-            );
-        });
+        // this.comisionService.assignToComisionByData(data).subscribe((res) => {
+        //     this.selectedDocente = [];
+        //     this.modalAgregarDocente = false;
+        //     this.util.notify.success(
+        //         'Se asignó los docentes a la comisión.',
+        //         'Mensaje confirmación'
+        //     );
+        // });
     }
 }

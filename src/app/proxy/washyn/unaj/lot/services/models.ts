@@ -16,9 +16,9 @@ export interface ComisionWithRoles extends EntityDto<string> {
 }
 
 export interface CreateLotResultDto {
-  docenteId?: string;
-  roleId?: string;
-  comisionId?: string;
+  docenteId: string;
+  roleId: string;
+  comisionId: string;
 }
 
 export interface DocenteLookup extends EntityDto<string> {

@@ -1,7 +1,4 @@
-import {
-    Component,
-    type OnInit, Input,
-} from '@angular/core';
+import { Component, type OnInit, Input } from '@angular/core';
 import {
     FormBuilder,
     FormControl,
@@ -15,14 +12,16 @@ import {
     SelectService,
 } from 'src/app/proxy/acme/book-store/services';
 import { LookupDto } from 'src/app/proxy/washyn/unaj/lot';
-import {ComisionService, ComisionWithRoles, ResultLotService} from 'src/app/proxy/washyn/unaj/lot/services';
+import {
+    ComisionService,
+    ComisionWithRoles,
+    ResultLotService,
+} from 'src/app/proxy/washyn/unaj/lot/services';
 import { AbpUtilService } from '../../utils/abp-util.service';
-
 
 interface RolRegister {
     rol?: FormControl<LookupDto<string>>;
 }
-
 
 @Component({
     selector: 'app-lot',
@@ -35,9 +34,9 @@ export class LotComponent implements OnInit {
     formLot: FormGroup<RolRegister>;
     roles: LookupDto<string>[] = [];
     comisionWithRoles: ComisionWithRoles = {
-        id: "",
+        id: '',
         rols: [],
-        nombre: ""
+        nombre: '',
     };
     modalIntegrantes = false;
 
@@ -63,50 +62,63 @@ export class LotComponent implements OnInit {
         this.loadDocentesSorteadosYFaltantes();
     }
 
-    docentesForModal: DocenteWithLookup[] = []
+    docentesForModal: DocenteWithLookup[] = [];
 
-    selectedDocnentes: DocenteWithLookup[] = []
-    loadDocentes(){
-        this.docenteService.getList({
-            maxResultCount: 1000
-        }).subscribe(res => {
-            this.docentesForModal = res.items.sort((a,b) => a.fullName.localeCompare(b.fullName));
-        });
+    selectedDocnentes: DocenteWithLookup[] = [];
+    loadDocentes() {
+        this.docenteService
+            .getList({
+                maxResultCount: 1000,
+            })
+            .subscribe((res) => {
+                this.docentesForModal = res.items.sort((a, b) =>
+                    a.fullName.localeCompare(b.fullName)
+                );
+            });
     }
 
-    showModal(){
+    showModal() {
         this.modalIntegrantes = true;
         this.loadDocentes();
-        this.selectedDocnentes = []
+        this.selectedDocnentes = [];
         // load docentes... from backend... ...
     }
 
     // add func for save modal
-    saveIntegrantes(){
+    saveIntegrantes() {
         this.modalIntegrantes = false;
         // map fields and send to backend...
         // ...
-        let identifiers:string[] = this.selectedDocnentes.map(a =>{
+        let identifiers: string[] = this.selectedDocnentes.map((a) => {
             return a.id;
         });
-        this.comisionService.assignToComisionByComisionIdAndDocentes(this.comisionId, identifiers).subscribe(()=>{
-            this.util.notify.info("Se modifico la lista de docentes de esta comision.");
-            this.loadDocentesSorteadosYFaltantes();
-        });
+
+        this.comisionService
+            .assignToComisionByComisionIdAndDocentes(
+                this.comisionId,
+                identifiers
+            )
+            .subscribe(() => {
+                this.util.notify.info(
+                    'Se modifico la lista de docentes de esta comisión.'
+                );
+                this.loadDocentesSorteadosYFaltantes();
+            });
     }
 
-
-    loadWithRoles(){
-        this.comisionService.getWithDetailsByComisionId(this.comisionId).subscribe(res =>{
-            this.comisionWithRoles = res;
-            this.roles = res.rols.map(rolDto =>{
-                return {
-                    id: rolDto.id,
-                    displayName: rolDto.nombre,
-                    alternativeText: rolDto.nombre
-                } as LookupDto<string>;
+    loadWithRoles() {
+        this.comisionService
+            .getWithDetailsByComisionId(this.comisionId)
+            .subscribe((res) => {
+                this.comisionWithRoles = res;
+                this.roles = res.rols.map((rolDto) => {
+                    return {
+                        id: rolDto.id,
+                        displayName: rolDto.nombre,
+                        alternativeText: rolDto.nombre,
+                    } as LookupDto<string>;
+                });
             });
-        });
     }
 
     startLot() {
@@ -119,22 +131,26 @@ export class LotComponent implements OnInit {
         }
 
         this.clearSelectedTag();
-        setTimeout(()=>{
+        setTimeout(() => {
             this.randomSelect();
-        },100);
+        }, 100);
     }
 
     sorteados: DocenteWithLookup[] = [];
     faltantes: DocenteWithLookup[] = [];
 
     loadDocentesSorteadosYFaltantes() {
-        this.lotService.getAlreadyWithLotByComisionId(this.comisionId).subscribe((res) => {
-            this.sorteados = res;
-        });
-        this.lotService.getWithoutLotByComisionId(this.comisionId).subscribe((res) => {
-            this.faltantes = res;
-            this.allTeachers = [...res];
-        });
+        this.lotService
+            .getAlreadyWithLotByComisionId(this.comisionId)
+            .subscribe((res) => {
+                this.sorteados = res;
+            });
+        this.lotService
+            .getWithoutLotByComisionId(this.comisionId)
+            .subscribe((res) => {
+                this.faltantes = res;
+                this.allTeachers = [...res];
+            });
     }
 
     resultadoSorteo(rol: LookupDto<string>, docente: LookupDto<string>) {
@@ -148,6 +164,7 @@ export class LotComponent implements OnInit {
                         .createLot({
                             roleId: rol.id,
                             docenteId: docente.id,
+                            comisionId: this.comisionId,
                         })
                         .subscribe(() => {
                             this.util.notify.success(
@@ -193,24 +210,30 @@ export class LotComponent implements OnInit {
                     alternativeText: '',
                 } as LookupDto<string>;
 
-                setTimeout(()=>{
+                setTimeout(() => {
                     this.resultadoSorteo(
                         this.formLot.value.rol,
                         dataResultChoise
                     );
-                },500);
+                }, 500);
             }, 100);
         }, times * 100);
     }
 
-    removeResultFromLot(docenteId: string){
-        this.util.message.confirm("Esta seguro de remover este sorteo?","Esta seguro?", (isConfirmed)=>{
-            if (isConfirmed){
-                this.lotService.deleteByDocenteId(docenteId).subscribe(()=>{
-                    this.loadDocentesSorteadosYFaltantes();
-                });
+    removeResultFromLot(docenteId: string) {
+        this.util.message.confirm(
+            'Esta seguro de remover este sorteo?',
+            'Esta seguro?',
+            (isConfirmed) => {
+                if (isConfirmed) {
+                    this.lotService
+                        .deleteByDocenteId(docenteId)
+                        .subscribe(() => {
+                            this.loadDocentesSorteadosYFaltantes();
+                        });
+                }
             }
-        });
+        );
     }
 
     pickRandomTag() {
@@ -228,7 +251,7 @@ export class LotComponent implements OnInit {
 
     clearSelectedTag() {
         const tags = document.querySelectorAll('.tag');
-        tags.forEach(el =>{
+        tags.forEach((el) => {
             this.unhighlightTag(el);
         });
     }

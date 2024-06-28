@@ -12,7 +12,8 @@ import {
 } from '../../../proxy/acme/book-store/entities';
 import {
     ComisionDto,
-    ComisionService, ComisionWithRoles,
+    ComisionService,
+    ComisionWithRoles,
     DocenteLookup,
 } from '../../../proxy/washyn/unaj/lot/services';
 import { AbpUtilService } from '../../utils/abp-util.service';
@@ -30,6 +31,7 @@ export class AssignmentComponent implements OnInit {
     formRol: FormGroup;
     selectedComision: ComisionDto = {} as ComisionDto;
     modalRol: boolean = false;
+    modalComisionTitle = '';
 
     constructor(
         public formBuilder: FormBuilder,
@@ -43,11 +45,14 @@ export class AssignmentComponent implements OnInit {
         this.listDataComision();
     }
 
-    buildRolForm(){
+    buildRolForm() {
         this.formRol = this.formBuilder.group<{
-            nombre: FormControl<string>
+            nombre: FormControl<string>;
         }>({
-            nombre: new FormControl("", [Validators.required, Validators.maxLength(50)])
+            nombre: new FormControl('', [
+                Validators.required,
+                Validators.maxLength(50),
+            ]),
         });
     }
 
@@ -85,34 +90,33 @@ export class AssignmentComponent implements OnInit {
         }
 
         const reqObservable = this.comisionService.addRolByModel({
-            ... this.formRol.value,
-            comisionId : this.selectedComisionId,
+            ...this.formRol.value,
+            comisionId: this.selectedComisionId,
         });
 
         reqObservable.subscribe(() => {
             this.modalRol = false;
             this.formRol.reset();
-            this.selectedComisionId = "";
+            this.selectedComisionId = '';
             this.listDataComision();
         });
     }
 
-    comisiones: ComisionWithRoles[] = []
+    comisiones: ComisionWithRoles[] = [];
 
     // Get comisiones y roles...
     // get with details ...
     listDataComision() {
-        this.comisionService.getAllWithDetails().subscribe(res =>{
+        this.comisionService.getAllWithDetails().subscribe((res) => {
             this.comisiones = res;
         });
     }
-
-
 
     createComisionModal() {
         this.selectedComision = {} as ComisionDto;
         this.buildFormComision();
         this.modalComision = true;
+        this.modalComisionTitle = 'Registrar nueva comisión';
     }
 
     buildFormComision() {
@@ -127,7 +131,7 @@ export class AssignmentComponent implements OnInit {
     }
 
     selectedComisionId: string = '';
-    agregarRol(comisionId: string){
+    agregarRol(comisionId: string) {
         this.selectedComisionId = comisionId;
         this.modalRol = true;
         // display modal for add rol...
@@ -141,6 +145,7 @@ export class AssignmentComponent implements OnInit {
         this.comisionService.get(id).subscribe((element) => {
             this.selectedComision = element;
             this.buildFormComision();
+            this.modalComisionTitle = 'Modificar nombre de comisión';
             this.modalComision = true;
         });
     }
@@ -152,9 +157,7 @@ export class AssignmentComponent implements OnInit {
             (isConfirmed) => {
                 if (isConfirmed) {
                     this.comisionService.delete(item).subscribe(() => {
-                        this.util.notify.info(
-                            `Se elimino la comisión.`
-                        );
+                        this.util.notify.info(`Se elimino la comisión.`);
                         this.listDataComision();
                     });
                 }

@@ -18,6 +18,7 @@ export interface ComisionWithRoles extends EntityDto<string> {
 export interface CreateLotResultDto {
   docenteId?: string;
   roleId?: string;
+  comisionId?: string;
 }
 
 export interface DocenteLookup extends EntityDto<string> {
@@ -27,6 +28,7 @@ export interface DocenteLookup extends EntityDto<string> {
 export interface RemoveLotResultDto {
   docenteId?: string;
   roleId?: string;
+  comisionId?: string;
 }
 
 export interface ResultLotFilterDto extends PagedAndSortedResultRequestDto {

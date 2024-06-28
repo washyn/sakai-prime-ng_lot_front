@@ -33,7 +33,7 @@ export class ResultLotService {
     this.restService.request<any, void>({
       method: 'DELETE',
       url: '/api/app/result-lot/lot',
-      params: { docenteId: model.docenteId, roleId: model.roleId },
+      params: { docenteId: model.docenteId, roleId: model.roleId, comisionId: model.comisionId },
     },
     { apiName: this.apiName,...config });
   

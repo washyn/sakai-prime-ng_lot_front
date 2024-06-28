@@ -41,7 +41,6 @@ export class ListComponent implements OnInit {
     isModalOpen = false;
     grados: LookupDto<string>[] = [];
     titleModal = ""
-    // TODO: agregartiturlo de acuerdo al tipo de modal que se esta viendo...
 
     constructor(
         public selectService: SelectService,

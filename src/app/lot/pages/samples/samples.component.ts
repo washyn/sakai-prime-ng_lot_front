@@ -62,11 +62,8 @@ import {
             </button>
         </form>
     `,
-    // changeDetection: ChangeDetectionStrategy.OnPush,
-    // encapsulation: ViewEncapsulation.None,
 })
 export class SamplesComponent implements OnInit {
-    // TODO: test block ui and create...
 
     formGroup: FormGroup;
 

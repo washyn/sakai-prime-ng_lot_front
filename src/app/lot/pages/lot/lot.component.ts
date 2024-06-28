@@ -35,9 +35,9 @@ export class LotComponent implements OnInit {
     formLot: FormGroup<RolRegister>;
     roles: LookupDto<string>[] = [];
     comisionWithRoles: ComisionWithRoles = {
-        id:"",
-        rols:[],
-        nombre:""
+        id: "",
+        rols: [],
+        nombre: ""
     };
     modalIntegrantes = false;
 
@@ -74,7 +74,6 @@ export class LotComponent implements OnInit {
         });
     }
 
-    // TODO: Continuer here...
     showModal(){
         this.modalIntegrantes = true;
         this.loadDocentes();
@@ -96,7 +95,6 @@ export class LotComponent implements OnInit {
         });
     }
 
-    // TODO: can be change back...
 
     loadWithRoles(){
         this.comisionService.getWithDetailsByComisionId(this.comisionId).subscribe(res =>{

@@ -21,14 +21,10 @@ export interface CreateLotResultDto {
   comisionId: string;
 }
 
-export interface DocenteLookup extends EntityDto<string> {
-  fullName?: string;
-}
-
 export interface RemoveLotResultDto {
-  docenteId?: string;
-  roleId?: string;
-  comisionId?: string;
+  docenteId: string;
+  roleId: string;
+  comisionId: string;
 }
 
 export interface ResultLotFilterDto extends PagedAndSortedResultRequestDto {

@@ -44,7 +44,7 @@ export class CustomErrorHandlerService {
 
     protected handleError(err: unknown) {
         if (!(err instanceof HttpErrorResponse)) {
-            console.log('Global eror handler');
+            console.log('Global error handler');
             this.util.notify.warn('Ocurrio un error inesperado.');
         }
     }

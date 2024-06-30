@@ -21,14 +21,6 @@ export class ResultLotService {
     { apiName: this.apiName,...config });
   
 
-  deleteByDocenteId = (docenteId: string, config?: Partial<Rest.Config>) =>
-    this.restService.request<any, void>({
-      method: 'DELETE',
-      url: `/api/app/result-lot/by-docente-id/${docenteId}`,
-    },
-    { apiName: this.apiName,...config });
-  
-
   deleteLot = (model: RemoveLotResultDto, config?: Partial<Rest.Config>) =>
     this.restService.request<any, void>({
       method: 'DELETE',
@@ -51,14 +43,6 @@ export class ResultLotService {
       method: 'GET',
       url: '/api/app/result-lot',
       params: { filter: input.filter, sorting: input.sorting, skipCount: input.skipCount, maxResultCount: input.maxResultCount },
-    },
-    { apiName: this.apiName,...config });
-  
-
-  getWithoutLotByComisionId = (comisionId: string, config?: Partial<Rest.Config>) =>
-    this.restService.request<any, DocenteWithRolDto[]>({
-      method: 'GET',
-      url: `/api/app/result-lot/without-lot/${comisionId}`,
     },
     { apiName: this.apiName,...config });
 

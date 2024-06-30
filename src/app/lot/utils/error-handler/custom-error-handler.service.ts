@@ -40,89 +40,12 @@ export function httpErrorConfigFactory() {
     providedIn: 'root',
 })
 export class CustomErrorHandlerService {
-    protected readonly customErrorHandlers = inject(CUSTOM_ERROR_HANDLERS);
-    protected readonly httpErrorReporter = inject(HttpErrorReporterService);
-    protected readonly httpErrorConfig = httpErrorConfigFactory();
-    protected readonly httpErrorHandler = inject(HTTP_ERROR_HANDLER, {
-        optional: true,
-    });
-
-    constructor(public util: AbpUtilService, protected injector: Injector) {
-        this.listenToRestError();
-    }
-
-    protected listenToRestError() {
-        this.httpErrorReporter.reporter$
-            .pipe(
-                filter(this.filterRestErrors),
-                switchMap(this.executeErrorHandler)
-            )
-            .subscribe((err) => this.handleError(err));
-    }
-
-    protected executeErrorHandler = (error: HttpErrorResponse) => {
-        if (this.httpErrorHandler) {
-            return this.httpErrorHandler(this.injector, error);
-        }
-
-        return of(error);
-    };
-
-    protected sortHttpErrorHandlers(
-        a: CustomHttpErrorHandlerService,
-        b: CustomHttpErrorHandlerService
-    ) {
-        return (b.priority || 0) - (a.priority || 0);
-    }
+    constructor(public util: AbpUtilService, protected injector: Injector) {}
 
     protected handleError(err: unknown) {
-        if (this.customErrorHandlers && this.customErrorHandlers.length) {
-            const errorHandlerService = this.customErrorHandlers
-                .sort(this.sortHttpErrorHandlers)
-                .find((service) => service.canHandle(err));
-
-            if (errorHandlerService) {
-                errorHandlerService.execute();
-                //throw here
-                return;
-            }
+        if (!(err instanceof HttpErrorResponse)) {
+            console.log('Global eror handler');
+            this.util.notify.warn('Ocurrio un error inesperado.');
         }
-
-        // throw here
-        this.showError().subscribe();
     }
-
-    protected showError(): Observable<void> {
-        const title = {
-            key: DEFAULT_ERROR_LOCALIZATIONS.defaultError.title,
-            defaultValue: DEFAULT_ERROR_MESSAGES.defaultError.title,
-        };
-        const message = {
-            key: DEFAULT_ERROR_LOCALIZATIONS.defaultError.details,
-            defaultValue: DEFAULT_ERROR_MESSAGES.defaultError.details,
-        };
-        // TODO:handle 403 error test when register... for user friendly...
-        // return this.confirmationService.error(message, title, {
-        //     hideCancelBtn: true,
-        //     yesText: 'AbpAccount::Close',
-        // });
-        console.log("custom error handler")
-        this.util.notify.error(message.defaultValue, title.defaultValue);
-        // this.util.notify.error('Ocurrio un error inesperado.', 'Error');
-        return EMPTY;
-    }
-
-    protected filterRestErrors = ({ status }: HttpErrorResponse): boolean => {
-        if (typeof status !== 'number') return false;
-
-        if (!this.httpErrorConfig?.skipHandledErrorCodes) {
-            return true;
-        }
-
-        return (
-            this.httpErrorConfig.skipHandledErrorCodes?.findIndex(
-                (code) => code === status
-            ) < 0
-        );
-    };
 }

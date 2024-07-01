@@ -23,7 +23,9 @@
                 class="mb-3 flex align-items-start flex-column lg:justify-content-between lg:flex-row"
             >
                 <div>
-                    <div class="font-medium text-2xl text-700">{{ item.nombre }}</div>
+                    <div class="font-medium text-2xl text-700">
+                        {{ item.nombre }}
+                    </div>
                 </div>
                 <div class="mt-3 lg:mt-0">
                     <button
@@ -137,6 +139,7 @@
         <form
             class="grid formgrid p-fluid"
             [formGroup]="formComision"
+            id="formComisionCreateUpdate"
             (ngSubmit)="saveFormComision()"
         >
             <div class="field col-12">
@@ -163,10 +166,11 @@
         <button
             pButton
             pRipple
+            form="formComisionCreateUpdate"
+            type="submit"
             label="Guardar"
             icon="pi pi-check"
             class="p-button-text"
-            (click)="saveFormComision()"
         ></button>
     </ng-template>
 </p-dialog>

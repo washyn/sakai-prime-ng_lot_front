@@ -12,12 +12,11 @@ import {
 import { CoreModule } from '@abp/ng.core';
 // import { ValidationErrorComponent } from "@abp/ng.theme.basic";
 
-
 @Component({
-    selector: "app-validation-error",
+    selector: 'app-validation-error',
     template: `
         <small
-            class="text-red-500"
+            class="text-red-700"
             *ngFor="let error of errors; trackBy: trackByFn"
         >
             {{ error.message | abpLocalization }}
@@ -27,8 +26,6 @@ import { CoreModule } from '@abp/ng.core';
     encapsulation: ViewEncapsulation.None,
 })
 export class ErrorComponent extends ValidationErrorComponent {}
-
-
 
 // @Component({
 //     selector: 'app-error',

@@ -4,6 +4,7 @@ import { PrimeCommonModule } from '../prime-common.module';
 import { AssignmentRouterModule } from './assignment-router.module';
 import { ListModule } from '../list/list.module';
 import { RegistrationListComponent } from '../registration-list/registration-list.component';
+import { NgxValidateCoreModule } from '@ngx-validate/core';
 
 @NgModule({
     declarations: [AssignmentComponent],
@@ -11,6 +12,7 @@ import { RegistrationListComponent } from '../registration-list/registration-lis
         AssignmentRouterModule,
         PrimeCommonModule,
         ListModule,
+        NgxValidateCoreModule,
         RegistrationListComponent,
     ],
 })

@@ -34,13 +34,16 @@
                 <ng-template pTemplate="header">
                     <tr>
                         <th>Apellidos y nombres</th>
+                        <th>Area</th>
                     </tr>
                 </ng-template>
-                <!-- TODO: remove participantes ya sorteados... -->
                 <ng-template pTemplate="body" let-item>
                     <tr>
                         <td>
                             {{ item.fullName }}
+                        </td>
+                        <td>
+                            {{ item.area | appArea }}
                         </td>
                     </tr>
                 </ng-template>
@@ -75,7 +78,7 @@
                         <td>
                             <a
                                 class="pointer-cursor"
-                                (click)="this.removeResultFromLot(item.id)"
+                                (click)="this.removeResultFromLot(item)"
                                 >Remover</a
                             >
                         </td>

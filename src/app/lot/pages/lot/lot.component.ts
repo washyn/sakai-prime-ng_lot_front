@@ -6,7 +6,7 @@ import {
     Validators,
 } from '@angular/forms';
 import { AutoCompleteCompleteEvent } from 'primeng/autocomplete';
-import { DocenteWithLookup } from 'src/app/proxy/acme/book-store/entities';
+import {DocenteWithLookup, DocenteWithRolDto} from 'src/app/proxy/acme/book-store/entities';
 import {
     DocenteService,
     SelectService,
@@ -31,8 +31,6 @@ interface RolRegister {
     styleUrls: ['./lot.component.css'],
 })
 export class LotComponent implements OnInit {
-    filteredDocentes: DocenteWithLookup[] = [];
-    allTeachers: DocenteWithLookup[] = [];
     formLot: FormGroup<RolRegister>;
     roles: LookupDto<string>[] = [];
     comisionWithRoles: ComisionWithRoles = {
@@ -44,7 +42,9 @@ export class LotComponent implements OnInit {
 
     docentesForModal: DocenteWithLookup[] = [];
     selectedDocnentes: DocenteWithLookup[] = [];
-
+    // Estas 2 listas deben ser distintas
+    sorteados: DocenteWithRolDto[] = [];
+    faltantes: DocenteWithRolDto[] = [];
     @Input() comisionId!: string;
 
     constructor(
@@ -83,11 +83,8 @@ export class LotComponent implements OnInit {
         this.modalIntegrantes = true;
         this.loadDocentes();
         // this.selectedDocnentes = [];
-
-        // load docentes... from backend... ...
     }
 
-    // add func for save modal
     saveIntegrantes() {
         this.modalIntegrantes = false;
 
@@ -99,13 +96,11 @@ export class LotComponent implements OnInit {
         this.faltantes = [...this.selectedDocnentes.map(a =>{
             return {
                 ...a
-            } as DocenteWithLookup
+            } as DocenteWithRolDto
         })]
 
         this.fixSincronizeList();
     }
-
-    // TODO: agregar opciopn de remover en una pagina oculta y pgaina de configuracion en interfaz de usuario...
 
     fixSincronizeList(){
         let tempList = this.faltantes.filter(a => {
@@ -160,9 +155,6 @@ export class LotComponent implements OnInit {
         }, 100);
     }
 
-    // Estas 2 listas deben ser distintas
-    sorteados: DocenteWithLookup[] = [];
-    faltantes: DocenteWithLookup[] = [];
 
     loadDocentesSorteadosYFaltantes() {
         this.lotService
@@ -173,7 +165,6 @@ export class LotComponent implements OnInit {
             });
     }
 
-    // TODO: crear funcion para que los sorteados no se muestren como pendientes.
 
     resultadoSorteo(rol: LookupDto<string>, docente: LookupDto<string>) {
         let message = `Se sorteó a ${docente.displayName} como ${rol.displayName}`;
@@ -209,8 +200,7 @@ export class LotComponent implements OnInit {
         );
     }
 
-    //TODO: fix add role
-    removeResultFromLot(docenteId: string) {
+    removeResultFromLot(docente: DocenteWithRolDto) {
         this.util.message.confirm(
             'Esta seguro de remover este sorteo?',
             'Esta seguro?',
@@ -218,9 +208,9 @@ export class LotComponent implements OnInit {
                 if (isConfirmed) {
                     this.lotService
                         .deleteLot({
-                            docenteId: docenteId,
+                            docenteId: docente.id,
+                            roleId: docente.rolId,
                             comisionId: this.comisionId,
-                            roleId: ""// TODO: add rol from arg...
                         })
                         .subscribe(() => {
                             this.loadDocentesSorteadosYFaltantes();

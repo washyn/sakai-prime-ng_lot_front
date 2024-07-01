@@ -42,6 +42,13 @@ import { RouterModule } from '@angular/router';
                         (m) => m.SamplesModule
                     ),
             },
+            {
+                path: 'lot-managment',
+                loadChildren: () =>
+                    import('./lot-managment/lot-managment.module').then(
+                        (m) => m.LotManagmentModule
+                    ),
+            },
             { path: '**', redirectTo: '/notfound' },
         ]),
     ],

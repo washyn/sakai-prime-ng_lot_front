@@ -159,11 +159,6 @@ export class AssignmentComponent implements OnInit {
         );
     }
 
-    agregarParticipantes(id: string) {
-        // ...
-        // open modal with all docentes....
-    }
-
     removerRol(id: string) {
         this.util.message.confirm("Esta seguro de remover este rol?","Esta seguro", (isConfirmed)=>{
             if (isConfirmed){

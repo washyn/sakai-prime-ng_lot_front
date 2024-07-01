@@ -11,6 +11,7 @@ import { RadioButtonModule } from 'primeng/radiobutton';
 import { NgxValidateCoreModule } from '@ngx-validate/core';
 import { LotManagmentComponent } from './lot-managment.component';
 import LotManagmentRouterModule from './lot-managment-router.module';
+import { TableModule } from 'primeng/table';
 
 @NgModule({
     imports: [
@@ -25,6 +26,7 @@ import LotManagmentRouterModule from './lot-managment-router.module';
         InputNumberModule,
         RadioButtonModule,
         NgxValidateCoreModule,
+        TableModule,
     ],
     declarations: [LotManagmentComponent],
     exports: [LotManagmentComponent],

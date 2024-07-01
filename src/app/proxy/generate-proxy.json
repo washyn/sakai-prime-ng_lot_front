@@ -4973,9 +4973,33 @@
           "regex": null
         },
         {
+          "name": "RolId",
+          "jsonName": null,
+          "type": "System.Guid",
+          "typeSimple": "string",
+          "isRequired": false,
+          "minLength": null,
+          "maxLength": null,
+          "minimum": null,
+          "maximum": null,
+          "regex": null
+        },
+        {
           "name": "Comision",
           "jsonName": null,
           "type": "System.String",
+          "typeSimple": "string",
+          "isRequired": false,
+          "minLength": null,
+          "maxLength": null,
+          "minimum": null,
+          "maximum": null,
+          "regex": null
+        },
+        {
+          "name": "ComisionId",
+          "jsonName": null,
+          "type": "System.Guid",
           "typeSimple": "string",
           "isRequired": false,
           "minLength": null,

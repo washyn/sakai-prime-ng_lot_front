@@ -1,10 +1,17 @@
 import { PagedAndSortedResultRequestDto, PagedResultDto } from '@abp/ng.core';
 import { CommonModule } from '@angular/common';
-import {ChangeDetectionStrategy, Component, ElementRef, OnInit, ViewChild} from '@angular/core';
+import {
+    ChangeDetectionStrategy,
+    Component,
+    ElementRef,
+    OnInit,
+    ViewChild,
+} from '@angular/core';
 import {
     FormBuilder,
     FormControl,
-    FormGroup, NgForm,
+    FormGroup,
+    NgForm,
     Validators,
 } from '@angular/forms';
 import { TableLazyLoadEvent } from 'primeng/table';
@@ -40,7 +47,7 @@ export class ListComponent implements OnInit {
     selectedDocente: DocenteDto = {} as DocenteDto;
     isModalOpen = false;
     grados: LookupDto<string>[] = [];
-    titleModal = ""
+    titleModal = '';
 
     constructor(
         public selectService: SelectService,
@@ -105,46 +112,62 @@ export class ListComponent implements OnInit {
             gradoId: FormControl<string>;
             genero: FormControl<Gender>;
             area?: FormControl<Area>;
-        }>({
-            dni: new FormControl<number>(+this.selectedDocente.dni || null, [
-                Validators.required,
-                Validators.minLength(8),
-                Validators.maxLength(8),
-            ]),
-            nombre: new FormControl<string>(this.selectedDocente.nombre || '', [
-                Validators.required,
-                Validators.minLength(3),
-                Validators.maxLength(100),
-            ]),
-            apellidoPaterno: new FormControl<string>(
-                this.selectedDocente.apellidoPaterno || '',
-                [Validators.required,
-                    Validators.minLength(3),
-                    Validators.maxLength(100)]
-            ),
-            apellidoMaterno: new FormControl<string>(
-                this.selectedDocente.apellidoMaterno || '',
-                [Validators.required,
-                    Validators.minLength(3),
-                    Validators.maxLength(100)]
-            ),
-            gradoId: new FormControl<string>(
-                this.selectedDocente.gradoId || '',
-                [Validators.required]
-            ),
-            genero: new FormControl<Gender>(
-                this.selectedDocente.genero || null,
-                [Validators.required]
-            ),
-            area: new FormControl<Area>(this.selectedDocente.area || null, []),
-        },{
-            updateOn:"blur"
-        });
+        }>(
+            {
+                dni: new FormControl<number>(
+                    +this.selectedDocente.dni || null,
+                    [
+                        Validators.required,
+                        Validators.minLength(8),
+                        Validators.maxLength(8),
+                    ]
+                ),
+                nombre: new FormControl<string>(
+                    this.selectedDocente.nombre || '',
+                    [
+                        Validators.required,
+                        Validators.minLength(3),
+                        Validators.maxLength(100),
+                    ]
+                ),
+                apellidoPaterno: new FormControl<string>(
+                    this.selectedDocente.apellidoPaterno || '',
+                    [
+                        Validators.required,
+                        Validators.minLength(3),
+                        Validators.maxLength(100),
+                    ]
+                ),
+                apellidoMaterno: new FormControl<string>(
+                    this.selectedDocente.apellidoMaterno || '',
+                    [
+                        Validators.required,
+                        Validators.minLength(3),
+                        Validators.maxLength(100),
+                    ]
+                ),
+                gradoId: new FormControl<string>(
+                    this.selectedDocente.gradoId || '',
+                    [Validators.required]
+                ),
+                genero: new FormControl<Gender>(
+                    this.selectedDocente.genero || null,
+                    [Validators.required]
+                ),
+                area: new FormControl<Area>(
+                    this.selectedDocente.area || null,
+                    []
+                ),
+            },
+            {
+                updateOn: 'blur',
+            }
+        );
     }
 
     save() {
         // this.form.ngSubmit.emit();
-        console.log("send")
+        console.log('send');
         if (this.formGroup.invalid) {
             this.util.notify.error(
                 'Asegurese de llenar todos los datos del formulario.',
@@ -171,14 +194,14 @@ export class ListComponent implements OnInit {
     }
 
     createModal() {
-        this.titleModal = "Registrar nuevo docente"
+        this.titleModal = 'Registrar nuevo docente';
         this.selectedDocente = {} as DocenteDto;
         this.buildForm();
         this.isModalOpen = true;
     }
 
     editModal(id: string) {
-        this.titleModal = "Modificar datos"
+        this.titleModal = 'Modificar datos';
         this.docenteService.get(id).subscribe((docente) => {
             this.selectedDocente = docente;
             this.buildForm();

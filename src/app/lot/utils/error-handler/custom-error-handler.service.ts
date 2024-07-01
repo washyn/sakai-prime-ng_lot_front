@@ -43,9 +43,11 @@ export class CustomErrorHandlerService {
     constructor(public util: AbpUtilService, protected injector: Injector) {}
 
     protected handleError(err: unknown) {
-        if (!(err instanceof HttpErrorResponse)) {
-            console.log('Global error handler');
-            this.util.notify.warn('Ocurrio un error inesperado.');
-        }
+        // if (!(err instanceof HttpErrorResponse)) {
+        //     console.log('Global error handler');
+        //     this.util.notify.warn('Ocurrio un error inesperado.');
+        // }
+
+        throwError(() => err);
     }
 }

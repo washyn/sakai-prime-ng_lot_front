@@ -5,14 +5,15 @@ import {
     HttpInterceptor,
     HttpRequest,
 } from '@angular/common/http';
-import { catchError, Observable, throwError } from 'rxjs';
-import {inject} from "@angular/core";
-import {AbpUtilService} from "./abp-util.service";
-import {AuthService, ConfigStateService} from "@abp/ng.core";
-import {getErrorFromRequestBody} from "@abp/ng.theme.shared";
-import {DEFAULT_ERROR_LOCALIZATIONS, DEFAULT_ERROR_MESSAGES} from "./error-handler/default-errors";
-
-
+import { catchError, EMPTY, Observable, throwError } from 'rxjs';
+import { inject } from '@angular/core';
+import { AbpUtilService } from './abp-util.service';
+import { AuthService, ConfigStateService } from '@abp/ng.core';
+import { getErrorFromRequestBody } from '@abp/ng.theme.shared';
+import {
+    DEFAULT_ERROR_LOCALIZATIONS,
+    DEFAULT_ERROR_MESSAGES,
+} from './error-handler/default-errors';
 
 export class HttpErrorInterceptor implements HttpInterceptor {
     private error: HttpErrorResponse | undefined = undefined;
@@ -31,39 +32,100 @@ export class HttpErrorInterceptor implements HttpInterceptor {
     ): Observable<HttpEvent<any>> {
         return next.handle(req).pipe(
             catchError((error: HttpErrorResponse) => {
+                // TODO: check validate handled status codes...
                 // this.canHandle(error); //  this handle autentication
                 console.error(error);
-                if (this.canHandle2(error)){
+                if (this.canHandle2(error)) {
+                    console.log('Handler 2');
                     this.execute2();
                     return throwError(() => error);
                 }
-                if (this.canHandle3(error)){
+                if (this.canHandle3(error)) {
+                    console.log('Handler 3');
                     this.execute3();
                     return throwError(() => error);
                 }
-                if (this.canHandle4(error)){
+                if (this.canHandle4(error)) {
+                    console.log('Handler 4');
                     this.execute4();
                     return throwError(() => error);
                 }
-                return throwError(() => error);
+                return EMPTY;
             })
         );
     }
 
-    canHandle(error: unknown){
-        let res = error instanceof HttpErrorResponse && error.status === 401;
-        if (res){
-            this.configStateService.refreshAppState().subscribe(({ currentUser }) => {
-                if (!currentUser.isAuthenticated) {
-                    this.authService.logout({ noRedirectToLogoutUrl: true });
-                }
-            });
+    handleHttpErrorResponse(error: HttpErrorResponse) {
+        // switch (this.status) {
+        //     case 401:
+        //     case 404:
+        //         // if (canCreateCustomError) {
+        //         //     this.showPage();
+        //         //     break;
+        //         // }
+        //         this.util.notify.error(messageText, titleText);
+        //         if (this.status === 401) {
+        //             this.authService.navigateToLogin();
+        //             break;
+        //         }
+        //         // this.showConfirmation(title, message).subscribe();
+        //         break;
+        //     case 403:
+        //     case 500:
+        //         this.util.notify.error(messageText, titleText);
+        //         // this.showPage();
+        //         break;
+        // }
+
+        switch (error.status) {
+            case 401:
+                break;
+            case 403:
+                break;
+            case 404:
+                break;
+            case 500:
+                break;
+            default:
+                break;
         }
     }
 
+    handle500(error: HttpErrorResponse) {
+        // ...
+    }
+
+    // el valor que debe devolver revisar de acuerdo a la documentacion de ABP.
+
+    // intercept(req: HttpRequest<any>, next: HttpHandler) {
+    //     return next.handle(req).pipe(
+    //         catchError((error) => {
+    //             this.toastService.showError(error.message);
+    //             return EMPTY;
+    //         })
+    //     );
+    // }
+
+    canHandle(error: unknown) {
+        let res = error instanceof HttpErrorResponse && error.status === 401;
+        if (res) {
+            this.configStateService
+                .refreshAppState()
+                .subscribe(({ currentUser }) => {
+                    if (!currentUser.isAuthenticated) {
+                        this.authService.logout({
+                            noRedirectToLogoutUrl: true,
+                        });
+                    }
+                });
+        }
+    }
 
     canHandle2(error: unknown): boolean {
-        if (error instanceof HttpErrorResponse && error.headers.get('_AbpErrorFormat')) {
+        if (
+            error instanceof HttpErrorResponse &&
+            error.headers.get('_AbpErrorFormat')
+        ) {
             this.error = error;
             return true;
         }
@@ -71,20 +133,29 @@ export class HttpErrorInterceptor implements HttpInterceptor {
     }
 
     execute2() {
-        const { message, title } = getErrorFromRequestBody(this.error?.error?.error);
+        const { message, title } = getErrorFromRequestBody(
+            this.error?.error?.error
+        );
         // console.log("title")
         // console.log(title["key"])
         // console.log("message")
         // console.log(message)
-        let defaultTitle = DEFAULT_ERROR_MESSAGES[title["key"]]?.title;
-        this.util.notify.error(message as string, defaultTitle)
+        let defaultTitle = DEFAULT_ERROR_MESSAGES[title['key']]?.title;
+        this.util.notify.error(message as string, defaultTitle);
 
         // call to nativate to login when close mesage service...
     }
 
-
-    canHandle3(error: { status: number; statusText: string; message: string } | undefined): boolean {
-        if (error && error.status === 0 && error.statusText === this.statusText) {
+    canHandle3(
+        error:
+            | { status: number; statusText: string; message: string }
+            | undefined
+    ): boolean {
+        if (
+            error &&
+            error.status === 0 &&
+            error.statusText === this.statusText
+        ) {
             this.message = error.message;
             return true;
         }
@@ -100,10 +171,11 @@ export class HttpErrorInterceptor implements HttpInterceptor {
         //     details: this.message,
         //     isHomeShow: false,
         // });
-        this.util.notify.error(this.message,DEFAULT_ERROR_MESSAGES.defaultError.title)
+        this.util.notify.error(
+            this.message,
+            DEFAULT_ERROR_MESSAGES.defaultError.title
+        );
     }
-
-
 
     canHandle4(error): boolean {
         this.status = error?.status || 0;
@@ -178,5 +250,4 @@ export class HttpErrorInterceptor implements HttpInterceptor {
     //
     //     this.createErrorComponentService.execute(instance);
     // }
-
 }

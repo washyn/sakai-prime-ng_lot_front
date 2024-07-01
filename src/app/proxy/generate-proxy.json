@@ -603,6 +603,126 @@
             }
           }
         },
+        "Washyn.UNAJ.Lot.Controllers.ErrorSampleController": {
+          "controllerName": "ErrorSample",
+          "controllerGroupName": "ErrorSample",
+          "isRemoteService": true,
+          "isIntegrationService": false,
+          "apiVersion": null,
+          "type": "Washyn.UNAJ.Lot.Controllers.ErrorSampleController",
+          "interfaces": [],
+          "actions": {
+            "Error500": {
+              "uniqueName": "Error500",
+              "name": "Error500",
+              "httpMethod": "GET",
+              "url": "api/app/error-sample/error500",
+              "supportedVersions": [],
+              "parametersOnMethod": [],
+              "parameters": [],
+              "returnValue": {
+                "type": "System.Void",
+                "typeSimple": "System.Void"
+              },
+              "allowAnonymous": null,
+              "implementFrom": "Washyn.UNAJ.Lot.Controllers.ErrorSampleController"
+            },
+            "Error401": {
+              "uniqueName": "Error401",
+              "name": "Error401",
+              "httpMethod": "GET",
+              "url": "api/app/error-sample/error401",
+              "supportedVersions": [],
+              "parametersOnMethod": [],
+              "parameters": [],
+              "returnValue": {
+                "type": "System.Void",
+                "typeSimple": "System.Void"
+              },
+              "allowAnonymous": null,
+              "implementFrom": "Washyn.UNAJ.Lot.Controllers.ErrorSampleController"
+            },
+            "Error403": {
+              "uniqueName": "Error403",
+              "name": "Error403",
+              "httpMethod": "GET",
+              "url": "api/app/error-sample/error403",
+              "supportedVersions": [],
+              "parametersOnMethod": [],
+              "parameters": [],
+              "returnValue": {
+                "type": "System.Void",
+                "typeSimple": "System.Void"
+              },
+              "allowAnonymous": null,
+              "implementFrom": "Washyn.UNAJ.Lot.Controllers.ErrorSampleController"
+            },
+            "Error40XXXByModelSample": {
+              "uniqueName": "Error40XXXByModelSample",
+              "name": "Error40XXX",
+              "httpMethod": "GET",
+              "url": "api/app/error-sample/error40XXX",
+              "supportedVersions": [],
+              "parametersOnMethod": [
+                {
+                  "name": "modelSample",
+                  "typeAsString": "Washyn.UNAJ.Lot.Controllers.ModelSample, Washyn.UNAJ.Lot",
+                  "type": "Washyn.UNAJ.Lot.Controllers.ModelSample",
+                  "typeSimple": "Washyn.UNAJ.Lot.Controllers.ModelSample",
+                  "isOptional": false,
+                  "defaultValue": null
+                }
+              ],
+              "parameters": [
+                {
+                  "nameOnMethod": "modelSample",
+                  "name": "TestValue",
+                  "jsonName": null,
+                  "type": "System.String",
+                  "typeSimple": "string",
+                  "isOptional": false,
+                  "defaultValue": null,
+                  "constraintTypes": null,
+                  "bindingSourceId": "ModelBinding",
+                  "descriptorName": "modelSample"
+                },
+                {
+                  "nameOnMethod": "modelSample",
+                  "name": "SecondValue",
+                  "jsonName": null,
+                  "type": "System.String",
+                  "typeSimple": "string",
+                  "isOptional": false,
+                  "defaultValue": null,
+                  "constraintTypes": null,
+                  "bindingSourceId": "ModelBinding",
+                  "descriptorName": "modelSample"
+                }
+              ],
+              "returnValue": {
+                "type": "System.Void",
+                "typeSimple": "System.Void"
+              },
+              "allowAnonymous": null,
+              "implementFrom": "Washyn.UNAJ.Lot.Controllers.ErrorSampleController"
+            },
+            "Error404": {
+              "uniqueName": "Error404",
+              "name": "Error404",
+              "httpMethod": "GET",
+              "url": "api/app/error-sample/error404",
+              "supportedVersions": [],
+              "parametersOnMethod": [],
+              "parameters": [],
+              "returnValue": {
+                "type": "System.Void",
+                "typeSimple": "System.Void"
+              },
+              "allowAnonymous": null,
+              "implementFrom": "Washyn.UNAJ.Lot.Controllers.ErrorSampleController"
+            }
+          }
+        },
         "Washyn.UNAJ.Lot.Controllers.ReportController": {
           "controllerName": "Report",
           "controllerGroupName": "Report",
@@ -5000,6 +5120,39 @@
           "name": "ComisionId",
           "jsonName": null,
           "type": "System.Guid",
+          "typeSimple": "string",
+          "isRequired": false,
+          "minLength": null,
+          "maxLength": null,
+          "minimum": null,
+          "maximum": null,
+          "regex": null
+        }
+      ]
+    },
+    "Washyn.UNAJ.Lot.Controllers.ModelSample": {
+      "baseType": null,
+      "isEnum": false,
+      "enumNames": null,
+      "enumValues": null,
+      "genericArguments": null,
+      "properties": [
+        {
+          "name": "TestValue",
+          "jsonName": null,
+          "type": "System.String",
+          "typeSimple": "string",
+          "isRequired": false,
+          "minLength": null,
+          "maxLength": null,
+          "minimum": null,
+          "maximum": null,
+          "regex": null
+        },
+        {
+          "name": "SecondValue",
+          "jsonName": null,
+          "type": "System.String",
           "typeSimple": "string",
           "isRequired": false,
           "minLength": null,

@@ -1,5 +1,6 @@
 import { Injectable, Injector } from '@angular/core';
 import { AbpUtilService } from '../abp-util.service';
+import { throwError } from 'rxjs';
 
 @Injectable({
     providedIn: 'root',
@@ -7,7 +8,9 @@ import { AbpUtilService } from '../abp-util.service';
 export class CustomErrorHandlerService {
     constructor(public util: AbpUtilService, protected injector: Injector) {}
     protected handleError(err: unknown) {
-        this.util.notify.warn('Ocurrio un error inesperado.', 'Error.');
+        // this.util.notify.warn('Ocurrio un error inesperado.', 'Error.');
+        console.log('Error handled...');
         console.error(err);
+        // throwError(() => err);
     }
 }

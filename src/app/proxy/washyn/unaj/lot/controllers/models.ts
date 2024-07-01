@@ -2,6 +2,11 @@ import type { FullAuditedEntityDto } from '@abp/ng.core';
 import type { Gender } from '../../../../acme/book-store/entities/gender.enum';
 import type { Area } from '../../../../acme/book-store/entities/area.enum';
 
+export interface ModelSample {
+  testValue?: string;
+  secondValue?: string;
+}
+
 export interface DocenteRoleData extends FullAuditedEntityDto<string> {
   dni?: string;
   nombre?: string;

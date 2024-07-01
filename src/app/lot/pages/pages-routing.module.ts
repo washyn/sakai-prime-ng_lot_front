@@ -53,8 +53,8 @@ import { RouterModule } from '@angular/router';
                 path: 'setting',
                 loadChildren: () =>
                     import(
-                        './setting-managment/setting-managment-router.module'
-                    ).then((m) => m.SettingManagmentRouterModule),
+                        './setting-managment/setting-managment.module'
+                    ).then((m) => m.SettingManagmentModule),
             },
             { path: '**', redirectTo: '/notfound' },
         ]),

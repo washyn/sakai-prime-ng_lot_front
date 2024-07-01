@@ -18,6 +18,7 @@ import {
     ResultLotService,
 } from 'src/app/proxy/washyn/unaj/lot/services';
 import { AbpUtilService } from '../../utils/abp-util.service';
+import {el} from "@fullcalendar/core/internal-common";
 
 
 interface RolRegister {
@@ -104,14 +105,22 @@ export class LotComponent implements OnInit {
         this.fixSincronizeList();
     }
 
+    // TODO: agregar opciopn de remover en una pagina oculta y pgaina de configuracion en interfaz de usuario...
+
     fixSincronizeList(){
-        // remover de la lista de pendientes los que ya estan en la lista de sorteados...
-        // iterara la lista de sorteados
-        //  si este elemento esta en los pendientes.
-        //      Remover
-        //
-        // una vez con la lista temporal asignarlo a la lista de pendientes...
-        
+        let tempList = this.faltantes.filter(a => {
+            if (this.estaEnFaltantes(a)){
+                return false;
+            }else {
+                return true;
+            }
+        })
+        this.faltantes = [...tempList];
+    }
+
+    estaEnFaltantes(docente: DocenteWithLookup){
+        let res = this.sorteados.some(a => a.id === docente.id);
+        return res;
     }
 
     loadWithRoles() {

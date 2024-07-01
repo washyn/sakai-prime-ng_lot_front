@@ -23,7 +23,7 @@ import { HttpErrorInterceptor } from './lot/utils/http-error-interceptor';
     ],
     exports: [LocalizationModule],
     providers: [
-        // { provide: ErrorHandler, useExisting: CustomErrorHandlerService },
+        { provide: ErrorHandler, useExisting: CustomErrorHandlerService },
         //
         // {
         //     provide: CUSTOM_ERROR_HANDLERS,

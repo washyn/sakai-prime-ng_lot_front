@@ -95,29 +95,23 @@ export class LotComponent implements OnInit {
             return;
         }
 
-        // map fields and send to backend...
-        // TODO: add to list and differnte with already lot...
         this.faltantes = [...this.selectedDocnentes.map(a =>{
             return {
                 ...a
             } as DocenteWithLookup
         })]
-        // ...
-        // let identifiers: string[] = this.selectedDocnentes.map((a) => {
-        //     return a.id;
-        // });
+
+        this.fixSincronizeList();
+    }
+
+    fixSincronizeList(){
+        // remover de la lista de pendientes los que ya estan en la lista de sorteados...
+        // iterara la lista de sorteados
+        //  si este elemento esta en los pendientes.
+        //      Remover
         //
-        // this.comisionService
-        //     .assignToComisionByComisionIdAndDocentes(
-        //         this.comisionId,
-        //         identifiers
-        //     )
-        //     .subscribe(() => {
-        //         this.util.notify.info(
-        //             'Se modifico la lista de docentes de esta comisión.'
-        //         );
-        //         this.loadDocentesSorteadosYFaltantes();
-        //     });
+        // una vez con la lista temporal asignarlo a la lista de pendientes...
+        
     }
 
     loadWithRoles() {
@@ -166,6 +160,7 @@ export class LotComponent implements OnInit {
             .getAlreadyWithLotByComisionId(this.comisionId)
             .subscribe((res) => {
                 this.sorteados = res;
+                this.fixSincronizeList();
             });
     }
 

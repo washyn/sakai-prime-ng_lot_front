@@ -1,21 +1,20 @@
-import { NgModule } from '@angular/core';
-import { CommonModule } from '@angular/common';
-import { RegisterRoutingModule } from '../register/register-routing.module';
-import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+import { NgxValidateCoreModule } from '@ngx-validate/core';
+import { SettingManagmentRouterModule } from './setting-managment-router.module';
+import { SettingManagmentComponent } from './setting-managment.component';
 import { InputTextModule } from 'primeng/inputtext';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+import { CommonModule } from '@angular/common';
 import { ButtonModule } from 'primeng/button';
 import { AutoCompleteModule } from 'primeng/autocomplete';
 import { DropdownModule } from 'primeng/dropdown';
 import { InputNumberModule } from 'primeng/inputnumber';
 import { RadioButtonModule } from 'primeng/radiobutton';
-import { NgxValidateCoreModule } from '@ngx-validate/core';
-import { LotManagmentComponent } from './lot-managment.component';
-import LotManagmentRouterModule from './lot-managment-router.module';
+import { NgModule } from '@angular/core';
 
 @NgModule({
     imports: [
         CommonModule,
-        LotManagmentRouterModule,
+        SettingManagmentRouterModule,
         FormsModule,
         ReactiveFormsModule,
         InputTextModule,
@@ -26,7 +25,7 @@ import LotManagmentRouterModule from './lot-managment-router.module';
         RadioButtonModule,
         NgxValidateCoreModule,
     ],
-    declarations: [LotManagmentComponent],
-    exports: [LotManagmentComponent],
+    declarations: [SettingManagmentComponent],
+    exports: [SettingManagmentComponent],
 })
-export class LotManagmentModule {}
+export class SettingManagmentModule {}

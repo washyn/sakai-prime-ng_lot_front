@@ -1,0 +1,98 @@
+<div class="surface-card p-3 shadow-1 border-round">
+    <div
+        class="mb-3 flex align-items-center flex-column lg:justify-content-center lg:flex-row"
+    >
+        <div class="font-medium text-3xl text-700">
+            Parametro de generación de informe
+        </div>
+    </div>
+
+    <p>
+        Estos datos son usados para la generación de la carta de invitación para
+        los sorteados.
+    </p>
+
+    <form
+        class="grid formgrid p-fluid"
+        [formGroup]="formGroup"
+        (ngSubmit)="save()"
+    >
+        <div class="field col-12">
+            <label class="font-medium text-700"
+                >Inicio de numero de carta(la primera carta tendra este numero)
+                *</label
+            >
+            <p-inputNumber
+                class="p-inputtext-sm"
+                mode="decimal"
+                maxlength="8"
+                [useGrouping]="false"
+                formControlName="sequenceStart"
+            />
+        </div>
+        <div class="field col-12">
+            <label class="font-medium text-700">Sufijo de carta *</label>
+            <input
+                type="text"
+                pInputText
+                class="p-inputtext-sm"
+                formControlName="numeroCarta"
+            />
+        </div>
+        <div class="field col-12">
+            <label class="font-medium text-700"
+                >Asunto de la carta de invitación *</label
+            >
+            <input
+                type="text"
+                pInputText
+                class="p-inputtext-sm"
+                formControlName="asunto"
+            />
+        </div>
+
+        <div class="field col-12">
+            <label class="font-medium text-700">Modalidad examen *</label>
+            <input
+                type="text"
+                pInputText
+                class="p-inputtext-sm"
+                formControlName="modalidad"
+            />
+        </div>
+
+        <div class="field col-12">
+            <label class="font-medium text-700">Fecha de examen *</label>
+            <input
+                type="text"
+                pInputText
+                class="p-inputtext-sm"
+                formControlName="fechaExamen"
+            />
+        </div>
+
+        <div class="field col-12">
+            <label class="font-medium text-700">Mensaje de despedida *</label>
+            <input
+                type="text"
+                pInputText
+                class="p-inputtext-sm"
+                formControlName="despedida"
+            />
+        </div>
+        <div class="field col-12">
+            <label class="font-medium text-700"
+                >Fecha de documento(cabecera) *</label
+            >
+            <input
+                type="text"
+                pInputText
+                class="p-inputtext-sm"
+                formControlName="fechaGenerada"
+            />
+        </div>
+        <div class="field col-12">
+            <p-button [type]="'submit'" label="Guardar" [outlined]="true" />
+        </div>
+    </form>
+</div>

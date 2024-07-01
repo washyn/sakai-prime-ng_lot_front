@@ -60,4 +60,7 @@ export const DEFAULT_ERROR_MESSAGES_SPANISH = {
 ```
 
 ## TODO:
-- Improve global error interceptor and http interceptor...
+
+-   Improve global error interceptor and http interceptor.
+-   Sorteado ordenar por fecha.
+-   En remoer sorteo agregar soft delete.

@@ -19,6 +19,7 @@ import {
 } from 'src/app/proxy/washyn/unaj/lot/services';
 import { AbpUtilService } from '../../utils/abp-util.service';
 
+
 interface RolRegister {
     rol?: FormControl<LookupDto<string>>;
 }
@@ -39,6 +40,9 @@ export class LotComponent implements OnInit {
         nombre: '',
     };
     modalIntegrantes = false;
+
+    docentesForModal: DocenteWithLookup[] = [];
+    selectedDocnentes: DocenteWithLookup[] = [];
 
     @Input() comisionId!: string;
 
@@ -62,9 +66,6 @@ export class LotComponent implements OnInit {
         this.loadDocentesSorteadosYFaltantes();
     }
 
-    docentesForModal: DocenteWithLookup[] = [];
-
-    selectedDocnentes: DocenteWithLookup[] = [];
     loadDocentes() {
         this.docenteService
             .getList({
@@ -80,30 +81,43 @@ export class LotComponent implements OnInit {
     showModal() {
         this.modalIntegrantes = true;
         this.loadDocentes();
-        this.selectedDocnentes = [];
+        // this.selectedDocnentes = [];
+
         // load docentes... from backend... ...
     }
 
     // add func for save modal
     saveIntegrantes() {
         this.modalIntegrantes = false;
-        // map fields and send to backend...
-        // ...
-        let identifiers: string[] = this.selectedDocnentes.map((a) => {
-            return a.id;
-        });
 
-        this.comisionService
-            .assignToComisionByComisionIdAndDocentes(
-                this.comisionId,
-                identifiers
-            )
-            .subscribe(() => {
-                this.util.notify.info(
-                    'Se modifico la lista de docentes de esta comisión.'
-                );
-                this.loadDocentesSorteadosYFaltantes();
-            });
+        if (!this.selectedDocnentes.length){
+            this.util.notify.warn("Selecione al menos un docente para participar en el sorteo.");
+            return;
+        }
+
+        // map fields and send to backend...
+        // TODO: add to list and differnte with already lot...
+        this.faltantes = [...this.selectedDocnentes.map(a =>{
+            return {
+                ...a
+            } as DocenteWithLookup
+        })]
+        // ...
+        // let identifiers: string[] = this.selectedDocnentes.map((a) => {
+        //     return a.id;
+        // });
+        //
+        // this.comisionService
+        //     .assignToComisionByComisionIdAndDocentes(
+        //         this.comisionId,
+        //         identifiers
+        //     )
+        //     .subscribe(() => {
+        //         this.util.notify.info(
+        //             'Se modifico la lista de docentes de esta comisión.'
+        //         );
+        //         this.loadDocentesSorteadosYFaltantes();
+        //     });
     }
 
     loadWithRoles() {
@@ -122,6 +136,13 @@ export class LotComponent implements OnInit {
     }
 
     startLot() {
+        if (!this.faltantes.length){
+            this.util.notify.error(
+                'Selecione al menos un docente participante.',
+                'Mensaje de validación'
+            );
+            return;
+        }
         if (this.formLot.invalid) {
             this.util.notify.error(
                 'Selecione un rol para realizar el sorteo.',
@@ -136,6 +157,7 @@ export class LotComponent implements OnInit {
         }, 100);
     }
 
+    // Estas 2 listas deben ser distintas
     sorteados: DocenteWithLookup[] = [];
     faltantes: DocenteWithLookup[] = [];
 
@@ -145,13 +167,9 @@ export class LotComponent implements OnInit {
             .subscribe((res) => {
                 this.sorteados = res;
             });
-        this.lotService
-            .getWithoutLotByComisionId(this.comisionId)
-            .subscribe((res) => {
-                this.faltantes = res;
-                this.allTeachers = [...res];
-            });
     }
+
+    // TODO: crear funcion para que los sorteados no se muestren como pendientes.
 
     resultadoSorteo(rol: LookupDto<string>, docente: LookupDto<string>) {
         let message = `Se sorteó a ${docente.displayName} como ${rol.displayName}`;
@@ -187,6 +205,27 @@ export class LotComponent implements OnInit {
         );
     }
 
+    //TODO: fix add role
+    removeResultFromLot(docenteId: string) {
+        this.util.message.confirm(
+            'Esta seguro de remover este sorteo?',
+            'Esta seguro?',
+            (isConfirmed) => {
+                if (isConfirmed) {
+                    this.lotService
+                        .deleteLot({
+                            docenteId: docenteId,
+                            comisionId: this.comisionId,
+                            roleId: ""// TODO: add rol from arg...
+                        })
+                        .subscribe(() => {
+                            this.loadDocentesSorteadosYFaltantes();
+                        });
+                }
+            }
+        );
+    }
+
     randomSelect() {
         const times = 30;
         const interval = setInterval(() => {
@@ -218,22 +257,6 @@ export class LotComponent implements OnInit {
                 }, 500);
             }, 100);
         }, times * 100);
-    }
-
-    removeResultFromLot(docenteId: string) {
-        this.util.message.confirm(
-            'Esta seguro de remover este sorteo?',
-            'Esta seguro?',
-            (isConfirmed) => {
-                if (isConfirmed) {
-                    this.lotService
-                        .deleteByDocenteId(docenteId)
-                        .subscribe(() => {
-                            this.loadDocentesSorteadosYFaltantes();
-                        });
-                }
-            }
-        );
     }
 
     pickRandomTag() {

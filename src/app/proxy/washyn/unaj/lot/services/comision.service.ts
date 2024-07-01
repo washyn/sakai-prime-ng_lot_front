@@ -69,6 +69,14 @@ export class ComisionService {
     { apiName: this.apiName,...config });
   
 
+  removeRolByRolId = (rolId: string, config?: Partial<Rest.Config>) =>
+    this.restService.request<any, void>({
+      method: 'DELETE',
+      url: `/api/app/comision/rol/${rolId}`,
+    },
+    { apiName: this.apiName,...config });
+  
+
   update = (id: string, input: ComisionDto, config?: Partial<Rest.Config>) =>
     this.restService.request<any, ComisionDto>({
       method: 'PUT',

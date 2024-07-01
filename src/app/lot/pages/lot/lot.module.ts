@@ -16,6 +16,7 @@ import { LotRoutingModule } from './lot-routing.module';
 import { LotComponent } from './lot.component';
 import { LocalizationModule } from '@abp/ng.core';
 import { RandomChoiserComponent } from '../components/random-choiser/random-choiser.component';
+import {ListModule} from "../list/list.module";
 
 @NgModule({
     declarations: [LotComponent],
@@ -40,6 +41,7 @@ import { RandomChoiserComponent } from '../components/random-choiser/random-choi
         TableModule,
         LocalizationModule,
         RandomChoiserComponent,
+        ListModule,
     ],
 })
 export class LotModule {}

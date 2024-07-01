@@ -101,7 +101,7 @@
 
             <div class="flex align-items-center flex-column">
                 <button pButton (click)="startLot()">
-                    Inciar selecion aleatoria
+                    Inciar selección aleatoria
                 </button>
             </div>
 
@@ -124,29 +124,13 @@
 
 <p-dialog
     [(visible)]="modalIntegrantes"
-    [style]="{ width: '600px' }"
+    [style]="{ width: '700px' }"
     header="Agregar participante"
     [modal]="true"
     [draggable]="false"
     [resizable]="false"
 >
     <ng-template pTemplate="content">
-        <!--        <form-->
-        <!--            class="grid formgrid p-fluid"-->
-        <!--            [formGroup]="formRol"-->
-        <!--            (ngSubmit)="saveFormRole()"-->
-        <!--        >-->
-        <!--            <div class="field col-12">-->
-        <!--                <label class="font-medium text-700">Nombre de rol *</label>-->
-        <!--                <input-->
-        <!--                    class="p-inputtext-sm"-->
-        <!--                    pInputText-->
-        <!--                    type="text"-->
-        <!--                    formControlName="nombre"-->
-        <!--                />-->
-        <!--            </div>-->
-        <!--        </form>-->
-
         <p-table
             [value]="docentesForModal"
             [tableStyle]="{ 'min-width': '20rem' }"
@@ -157,6 +141,7 @@
                 <tr>
                     <th style="width: 4rem"><p-tableHeaderCheckbox /></th>
                     <th>Nombres</th>
+                    <th>Area</th>
                 </tr>
             </ng-template>
             <ng-template pTemplate="body" let-docente>
@@ -165,6 +150,7 @@
                         <p-tableCheckbox [value]="docente" />
                     </td>
                     <td>{{ docente.fullName }}</td>
+                    <td>{{ docente.area | appArea }}</td>
                 </tr>
             </ng-template>
         </p-table>
@@ -179,7 +165,6 @@
             class="p-button-text"
             (click)="modalIntegrantes = false"
         ></button>
-        <!--        validate if some  is selected-->
         <button
             pButton
             pRipple

@@ -14,7 +14,6 @@ import {
     ComisionDto,
     ComisionService,
     ComisionWithRoles,
-    DocenteLookup,
 } from '../../../proxy/washyn/unaj/lot/services';
 import { AbpUtilService } from '../../utils/abp-util.service';
 import { PagedResultDto } from '@abp/ng.core';
@@ -32,7 +31,7 @@ export class AssignmentComponent implements OnInit {
     selectedComision: ComisionDto = {} as ComisionDto;
     modalRol: boolean = false;
     modalComisionTitle = '';
-
+    selectedComisionId: string = '';
     constructor(
         public formBuilder: FormBuilder,
         public comisionService: ComisionService,
@@ -130,15 +129,10 @@ export class AssignmentComponent implements OnInit {
         });
     }
 
-    selectedComisionId: string = '';
     agregarRol(comisionId: string) {
         this.selectedComisionId = comisionId;
         this.modalRol = true;
-        // display modal for add rol...
-    }
-
-    editarNombreComision(item: ComisionDto) {
-        // get and confirma...
+        this.buildRolForm();
     }
 
     editComisionModal(id: string) {
@@ -168,5 +162,15 @@ export class AssignmentComponent implements OnInit {
     agregarParticipantes(id: string) {
         // ...
         // open modal with all docentes....
+    }
+
+    removerRol(id: string) {
+        this.util.message.confirm("Esta seguro de remover este rol?","Esta seguro", (isConfirmed)=>{
+            if (isConfirmed){
+                this.comisionService.removeRolByRolId(id).subscribe(()=>{
+                    this.listDataComision();
+                });
+            }
+        });
     }
 }

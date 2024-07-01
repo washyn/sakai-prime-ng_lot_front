@@ -24,20 +24,50 @@
                     <div class="font-small text-lg text-700">
                         {{ item.nombre }}
                     </div>
-                    <ul>
-                        <li *ngFor="let role of item.rols">
-                            {{role.nombre}}
-                        </li>
-                    </ul>
+                    <br />
+                    <p-table
+                        lazy="false"
+                        [value]="item.rols"
+                        styleClass="p-datatable-gridlines"
+                        scrollHeight="250px"
+                        [tableStyle]="{ 'min-width': '20rem' }"
+                    >
+                        <ng-template pTemplate="header">
+                            <tr>
+                                <th>Roles</th>
+                                <th>Opcion</th>
+                            </tr>
+                        </ng-template>
+                        <ng-template pTemplate="body" let-item>
+                            <tr>
+                                <td>
+                                    {{ item.nombre }}
+                                </td>
+                                <td class="p-1">
+                                    <!--                                    add remove rol-->
+                                    <div class="flex">
+                                        <button
+                                            pButton
+                                            pRipple
+                                            label=""
+                                            icon="pi pi-trash"
+                                            class="p-button-outlined mr-2"
+                                            (click)="removerRol(item.id)"
+                                        ></button>
+                                    </div>
+                                </td>
+                            </tr>
+                        </ng-template>
+                    </p-table>
                 </div>
 
-<!--                TODO: add page for, lot, res ... -->
-                <hr>
-<!--                TODO: mostrar la lista de roles y la lista de roles y las personas sorteadas-->
-<!--                // add or remove rol-->
+                <!--                TODO: add page for, lot, res ... -->
+                <hr />
+                <!--                TODO: mostrar la lista de roles y la lista de roles y las personas sorteadas-->
+                <!--                // add or remove rol-->
 
-                <div class="col-12">
-                    <div class="">
+                <div class="col-12 py-0">
+                    <div class="flex">
                         <button
                             pButton
                             pRipple
@@ -54,26 +84,28 @@
                             label=""
                             class="p-button-outlined mr-2"
                         ></button>
-<!--                        <button-->
-<!--                            pButton-->
-<!--                            pRipple-->
-<!--                            (click)="agregarParticipantes(item.id)"-->
-<!--                            label="Agregar participante"-->
-<!--                            class="p-button-outlined mr-2"-->
-<!--                        ></button>-->
+                        <!--                        <button-->
+                        <!--                            pButton-->
+                        <!--                            pRipple-->
+                        <!--                            (click)="agregarParticipantes(item.id)"-->
+                        <!--                            label="Agregar participante"-->
+                        <!--                            class="p-button-outlined mr-2"-->
+                        <!--                        ></button>-->
                         <button
                             pButton
                             pRipple
                             (click)="agregarRol(item.id)"
                             label="Agregar rol"
+                            icon="pi pi-plus"
                             class="p-button-outlined mr-2"
                         ></button>
                         <button
                             pButton
                             routerLink="/lot/process"
-                            [queryParams]="{comisionId:item.id}"
+                            [queryParams]="{ comisionId: item.id }"
                             pRipple
-                            label="Realizar sorteo"
+                            icon="pi pi-fw pi-box"
+                            label="Ver sorteo"
                             class="p-button-outlined mr-2"
                         ></button>
                     </div>
@@ -92,12 +124,11 @@
 <!--    </div>-->
 <!--</div>-->
 
-<!-- TODO: add code  for add and remove comisions -->
-
+<!-- modal para agregar y remover comisiones-->
 <p-dialog
     [(visible)]="modalComision"
     [style]="{ width: '600px' }"
-    header="Registrar nueva comisión"
+    [header]="modalComisionTitle"
     [modal]="true"
     [draggable]="false"
     [resizable]="false"
@@ -140,7 +171,6 @@
     </ng-template>
 </p-dialog>
 
-
 <p-dialog
     [(visible)]="modalRol"
     [style]="{ width: '600px' }"
@@ -153,6 +183,7 @@
         <form
             class="grid formgrid p-fluid"
             [formGroup]="formRol"
+            id="formRol"
             (ngSubmit)="saveFormRole()"
         >
             <div class="field col-12">
@@ -179,58 +210,57 @@
         <button
             pButton
             pRipple
+            form="formRol"
+            type="submit"
             label="Guardar"
             icon="pi pi-check"
             class="p-button-text"
-            (click)="saveFormRole()"
         ></button>
     </ng-template>
 </p-dialog>
 
+<!--<p-dialog-->
+<!--    [(visible)]="modalRol"-->
+<!--    [style]="{ width: '600px' }"-->
+<!--    header="Agregar rol"-->
+<!--    [modal]="true"-->
+<!--    [draggable]="false"-->
+<!--    [resizable]="false"-->
+<!--&gt;-->
+<!--    <ng-template pTemplate="content">-->
+<!--        <form-->
+<!--            class="grid formgrid p-fluid"-->
+<!--            [formGroup]="formRol"-->
+<!--            (ngSubmit)="saveFormRole()"-->
+<!--        >-->
+<!--            <div class="field col-12">-->
+<!--                <label class="font-medium text-700">Nombre de rol *</label>-->
+<!--                <input-->
+<!--                    class="p-inputtext-sm"-->
+<!--                    pInputText-->
+<!--                    type="text"-->
+<!--                    formControlName="nombre"-->
+<!--                />-->
+<!--            </div>-->
+<!--        </form>-->
+<!--    </ng-template>-->
 
-<p-dialog
-    [(visible)]="modalRol"
-    [style]="{ width: '600px' }"
-    header="Agregar rol"
-    [modal]="true"
-    [draggable]="false"
-    [resizable]="false"
->
-    <ng-template pTemplate="content">
-        <form
-            class="grid formgrid p-fluid"
-            [formGroup]="formRol"
-            (ngSubmit)="saveFormRole()"
-        >
-            <div class="field col-12">
-                <label class="font-medium text-700">Nombre de rol *</label>
-                <input
-                    class="p-inputtext-sm"
-                    pInputText
-                    type="text"
-                    formControlName="nombre"
-                />
-            </div>
-        </form>
-    </ng-template>
-
-    <ng-template pTemplate="footer">
-        <button
-            pButton
-            pRipple
-            label="Cancelar"
-            icon="pi pi-times"
-            class="p-button-text"
-            (click)="modalRol = false"
-        ></button>
-        <button
-            pButton
-            pRipple
-            label="Guardar"
-            icon="pi pi-check"
-            class="p-button-text"
-            (click)="saveFormRole()"
-        ></button>
-    </ng-template>
-</p-dialog>
-
+<!--    <ng-template pTemplate="footer">-->
+<!--        <button-->
+<!--            pButton-->
+<!--            pRipple-->
+<!--            label="Cancelar"-->
+<!--            icon="pi pi-times"-->
+<!--            class="p-button-text"-->
+<!--            (click)="modalRol = false"-->
+<!--        ></button>-->
+<!--        <button-->
+<!--            pButton-->
+<!--            pRipple-->
+<!--            label="Guardar"-->
+<!--            icon="pi pi-check"-->
+<!--            class="p-button-text"-->
+<!--            (click)="saveFormRole()"-->
+<!--        ></button>-->
+<!--    </ng-template>-->
+<!--</p-dialog>-->

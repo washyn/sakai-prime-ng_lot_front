@@ -64,3 +64,4 @@ export const DEFAULT_ERROR_MESSAGES_SPANISH = {
 -   Improve global error interceptor and http interceptor.
 -   Sorteado ordenar por fecha.
 -   En remoer sorteo agregar soft delete.
+-   Agregar script para compilacion rapida

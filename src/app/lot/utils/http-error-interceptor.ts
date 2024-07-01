@@ -38,17 +38,17 @@ export class HttpErrorInterceptor implements HttpInterceptor {
                 if (this.canHandle2(error)) {
                     console.log('Handler 2');
                     this.execute2();
-                    return throwError(() => error);
+                    // return throwError(() => error);
                 }
                 if (this.canHandle3(error)) {
                     console.log('Handler 3');
                     this.execute3();
-                    return throwError(() => error);
+                    // return throwError(() => error);
                 }
                 if (this.canHandle4(error)) {
                     console.log('Handler 4');
                     this.execute4();
-                    return throwError(() => error);
+                    // return throwError(() => error);
                 }
                 return EMPTY;
             })
@@ -132,18 +132,21 @@ export class HttpErrorInterceptor implements HttpInterceptor {
         return false;
     }
 
+    // TODO: apply localization to title by default spanish
     execute2() {
         const { message, title } = getErrorFromRequestBody(
             this.error?.error?.error
         );
-        // console.log("title")
-        // console.log(title["key"])
-        // console.log("message")
-        // console.log(message)
-        let defaultTitle = DEFAULT_ERROR_MESSAGES[title['key']]?.title;
-        this.util.notify.error(message as string, defaultTitle);
 
-        // call to nativate to login when close mesage service...
+        let finalMessage =
+            typeof message === 'string'
+                ? (message as string)
+                : message.defaultValue;
+
+        let finalTitle =
+            typeof title === 'string' ? (title as string) : title.defaultValue;
+
+        this.util.notify.error(finalMessage, finalTitle);
     }
 
     canHandle3(
